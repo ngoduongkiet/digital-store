@@ -301,6 +301,20 @@ export function getOrders() {
   return data.orders;
 }
 
+export function deleteOrder(id) {
+  const data = initData();
+  data.orders = (data.orders || []).filter((o) => o.id !== id);
+  saveData(data);
+  return true;
+}
+
+export function clearOrders() {
+  const data = initData();
+  data.orders = [];
+  saveData(data);
+  return true;
+}
+
 export function addProduct(newProduct) {
   const data = initData();
   const id = 'prod-' + Date.now();
@@ -356,6 +370,13 @@ export function addMessage(msg) {
 export function getMessages() {
   const data = initData();
   return data.messages || [];
+}
+
+export function deleteMessage(id) {
+  const data = initData();
+  data.messages = (data.messages || []).filter((m) => m.id !== id);
+  saveData(data);
+  return true;
 }
 
 export function getReviews(productId) {

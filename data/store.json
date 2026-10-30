@@ -159,21 +159,7 @@
       "fullDesc": "Bộ vũ khí không thể thiếu cho bất kỳ ai kinh doanh online. Giúp bạn không bao giờ bị tình trạng \"bán hàng rôm rả nhưng cuối tháng lỗ vốn vì không tính chuẩn phí sàn\". Kèm theo 500 câu lệnh AI giúp bạn sản xuất 10 bài viết quảng cáo hoặc kịch bản video chỉ trong 5 phút."
     }
   ],
-  "orders": [
-    {
-      "id": "ORD784664",
-      "productId": "workflow-shopee",
-      "productTitle": "Kịch bản Make/n8n: Bot Săn Deal Shopee & Bắn Telegram Tự Động",
-      "productPrice": 199000,
-      "downloadUrl": "/downloads/kich-ban-san-deal-shopee-telegram.json",
-      "fileName": "kich-ban-san-deal-shopee-telegram.json",
-      "customerEmail": "ngoduongkiet53006@gmail.com",
-      "customerPhone": "0352279413",
-      "status": "PAID",
-      "createdAt": "2026-10-30T16:06:49.509Z",
-      "paidAt": "2026-10-30T16:06:56.390Z"
-    }
-  ],
+  "orders": [],
   "settings": {
     "storeName": "Kiệt Digital Store",
     "tagline": "Tài Nguyên Số Thực Chiến & Tự Động Hóa MMO 2026",
@@ -205,15 +191,6 @@
       "desc": "Giảm 30.000đ đón đầu xu hướng 2026"
     }
   ],
-  "messages": [
-    {
-      "id": "msg-1793382399392",
-      "createdAt": "2026-10-30T17:46:39.392Z",
-      "name": "Kh�ch h�ng m?u",
-      "email": "khachhang@gmail.com",
-      "phone": "0987654321",
-      "message": "Ch�o Ki?t, shop c� k?ch b?n n8n t? d?ng dang b�i Facebook kh�ng?"
-    }
-  ],
+  "messages": [],
   "reviews": []
 }

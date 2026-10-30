@@ -154,6 +154,32 @@ export default function AdminPage() {
     }
   };
 
+  const handleDeleteOrder = async (orderId) => {
+    if (!confirm('Bạn có chắc muốn xóa đơn hàng này?')) return;
+    try {
+      const res = await fetch(`/api/orders/${orderId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.success) {
+        loadData();
+      }
+    } catch (err) {
+      alert('Lỗi xóa đơn hàng');
+    }
+  };
+
+  const handleDeleteMessage = async (msgId) => {
+    if (!confirm('Bạn có chắc muốn xóa tin nhắn này?')) return;
+    try {
+      const res = await fetch(`/api/messages/${msgId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.success) {
+        loadData();
+      }
+    } catch (err) {
+      alert('Lỗi xóa tin nhắn');
+    }
+  };
+
   const handleSaveSettings = async (e) => {
     e.preventDefault();
     setSavingSettings(true);
@@ -480,14 +506,23 @@ export default function AdminPage() {
                         )}
                       </td>
                       <td className="p-4 text-right whitespace-nowrap">
-                        {ord.status === 'PENDING' && (
+                        <div className="flex items-center justify-end gap-2">
+                          {ord.status === 'PENDING' && (
+                            <button
+                              onClick={() => handleMarkAsPaid(ord.id)}
+                              className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] shadow-sm transition"
+                            >
+                              Duyệt Đã Nhận Tiền
+                            </button>
+                          )}
                           <button
-                            onClick={() => handleMarkAsPaid(ord.id)}
-                            className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] shadow-sm transition"
+                            onClick={() => handleDeleteOrder(ord.id)}
+                            className="p-1.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950 text-rose-500 hover:text-rose-600 transition"
+                            title="Xóa đơn hàng"
                           >
-                            Duyệt Đã Nhận Tiền
+                            <Trash2 className="w-4 h-4" />
                           </button>
-                        )}
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -515,7 +550,16 @@ export default function AdminPage() {
                 >
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-slate-900 dark:text-white text-sm">{m.name}</span>
-                    <span className="text-slate-400">{new Date(m.createdAt).toLocaleString('vi-VN')}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-slate-400">{new Date(m.createdAt).toLocaleString('vi-VN')}</span>
+                      <button
+                        onClick={() => handleDeleteMessage(m.id)}
+                        className="p-1 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950 text-rose-500 hover:text-rose-600 transition"
+                        title="Xóa tin nhắn này"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-4">
                     <span>Email: <strong className="text-slate-700 dark:text-slate-200">{m.email}</strong></span>
