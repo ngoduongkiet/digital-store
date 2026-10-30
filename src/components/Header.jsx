@@ -32,16 +32,9 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/my-orders"
-            className="text-xs md:text-sm font-medium px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"
+            className="text-xs md:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition"
           >
-            Đơn của tôi
-          </Link>
-          <Link
-            href="/admin"
-            className="flex items-center gap-1.5 text-xs md:text-sm font-medium px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition"
-          >
-            <UserCheck className="w-4 h-4" />
-            <span>Quản trị (Admin)</span>
+            Đơn hàng của tôi
           </Link>
         </div>
       </div>

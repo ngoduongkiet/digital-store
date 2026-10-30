@@ -48,14 +48,24 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (password === 'admin') {
-      setIsAuthenticated(true);
-      setErrorMsg('');
-      loadData();
-    } else {
-      setErrorMsg('Mật khẩu không đúng! (Mặc định là "admin")');
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsAuthenticated(true);
+        setErrorMsg('');
+        loadData();
+      } else {
+        setErrorMsg(data.error || 'Mật khẩu không đúng!');
+      }
+    } catch (err) {
+      setErrorMsg('Lỗi kết nối máy chủ');
     }
   };
 
@@ -139,9 +149,6 @@ export default function AdminPage() {
                 placeholder="Nhập mật khẩu quản trị..."
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm text-center font-mono"
               />
-              <span className="text-[11px] text-slate-400 mt-1 block">
-                (Mật khẩu mặc định là: <strong>admin</strong>)
-              </span>
             </div>
 
             {errorMsg && (
