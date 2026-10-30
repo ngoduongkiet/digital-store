@@ -4,10 +4,9 @@ import { getStoreData } from '@/lib/store';
 export async function POST(req) {
   try {
     const { password } = await req.json();
-    const storeData = getStoreData();
-    const correctPassword = storeData.settings?.adminPassword || 'kiet123456';
+    const correctPassword = 'Ngoduongkiet123@';
 
-    if (password === correctPassword || password === 'admin') {
+    if (password === correctPassword) {
       return NextResponse.json({ success: true });
     }
     return NextResponse.json({ success: false, error: 'Mật khẩu quản trị không đúng!' }, { status: 401 });

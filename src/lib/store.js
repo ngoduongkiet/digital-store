@@ -84,7 +84,7 @@ function initData() {
           bankName: 'Techcombank (Ngân hàng Kỹ Thương)',
           bankAccount: '19075242377010',
           bankOwner: 'NGO DUONG KIET',
-          adminPassword: 'admin'
+          adminPassword: 'Ngoduongkiet123@'
         }
       };
       fs.writeFileSync(DATA_FILE, JSON.stringify(initial, null, 2), 'utf-8');
@@ -102,7 +102,7 @@ function initData() {
         bankName: 'Techcombank',
         bankAccount: '19075242377010',
         bankOwner: 'NGO DUONG KIET',
-        adminPassword: 'admin'
+        adminPassword: 'Ngoduongkiet123@'
       }
     };
   }
