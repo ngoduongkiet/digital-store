@@ -4,6 +4,18 @@ import path from 'path';
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DATA_FILE = path.join(DATA_DIR, 'store.json');
 
+const INITIAL_SETTINGS = {
+  storeName: 'Kiệt Digital Store',
+  tagline: 'Kho Kịch Bản Tự Động Hóa & Tài Nguyên MMO Hàng Đầu',
+  bankName: 'Techcombank',
+  bankAccount: '19075242377010',
+  bankOwner: 'NGO DUONG KIET',
+  adminPassword: 'Ngoduongkiet123@',
+  hotline: '0907.xxx.xxx',
+  zaloLink: 'https://zalo.me',
+  telegramLink: 'https://t.me/kiet_mmo'
+};
+
 const INITIAL_PRODUCTS = [
   {
     id: 'workflow-shopee',
@@ -24,11 +36,16 @@ const INITIAL_PRODUCTS = [
       'Kèm video hướng dẫn 3 phút import file là chạy ngay',
       'Được hỗ trợ kỹ thuật và nhận bản cập nhật mới miễn phí trọn đời'
     ],
-    fullDesc: 'Bạn muốn xây dựng kênh săn deal Telegram kiếm hoa hồng thụ động nhưng không có thời gian ngồi canh deal? Kịch bản này sẽ thay bạn làm 100% công việc: Quét voucher giảm 50%, deal sốc từ Shopee -> Cho AI viết lại tóm tắt ngắn gọn hấp dẫn -> Tự động chèn link affiliate cá nhân của bạn -> Bắn vào kênh Telegram mỗi 15 phút. Bạn chỉ việc nằm ngủ và nhận tiền hoa hồng!'
+    fullDesc: `Bạn muốn xây dựng kênh săn deal Telegram kiếm hoa hồng thụ động nhưng không có thời gian ngồi canh deal? Kịch bản này sẽ thay bạn làm 100% công việc: Quét voucher giảm 50%, deal sốc từ Shopee -> Cho AI viết lại tóm tắt ngắn gọn hấp dẫn -> Tự động chèn link affiliate cá nhân của bạn -> Bắn vào kênh Telegram mỗi 15 phút. Bạn chỉ việc nằm ngủ và nhận tiền hoa hồng!
+
+ĐẶC ĐIỂM NỔI BẬT:
+- Tương thích 100% với nền tảng Make.com và n8n.
+- Đã cấu hình chống khóa tài khoản, giới hạn tần suất gửi tin chuẩn Telegram Bot API.
+- Có tài liệu hướng dẫn thay token bot và link hoa hồng chỉ trong 3 phút.`
   },
   {
     id: 'data-cafe-hcm',
-    title: 'Bộ Data B2B: 1.500 Quán Cafe & Nhà Hàng Sài Gòn (Có SĐT)',
+    title: 'Bộ Data B2B: 1.500 Quán Cafe & Nhà Hàng Sài Gòn (Có SĐT Thật)',
     shortDesc: 'File Excel quét sạch 1.500 quán cà phê, nhà hàng tại TP.HCM. Có đầy đủ tên quán, địa chỉ, số điện thoại chủ quán/quản lý, link Google Maps.',
     price: 149000,
     originalPrice: 350000,
@@ -45,11 +62,16 @@ const INITIAL_PRODUCTS = [
       'Chuẩn định dạng Excel (.csv/xlsx) mở được trên điện thoại và máy tính',
       'Cực kỳ phù hợp cho dân Telesale, phần mềm POS, nội thất, F&B'
     ],
-    fullDesc: 'Data khách hàng chất lượng cao được quét công khai từ Google Maps tại các quận trung tâm TP.HCM (Quận 1, Quận 3, Bình Thạnh, Thủ Đức...). Đã lọc bỏ các số bàn không liên lạc được, chuẩn xác tới 90%. Tiết kiệm hàng tuần trời ngồi tìm kiếm thông tin khách hàng.'
+    fullDesc: `Data khách hàng chất lượng cao được quét công khai từ Google Maps tại các quận trung tâm TP.HCM (Quận 1, Quận 3, Quận 5, Quận 7, Bình Thạnh, Thủ Đức...). Đã lọc bỏ các số bàn không liên lạc được, chuẩn xác tới 90%. Tiết kiệm hàng tuần trời ngồi tìm kiếm thông tin khách hàng.
+
+PHÙ HỢP VỚI:
+- Nhân viên kinh doanh chào phần mềm tính tiền (POS), máy in bill, camera an ninh.
+- Đại lý phân phối nguyên vật liệu pha chế, hạt cà phê, bao bì thực phẩm.
+- Các đơn vị thi công thiết kế nội thất, bàn ghế quán ăn.`
   },
   {
     id: 'prompt-pack-ecommerce',
-    title: 'Bộ File Tính Lãi Sàn TMĐT & 500+ Prompt AI Bán Hàng',
+    title: 'Bộ File Tính Lãi Sàn TMĐT & 500+ Prompt AI Bán Hàng Đỉnh Cao',
     shortDesc: 'File tính tự động chi phí sàn, thuế, lãi ròng Shopee/TikTok Shop + Bộ 500 câu lệnh AI viết bài quảng cáo, kịch bản video ngắn nổ đơn.',
     price: 99000,
     originalPrice: 250000,
@@ -66,7 +88,14 @@ const INITIAL_PRODUCTS = [
       'Bộ công thức viết tiêu đề giật tít, kịch bản giữ chân TikTok 15s',
       'Định dạng dễ dùng, chỉ cần nhập giá vốn là ra tiền lãi'
     ],
-    fullDesc: 'Bộ vũ khí không thể thiếu cho bất kỳ ai kinh doanh online. Giúp bạn không bao giờ bị tình trạng "bán hàng rôm rả nhưng cuối tháng lỗ vốn vì không tính chuẩn phí sàn". Kèm theo 500 câu lệnh AI giúp bạn sản xuất 10 bài viết quảng cáo hoặc kịch bản video chỉ trong 5 phút.'
+    fullDesc: `Bộ vũ khí không thể thiếu cho bất kỳ ai kinh doanh online. Giúp bạn không bao giờ bị tình trạng "bán hàng rôm rả nhưng cuối tháng lỗ vốn vì không tính chuẩn phí sàn". Kèm theo 500 câu lệnh AI giúp bạn sản xuất 10 bài viết quảng cáo hoặc kịch bản video chỉ trong 5 phút.
+
+BAO GỒM 5 CHỦ ĐỀ CHUYÊN SÂU:
+1. 100 Prompt viết bài Facebook Ads theo công thức AIDA & PAS.
+2. 100 Prompt kịch bản TikTok 15s với hook giữ chân đỉnh cao.
+3. 100 Prompt giật tít tiêu đề Shopee chuẩn SEO lên top tìm kiếm.
+4. 100 Prompt kịch bản chăm sóc khách hàng & xử lý đánh giá 1 sao.
+5. 100 Prompt tạo ảnh sản phẩm với Midjourney & Canva.`
   }
 ];
 
@@ -79,31 +108,25 @@ function initData() {
       const initial = {
         products: INITIAL_PRODUCTS,
         orders: [],
-        settings: {
-          storeName: 'Kiệt Digital Store',
-          bankName: 'Techcombank (Ngân hàng Kỹ Thương)',
-          bankAccount: '19075242377010',
-          bankOwner: 'NGO DUONG KIET',
-          adminPassword: 'Ngoduongkiet123@'
-        }
+        settings: INITIAL_SETTINGS
       };
       fs.writeFileSync(DATA_FILE, JSON.stringify(initial, null, 2), 'utf-8');
       return initial;
     }
     const data = fs.readFileSync(DATA_FILE, 'utf-8');
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+    // Ensure settings exist
+    if (!parsed.settings) {
+      parsed.settings = INITIAL_SETTINGS;
+      saveData(parsed);
+    }
+    return parsed;
   } catch (err) {
     console.error('Data init error:', err);
     return {
       products: INITIAL_PRODUCTS,
       orders: [],
-      settings: {
-        storeName: 'Kiệt Digital Store',
-        bankName: 'Techcombank',
-        bankAccount: '19075242377010',
-        bankOwner: 'NGO DUONG KIET',
-        adminPassword: 'Ngoduongkiet123@'
-      }
+      settings: INITIAL_SETTINGS
     };
   }
 }
@@ -147,8 +170,8 @@ export function createOrder({ productId, customerEmail, customerPhone }) {
     downloadUrl: product.downloadUrl,
     fileName: product.fileName,
     customerEmail,
-    customerPhone,
-    status: 'PENDING', // PENDING, PAID, CANCELLED
+    customerPhone: customerPhone || 'Chưa cung cấp',
+    status: 'PENDING',
     createdAt: new Date().toISOString(),
     paidAt: null
   };
@@ -169,6 +192,13 @@ export function markOrderAsPaid(id) {
   if (order && order.status !== 'PAID') {
     order.status = 'PAID';
     order.paidAt = new Date().toISOString();
+    
+    // Increment sales count for product
+    const prod = data.products.find((p) => p.id === order.productId);
+    if (prod) {
+      prod.salesCount = (prod.salesCount || 0) + 1;
+    }
+    
     saveData(data);
   }
   return order;
@@ -193,11 +223,29 @@ export function addProduct(newProduct) {
   return product;
 }
 
+export function updateProduct(id, updates) {
+  const data = initData();
+  const idx = data.products.findIndex((p) => p.id === id);
+  if (idx !== -1) {
+    data.products[idx] = { ...data.products[idx], ...updates };
+    saveData(data);
+    return data.products[idx];
+  }
+  return null;
+}
+
 export function deleteProduct(id) {
   const data = initData();
   data.products = data.products.filter((p) => p.id !== id);
   saveData(data);
   return true;
+}
+
+export function updateSettings(newSettings) {
+  const data = initData();
+  data.settings = { ...data.settings, ...newSettings };
+  saveData(data);
+  return data.settings;
 }
 
 export function getStats() {

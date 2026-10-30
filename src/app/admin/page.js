@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import {
   Lock, TrendingUp, DollarSign, Package, ShoppingCart,
-  Plus, Trash2, CheckCircle2, AlertCircle, RefreshCw, LogOut, ArrowUpRight
+  Plus, Trash2, CheckCircle2, AlertCircle, RefreshCw, LogOut,
+  Settings, Download, Edit3, X, Save
 } from 'lucide-react';
 
 export default function AdminPage() {
@@ -15,7 +16,21 @@ export default function AdminPage() {
   const [stats, setStats] = useState(null);
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
-  const [activeTab, setActiveTab] = useState('PRODUCTS'); // 'PRODUCTS' | 'ORDERS'
+  const [activeTab, setActiveTab] = useState('PRODUCTS'); // 'PRODUCTS' | 'ORDERS' | 'SETTINGS'
+
+  // Settings form
+  const [settingsForm, setSettingsForm] = useState({
+    storeName: 'Kiệt Digital Store',
+    bankName: 'Techcombank',
+    bankAccount: '19075242377010',
+    bankOwner: 'NGO DUONG KIET',
+    adminPassword: '',
+    hotline: '',
+    zaloLink: '',
+    telegramLink: ''
+  });
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [settingsSuccess, setSettingsSuccess] = useState(false);
 
   // New Product Modal Form State
   const [showAddModal, setShowAddModal] = useState(false);
@@ -34,15 +49,22 @@ export default function AdminPage() {
 
   const loadData = async () => {
     try {
-      const [resStats, resProds, resOrders] = await Promise.all([
+      const [resStats, resProds, resOrders, resSettings] = await Promise.all([
         fetch('/api/stats').then((r) => r.json()),
         fetch('/api/products').then((r) => r.json()),
-        fetch('/api/orders').then((r) => r.json())
+        fetch('/api/orders').then((r) => r.json()),
+        fetch('/api/settings').then((r) => r.json())
       ]);
 
       if (resStats.success) setStats(resStats.stats);
       if (resProds.success) setProducts(resProds.products);
       if (resOrders.success) setOrders(resOrders.orders);
+      if (resSettings.success && resSettings.settings) {
+        setSettingsForm((prev) => ({
+          ...prev,
+          ...resSettings.settings
+        }));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -124,11 +146,54 @@ export default function AdminPage() {
     }
   };
 
+  const handleSaveSettings = async (e) => {
+    e.preventDefault();
+    setSavingSettings(true);
+    setSettingsSuccess(false);
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settingsForm)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSettingsSuccess(true);
+        loadData();
+        setTimeout(() => setSettingsSuccess(false), 3000);
+      }
+    } catch (err) {
+      alert('Lỗi khi lưu cài đặt');
+    } finally {
+      setSavingSettings(false);
+    }
+  };
+
+  // Export orders to CSV
+  const handleExportOrders = () => {
+    if (orders.length === 0) {
+      alert('Chưa có đơn hàng nào để xuất!');
+      return;
+    }
+    const headers = ['MaDon,SanPham,GiaTien,EmailKhach,SoDienThoai,TrangThai,NgayMua'];
+    const rows = orders.map((o) =>
+      `"${o.id}","${o.productTitle}",${o.productPrice},"${o.customerEmail}","${o.customerPhone}","${o.status}","${o.createdAt}"`
+    );
+    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers, ...rows].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `danh-sach-don-hang-${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   };
 
-  // IF NOT LOGGED IN
+  // LOGIN SCREEN
   if (!isAuthenticated) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center p-4">
@@ -136,8 +201,8 @@ export default function AdminPage() {
           <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-4">
             <Lock className="w-6 h-6" />
           </div>
-          <h2 className="text-xl font-bold text-slate-900">Đăng Nhập Quản Trị</h2>
-          <p className="text-xs text-slate-400 mt-1 mb-6">Trang dành riêng cho chủ shop Kiệt Digital Store</p>
+          <h2 className="text-xl font-bold text-slate-900">Bảng Quản Trị Hệ Thống</h2>
+          <p className="text-xs text-slate-400 mt-1 mb-6">Trang bảo mật dành riêng cho quản trị viên</p>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -176,7 +241,7 @@ export default function AdminPage() {
         <div>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Bảng Điều Khiển Quản Trị</h1>
           <p className="text-xs text-slate-500 mt-1">
-            Quản lý doanh thu, danh mục sản phẩm và theo dõi các đơn hàng tự động.
+            Quản lý doanh thu, danh mục sản phẩm, cài đặt tài khoản ngân hàng và đơn hàng tự động.
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -210,7 +275,7 @@ export default function AdminPage() {
             {formatPrice(stats?.totalRevenue || 0)}
           </div>
           <span className="text-[11px] text-emerald-600 font-semibold mt-1 block">
-            Tiền thực nhận qua VietQR
+            Tiền thực nhận qua Techcombank
           </span>
         </div>
 
@@ -246,16 +311,16 @@ export default function AdminPage() {
             </div>
           </div>
           <div className="text-base font-black text-slate-900 truncate">
-            {stats?.settings?.bankName || 'MBBank'}
+            {stats?.settings?.bankName || 'Techcombank'}
           </div>
           <span className="text-[11px] text-slate-500 font-mono mt-1 block">
-            STK: {stats?.settings?.bankAccount || '0987654321'}
+            STK: {stats?.settings?.bankAccount || '19075242377010'}
           </span>
         </div>
       </div>
 
       {/* TABS HEADER */}
-      <div className="flex items-center justify-between border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200">
         <div className="flex gap-4">
           <button
             onClick={() => setActiveTab('PRODUCTS')}
@@ -265,7 +330,7 @@ export default function AdminPage() {
                 : 'border-transparent text-slate-400 hover:text-slate-700'
             }`}
           >
-            Danh sách sản phẩm ({products.length})
+            Sản phẩm ({products.length})
           </button>
           <button
             onClick={() => setActiveTab('ORDERS')}
@@ -275,19 +340,42 @@ export default function AdminPage() {
                 : 'border-transparent text-slate-400 hover:text-slate-700'
             }`}
           >
-            Đơn hàng gần đây ({orders.length})
+            Đơn hàng ({orders.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('SETTINGS')}
+            className={`pb-3 text-sm font-bold border-b-2 transition flex items-center gap-1.5 ${
+              activeTab === 'SETTINGS'
+                ? 'border-indigo-600 text-indigo-600'
+                : 'border-transparent text-slate-400 hover:text-slate-700'
+            }`}
+          >
+            <Settings className="w-4 h-4" />
+            <span>Cài đặt Shop & Ngân hàng</span>
           </button>
         </div>
 
-        {activeTab === 'PRODUCTS' && (
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition mb-2"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Thêm sản phẩm mới</span>
-          </button>
-        )}
+        <div className="flex items-center gap-2 mb-2">
+          {activeTab === 'ORDERS' && (
+            <button
+              onClick={handleExportOrders}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition"
+            >
+              <Download className="w-4 h-4" />
+              <span>Xuất File Excel</span>
+            </button>
+          )}
+
+          {activeTab === 'PRODUCTS' && (
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm transition"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Thêm sản phẩm mới</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* TAB CONTENT: PRODUCTS */}
@@ -346,7 +434,10 @@ export default function AdminPage() {
                     <tr key={ord.id} className="hover:bg-slate-50/50">
                       <td className="px-5 py-3.5 font-mono font-bold text-slate-900">{ord.id}</td>
                       <td className="px-5 py-3.5 font-semibold text-slate-800 max-w-xs truncate">{ord.productTitle}</td>
-                      <td className="px-5 py-3.5 text-slate-600">{ord.customerEmail}</td>
+                      <td className="px-5 py-3.5 text-slate-600">
+                        <div>{ord.customerEmail}</div>
+                        {ord.customerPhone && <div className="text-[10px] text-slate-400">{ord.customerPhone}</div>}
+                      </td>
                       <td className="px-5 py-3.5 font-bold text-indigo-600">{formatPrice(ord.productPrice)}</td>
                       <td className="px-5 py-3.5">
                         {ord.status === 'PAID' ? (
@@ -379,6 +470,98 @@ export default function AdminPage() {
               </tbody>
             </table>
           </div>
+        </div>
+      )}
+
+      {/* TAB CONTENT: SETTINGS */}
+      {activeTab === 'SETTINGS' && (
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 max-w-2xl">
+          <h2 className="text-lg font-bold text-slate-900 mb-1">Cấu Hình Cửa Hàng & Ngân Hàng</h2>
+          <p className="text-xs text-slate-400 mb-6">Thay đổi thông tin nhận tiền và liên hệ trực tiếp tại đây.</p>
+
+          <form onSubmit={handleSaveSettings} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Tên cửa hàng</label>
+                <input
+                  type="text"
+                  value={settingsForm.storeName}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, storeName: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Ngân hàng nhận tiền</label>
+                <input
+                  type="text"
+                  value={settingsForm.bankName}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, bankName: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Số tài khoản ngân hàng</label>
+                <input
+                  type="text"
+                  value={settingsForm.bankAccount}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, bankAccount: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-mono font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Tên chủ tài khoản (In hoa)</label>
+                <input
+                  type="text"
+                  value={settingsForm.bankOwner}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, bankOwner: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Link Zalo hỗ trợ</label>
+                <input
+                  type="text"
+                  value={settingsForm.zaloLink}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, zaloLink: e.target.value })}
+                  placeholder="https://zalo.me/0907..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Link Telegram hỗ trợ</label>
+                <input
+                  type="text"
+                  value={settingsForm.telegramLink}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, telegramLink: e.target.value })}
+                  placeholder="https://t.me/..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+            </div>
+
+            {settingsSuccess && (
+              <div className="p-3 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl border border-emerald-200 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Đã lưu cài đặt mới thành công!</span>
+              </div>
+            )}
+
+            <div className="pt-4 border-t border-slate-100 flex justify-end">
+              <button
+                type="submit"
+                disabled={savingSettings}
+                className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5"
+              >
+                <Save className="w-4 h-4" />
+                <span>{savingSettings ? 'Đang lưu...' : 'Lưu Thay Đổi'}</span>
+              </button>
+            </div>
+          </form>
         </div>
       )}
 

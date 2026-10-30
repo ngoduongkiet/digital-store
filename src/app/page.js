@@ -3,11 +3,16 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '@/components/ProductCard';
 import CheckoutModal from '@/components/CheckoutModal';
-import { Sparkles, ShieldCheck, Zap, HelpCircle, CheckCircle, TrendingUp, Users } from 'lucide-react';
+import {
+  Sparkles, ShieldCheck, Zap, HelpCircle, Search,
+  ArrowUpDown, CheckCircle, TrendingUp, Shield, Lock, Award
+} from 'lucide-react';
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('POPULAR'); // 'POPULAR' | 'NEWEST' | 'PRICE_ASC' | 'PRICE_DESC'
   const [activeProduct, setActiveProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -30,9 +35,23 @@ export default function HomePage() {
     { id: 'Tài Nguyên Bán Hàng', label: '💼 Tài Nguyên Bán Hàng' }
   ];
 
-  const filteredProducts = selectedCategory === 'ALL'
-    ? products
-    : products.filter((p) => p.category === selectedCategory);
+  // Filtering & Sorting
+  let filtered = products.filter((p) => {
+    const matchCat = selectedCategory === 'ALL' || p.category === selectedCategory;
+    const matchSearch =
+      searchQuery.trim() === '' ||
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
+  if (sortBy === 'POPULAR') {
+    filtered.sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0));
+  } else if (sortBy === 'PRICE_ASC') {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortBy === 'PRICE_DESC') {
+    filtered.sort((a, b) => b.price - a.price);
+  }
 
   return (
     <div>
@@ -42,7 +61,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100/80 text-indigo-700 text-xs font-bold mb-6 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Kho Sản Phẩm Số & Công Cụ Tự Động Hóa 2026</span>
+            <span>Kho Sản Phẩm Số & Công Cụ Tự Động Hóa MMO 2026</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
@@ -75,33 +94,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRODUCTS SECTION */}
-      <section className="max-w-6xl mx-auto px-4 py-14">
-        {/* Category filter pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                selectedCategory === cat.id
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200 scale-105'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+      {/* SEARCH & FILTERS BAR */}
+      <section className="max-w-6xl mx-auto px-4 -mt-7 relative z-20">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-200/40 flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Search Input */}
+          <div className="relative w-full md:w-80">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm kiếm công cụ, kịch bản, data..."
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50"
+            />
+          </div>
 
-        {/* Product Grid */}
+          {/* Categories Pills */}
+          <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+                  selectedCategory === cat.id
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Sorting */}
+          <div className="flex items-center gap-2 self-end md:self-center shrink-0">
+            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold bg-white text-slate-700 focus:outline-none"
+            >
+              <option value="POPULAR">Bán chạy nhất</option>
+              <option value="PRICE_ASC">Giá tăng dần</option>
+              <option value="PRICE_DESC">Giá giảm dần</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCTS SECTION */}
+      <section className="max-w-6xl mx-auto px-4 py-12">
         {loading ? (
           <div className="py-20 text-center text-slate-400">Đang tải danh sách sản phẩm...</div>
-        ) : filteredProducts.length === 0 ? (
-          <div className="py-16 text-center text-slate-500">Chưa có sản phẩm nào trong danh mục này.</div>
+        ) : filtered.length === 0 ? (
+          <div className="py-16 text-center text-slate-500 bg-white rounded-3xl border border-slate-200 p-8">
+            <h3 className="font-bold text-slate-800 text-base">Không tìm thấy sản phẩm phù hợp!</h3>
+            <p className="text-xs text-slate-400 mt-1">Hãy thử tìm với từ khóa khác hoặc chuyển danh mục.</p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
+            {filtered.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -110,6 +162,24 @@ export default function HomePage() {
             ))}
           </div>
         )}
+      </section>
+
+      {/* TRUST & GUARANTEE BANNER */}
+      <section className="max-w-6xl mx-auto px-4 pb-12">
+        <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
+          <div className="relative z-10 max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-bold text-indigo-200">
+              <Award className="w-4 h-4 text-amber-400" />
+              Cam kết chất lượng 100%
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black">
+              Mua Một Lần - Sử Dụng & Cập Nhật Trọn Đời
+            </h2>
+            <p className="text-xs sm:text-sm text-indigo-100 leading-relaxed">
+              Mọi kịch bản và dữ liệu đều được chúng tôi kiểm tra thực chiến trước khi đăng bán. Khách hàng nhận được quyền cập nhật miễn phí khi thuật toán sàn thay đổi, bảo hành 1 đổi 1 hoặc hoàn tiền nếu xảy ra lỗi kỹ thuật.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* SOCIAL PROOF / REVIEWS */}

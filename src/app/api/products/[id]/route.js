@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProductById, deleteProduct } from '@/lib/store';
+import { getProductById, updateProduct, deleteProduct } from '@/lib/store';
 
 export async function GET(req, { params }) {
   try {
@@ -8,6 +8,19 @@ export async function GET(req, { params }) {
       return NextResponse.json({ success: false, error: 'Không tìm thấy sản phẩm' }, { status: 404 });
     }
     return NextResponse.json({ success: true, product });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req, { params }) {
+  try {
+    const body = await req.json();
+    const updated = updateProduct(params.id, body);
+    if (!updated) {
+      return NextResponse.json({ success: false, error: 'Không tìm thấy sản phẩm' }, { status: 404 });
+    }
+    return NextResponse.json({ success: true, product: updated });
   } catch (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }

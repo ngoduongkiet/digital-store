@@ -118,9 +118,13 @@
   ],
   "settings": {
     "storeName": "Kiệt Digital Store",
+    "tagline": "Kho Kịch Bản Tự Động Hóa & Tài Nguyên MMO Hàng Đầu",
     "bankName": "Techcombank",
     "bankAccount": "19075242377010",
     "bankOwner": "NGO DUONG KIET",
-    "adminPassword": "Ngoduongkiet123@"
+    "adminPassword": "Ngoduongkiet123@",
+    "hotline": "0907.xxx.xxx",
+    "zaloLink": "https://zalo.me",
+    "telegramLink": "https://t.me/kiet_mmo"
   }
 }
