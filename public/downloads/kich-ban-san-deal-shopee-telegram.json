@@ -1,0 +1,44 @@
+{
+  "name": "Bot San Deal Shopee & Ban Telegram Tu Dong",
+  "version": "2.4.0",
+  "author": "Kiet MMO Store",
+  "description": "Kich ban tu dong quet ma giam gia Shopee va ban ve kenh Telegram",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Schedule - Quet Deal Moi 15 Phut",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 15 }]
+        }
+      }
+    },
+    {
+      "id": "2",
+      "name": "Crawl Shopee Voucher API",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "https://shopee.vn/api/v4/marketing/flash_sale_vouchers",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "3",
+      "name": "AI Tóm Tắt & Gắn Mã Affiliate",
+      "type": "n8n-nodes-base.openAi",
+      "parameters": {
+        "prompt": "Hay viet lai thong tin deal giam gia nay that ngan gon va hap dan kem link"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Telegram - Ban Vao Kenh San Deal",
+      "type": "n8n-nodes-base.telegram",
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "@kenhsandeal_cuaban"
+      }
+    }
+  ]
+}

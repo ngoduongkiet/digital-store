@@ -1,0 +1,25 @@
+=============================================================
+BO CONG CU TINH LAI SAN TMDT & 500+ PROMPT AI BAN HANG
+Ban quyen: Kiet MMO Digital Store
+=============================================================
+
+PHAN 1: CONG THUC TINH LAI RONG SHOPEE & TIKTOK SHOP
+-------------------------------------------------------------
+1. Doanh thu goc = Gia ban * So luong
+2. Phi san Shopee (Phi thanh toan 5% + Phi co dinh 4% + Phi Freeship Xtra 7% - 9%)
+3. Chi phi dong goi (Hop + Bang keo + Tuong uoc): ~3.000d - 5.000d/don
+4. Chi phi hoan hang / bom hang uoc tinh: (3% - 5% tren tong doanh thu)
+5. Thue thu nhap ca nhan TMDT: 1.5% doanh thu
+=> LAI RONG THUC TE = Gia ban - Gia nhap - Tong phi san - Chi phi van hanh - Thue
+
+PHAN 2: TOP 10 PROMPT AI VIET BAI BAN HANG TIEN TY (Trich 10/500 prompt)
+-------------------------------------------------------------
+Prompt 1 (Hook gay to mo TikTok):
+"Ban la chuyen gia sang tao noi dung TikTok voi 1 trieu follower. Hay viet cho toi 5 cau mo dau (hook 3 giay) danh cho video gioi thieu [Ten san pham] giai quyet van de [Noi dau khach hang]. Phong cach hai huoc, giat gan, khong xao rong."
+
+Prompt 2 (Viet bai quang cao Facebook AIDA):
+"Hay viet 1 bai quang cao ban san pham [Ten san pham] theo cong thuc AIDA (Attention - Interest - Desire - Action). Tap trung vao loi ich thuc te, chot don bang uu dai giam 50% trong 24 gio."
+
+Prompt 3 (Kich ban video danh trung tam ly nguoi luoi):
+"Viet kich ban video ngan 30 giay danh cho nguoi muon tu dong hoa cong viec de tiet kiem 3 gio moi ngay..."
+=============================================================
