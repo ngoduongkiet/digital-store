@@ -1,7 +1,6 @@
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import LiveNotificationTicker from '@/components/LiveNotificationTicker';
 import FloatingSupport from '@/components/FloatingSupport';
 
 export const metadata = {
@@ -28,7 +27,6 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-        <LiveNotificationTicker />
         <FloatingSupport />
       </body>
     </html>

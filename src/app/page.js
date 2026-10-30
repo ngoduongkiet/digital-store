@@ -182,55 +182,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF / REVIEWS */}
+      {/* REAL PROCESS STEPS (NO FAKE REVIEWS) */}
       <section className="bg-slate-100/70 border-y border-slate-200 py-16">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-2xl font-extrabold text-slate-900">Khách Hàng Nói Gì Về Chúng Tôi?</h2>
-            <p className="text-xs text-slate-500 mt-1">Hơn 400+ anh em làm MMO & kinh doanh online đã tin dùng</p>
+            <h2 className="text-2xl font-extrabold text-slate-900">Quy Trình Mua Hàng & Giao Nhận Tự Động</h2>
+            <p className="text-xs text-slate-500 mt-1">Đơn giản, minh bạch và an toàn 100%</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
-              <div className="flex items-center gap-1 text-amber-400 text-xs mb-3">★★★★★</div>
-              <p className="text-xs text-slate-600 leading-relaxed italic">
-                "Kịch bản bot săn deal Shopee chạy cực kỳ mượt! Nhập API Telegram mất đúng 2 phút. Từ ngày treo bot không phải thức đêm canh sale nữa, hoa hồng về đều đặn."
-              </p>
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold text-xs flex items-center justify-center">H</div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">Hoàng Nam</h4>
-                  <span className="text-[11px] text-slate-400">Shopee Affiliate</span>
-                </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 font-black text-base flex items-center justify-center mb-4">
+                1
               </div>
+              <h3 className="font-bold text-sm text-slate-900 mb-1.5">Chọn Sản Phẩm & Nhập Email</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Chọn gói kịch bản hoặc dữ liệu bạn cần, điền email cá nhân để hệ thống lưu trữ bản quyền và gửi link tải file dự phòng.
+              </p>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
-              <div className="flex items-center gap-1 text-amber-400 text-xs mb-3">★★★★★</div>
-              <p className="text-xs text-slate-600 leading-relaxed italic">
-                "Bộ Data quán cafe Sài Gòn quá chất lượng! Mình giao cho team telesale gọi chào phần mềm máy tính tiền, chốt được 6 khách ngay trong tuần đầu tiên."
-              </p>
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center">T</div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">Trần Minh Quân</h4>
-                  <span className="text-[11px] text-slate-400">Chủ Agency Phần Mềm</span>
-                </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-black text-base flex items-center justify-center mb-4">
+                2
               </div>
+              <h3 className="font-bold text-sm text-slate-900 mb-1.5">Quét Mã VietQR Ngân Hàng</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Mở ứng dụng ngân hàng bất kỳ (Techcombank, Vietcombank, MB, Momo...) quét mã QR có sẵn số tiền và mã đơn hàng chính xác.
+              </p>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
-              <div className="flex items-center gap-1 text-amber-400 text-xs mb-3">★★★★★</div>
-              <p className="text-xs text-slate-600 leading-relaxed italic">
-                "Thanh toán QR xong 3 giây web nhảy link tải luôn, tiện dã man. Bảng tính lãi sàn TMĐT chuẩn từng đồng thuế phí, trước toàn tính vo bị lỗ mà không biết."
-              </p>
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-700 font-bold text-xs flex items-center justify-center">L</div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">Lê Thuỳ Trang</h4>
-                  <span className="text-[11px] text-slate-400">Shop thời trang TikTok</span>
-                </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60">
+              <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 font-black text-base flex items-center justify-center mb-4">
+                3
               </div>
+              <h3 className="font-bold text-sm text-slate-900 mb-1.5">Nhận File Tức Thì & Hỗ Trợ 1-1</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Hệ thống xác nhận tiền sau vài giây, mở khóa link tải file nguyên bản ngay trên màn hình. Kèm hỗ trợ kỹ thuật cài đặt qua Zalo.
+              </p>
             </div>
           </div>
         </div>

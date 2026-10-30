@@ -259,16 +259,26 @@ export default function CheckoutModal({ product, onClose }) {
               <span>Hệ thống đang tự động kiểm tra chuyển khoản...</span>
             </div>
 
-            {/* Test Simulation Button */}
+            {/* Check manual action */}
             <div className="pt-2 border-t border-slate-100">
               <button
                 type="button"
-                onClick={handleSimulatePayment}
-                disabled={simulating}
-                className="w-full py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-xs border border-emerald-200 flex items-center justify-center gap-1.5 transition"
+                onClick={async () => {
+                  try {
+                    const res = await fetch(`/api/orders/${orderData.order.id}`);
+                    const data = await res.json();
+                    if (data.success && data.order.status === 'PAID') {
+                      router.push(`/order/${orderData.order.id}`);
+                    } else {
+                      alert('Hệ thống chưa nhận được tiền vào tài khoản hoặc giao dịch đang được ngân hàng xử lý. Bạn vui lòng đợi 1-2 phút hoặc liên hệ hỗ trợ nếu đã chuyển thành công nhé!');
+                    }
+                  } catch (e) {
+                    alert('Lỗi kiểm tra giao dịch');
+                  }
+                }}
+                className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>[Dành cho bạn test thử] Bấm để giả lập đã thanh toán xong</span>
+                Tôi đã chuyển khoản xong (Kiểm tra ngay)
               </button>
             </div>
           </div>

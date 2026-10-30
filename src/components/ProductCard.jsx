@@ -29,11 +29,13 @@ export default function ProductCard({ product, onBuy }) {
 
       {/* Content */}
       <div className="p-5 flex-1 flex flex-col">
-        {/* Title & Rating */}
+        {/* Rating / Status */}
         <div className="flex items-center gap-1.5 text-xs text-amber-500 font-semibold mb-2">
           <Star className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
           <span>{product.rating}</span>
-          <span className="text-slate-400 font-normal">({product.salesCount} đã mua)</span>
+          <span className="text-slate-400 font-normal">
+            {product.salesCount > 0 ? `(${product.salesCount} đã mua)` : '(Bản chuẩn mới nhất)'}
+          </span>
         </div>
 
         <h3 className="font-bold text-slate-900 text-base leading-snug line-clamp-2 group-hover:text-indigo-600 transition">
