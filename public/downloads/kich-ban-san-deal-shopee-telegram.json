@@ -1,44 +1,64 @@
 {
-  "name": "Bot San Deal Shopee & Ban Telegram Tu Dong",
-  "version": "2.4.0",
-  "author": "Kiet MMO Store",
-  "description": "Kich ban tu dong quet ma giam gia Shopee va ban ve kenh Telegram",
-  "nodes": [
+  "name": "Kich Ban San Deal Shopee & Ban Telegram Tu Dong - Kiet Store",
+  "flow": [
     {
-      "id": "1",
-      "name": "Schedule - Quet Deal Moi 15 Phut",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "parameters": {
-        "rule": {
-          "interval": [{ "field": "minutes", "minutesInterval": 15 }]
-        }
+      "id": 1,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "url": "https://shopee.vn/api/v4/flash_sale/get_all_itemids",
+        "interval": "15"
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "1. Hen gio quet Deal Shopee moi 15 phut" }
       }
     },
     {
-      "id": "2",
-      "name": "Crawl Shopee Voucher API",
-      "type": "n8n-nodes-base.httpRequest",
+      "id": 2,
+      "module": "http:ActionMakeRequest",
+      "version": 3,
       "parameters": {
-        "url": "https://shopee.vn/api/v4/marketing/flash_sale_vouchers",
-        "method": "GET"
+        "handleErrors": true,
+        "useCustomHeaders": true
+      },
+      "mapper": {
+        "url": "https://gateway.shopee.vn/api/v2/flash_sale/get_items",
+        "method": "get"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0, "name": "2. Cao ma giam gia & Flash Sale" }
       }
     },
     {
-      "id": "3",
-      "name": "AI Tóm Tắt & Gắn Mã Affiliate",
-      "type": "n8n-nodes-base.openAi",
-      "parameters": {
-        "prompt": "Hay viet lai thong tin deal giam gia nay that ngan gon va hap dan kem link"
+      "id": 3,
+      "module": "openai:CreateACompletion",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "model": "gpt-4o-mini",
+        "prompt": "Hay viet lai thong tin deal giam gia sau that hap dan, ngan gon, kich thich nguoi mua bam vao link san sale."
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0, "name": "3. AI viet lai noi dung deal cuon hut" }
       }
     },
     {
-      "id": "4",
-      "name": "Telegram - Ban Vao Kenh San Deal",
-      "type": "n8n-nodes-base.telegram",
-      "parameters": {
-        "operation": "sendMessage",
-        "chatId": "@kenhsandeal_cuaban"
+      "id": 4,
+      "module": "telegram:ActionSendMessage",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "chatId": "{{your_telegram_channel_or_group_id}}",
+        "text": "🔥 DEAL HOT SHOPEE VUA CAP NHAT:\n\n{{3.text}}\n\n👉 Mua ngay tai: https://shope.ee/affiliate_link"
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0, "name": "4. Ban tin nhan vao kenh Telegram kem link Affiliate" }
       }
     }
-  ]
+  ],
+  "metadata": {
+    "version": 1,
+    "instructions": "1. Vao Make.com -> Create new scenario -> Bam dau 3 cham chon Import Blueprint -> Chon file nay.\n2. O Module so 4 (Telegram), bam chon bot Telegram cua ban va dien ID kenh/nhom can ban tin.\n3. Thay link affiliate Shopee cua ban vao o Text.\n4. Bam Run va bat switch sang ON de bot chay 24/7!"
+  }
 }
