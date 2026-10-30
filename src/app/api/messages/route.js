@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getMessages } from '@/lib/store';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const messages = getMessages();

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createOrder, getOrders, getStoreData } from '@/lib/store';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const orders = getOrders();
@@ -13,12 +15,12 @@ export async function GET() {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { productId, customerEmail, customerPhone } = body;
+    const { productId, customerEmail, customerPhone, couponCode } = body;
     if (!productId || !customerEmail) {
       return NextResponse.json({ success: false, error: 'Vui lòng cung cấp email và sản phẩm' }, { status: 400 });
     }
 
-    const order = createOrder({ productId, customerEmail, customerPhone });
+    const order = createOrder({ productId, customerEmail, customerPhone, couponCode });
     const storeData = getStoreData();
     const { bankName, bankAccount, bankOwner } = storeData.settings;
 

@@ -25,10 +25,22 @@
         "type": "WORKFLOW",
         "title": "Sơ đồ luồng hoạt động tự động",
         "steps": [
-          { "name": "1. Schedule Trigger", "desc": "Tự động kích hoạt định kỳ mỗi 15 phút 24/7" },
-          { "name": "2. Crawl API Shopee", "desc": "Quét toàn bộ mã giảm 50% & flash sale hôm nay" },
-          { "name": "3. Bộ não AI Filter", "desc": "Lọc các deal hời nhất & viết lại nội dung hấp dẫn" },
-          { "name": "4. Telegram Broadcaster", "desc": "Tự động bắn bài vào kênh/nhóm kèm link affiliate của bạn" }
+          {
+            "name": "1. Schedule Trigger",
+            "desc": "Tự động kích hoạt định kỳ mỗi 15 phút 24/7"
+          },
+          {
+            "name": "2. Crawl API Shopee",
+            "desc": "Quét toàn bộ mã giảm 50% & flash sale hôm nay"
+          },
+          {
+            "name": "3. Bộ não AI Filter",
+            "desc": "Lọc các deal hời nhất & viết lại nội dung hấp dẫn"
+          },
+          {
+            "name": "4. Telegram Broadcaster",
+            "desc": "Tự động bắn bài vào kênh/nhóm kèm link affiliate của bạn"
+          }
         ]
       },
       "fullDesc": "Bạn muốn xây dựng kênh săn deal Telegram kiếm hoa hồng thụ động nhưng không có thời gian ngồi canh deal? Kịch bản này sẽ thay bạn làm 100% công việc: Quét voucher giảm 50%, deal sốc từ Shopee -> Cho AI viết lại tóm tắt ngắn gọn hấp dẫn -> Tự động chèn link affiliate cá nhân của bạn -> Bắn vào kênh Telegram mỗi 15 phút. Bạn chỉ việc nhận tiền hoa hồng!"
@@ -57,13 +69,49 @@
       "preview": {
         "type": "TABLE",
         "title": "Bản xem trước 5 dòng dữ liệu mẫu",
-        "headers": ["Tên Quán", "Địa Chỉ", "Quận", "Số Điện Thoại", "Đánh Giá"],
+        "headers": [
+          "Tên Quán",
+          "Địa Chỉ",
+          "Quận",
+          "Số Điện Thoại",
+          "Đánh Giá"
+        ],
         "rows": [
-          ["The Coffee House - Chi nhánh 1", "86 Nguyễn Thị Minh Khai", "Quận 3", "0912.345.xxx", "4.8 ★"],
-          ["Highlands Coffee - Landmark 81", "720A Điện Biên Phủ", "Bình Thạnh", "0908.765.xxx", "4.7 ★"],
-          ["Trung Nguyên Legend Cafe", "219 Nguyễn Thị Minh Khai", "Quận 1", "0934.567.xxx", "4.9 ★"],
-          ["Phúc Long Coffee & Tea", "325 Lý Tự Trọng", "Quận 1", "0988.112.xxx", "4.6 ★"],
-          ["Cộng Cà Phê - Bùi Viện", "127 Bùi Viện", "Quận 1", "0945.890.xxx", "4.7 ★"]
+          [
+            "The Coffee House - Chi nhánh 1",
+            "86 Nguyễn Thị Minh Khai",
+            "Quận 3",
+            "0912.345.xxx",
+            "4.8 ★"
+          ],
+          [
+            "Highlands Coffee - Landmark 81",
+            "720A Điện Biên Phủ",
+            "Bình Thạnh",
+            "0908.765.xxx",
+            "4.7 ★"
+          ],
+          [
+            "Trung Nguyên Legend Cafe",
+            "219 Nguyễn Thị Minh Khai",
+            "Quận 1",
+            "0934.567.xxx",
+            "4.9 ★"
+          ],
+          [
+            "Phúc Long Coffee & Tea",
+            "325 Lý Tự Trọng",
+            "Quận 1",
+            "0988.112.xxx",
+            "4.6 ★"
+          ],
+          [
+            "Cộng Cà Phê - Bùi Viện",
+            "127 Bùi Viện",
+            "Quận 1",
+            "0945.890.xxx",
+            "4.7 ★"
+          ]
         ],
         "note": "... và hơn 1.495 quán khác được đóng gói đầy đủ trong file chính thức."
       },
@@ -138,10 +186,34 @@
     "telegramLink": "https://t.me/kiet_mmo"
   },
   "coupons": [
-    { "code": "KHAITRUONG", "type": "FIXED", "value": 20000, "desc": "Giảm ngay 20.000đ mừng khai trương" },
-    { "code": "KIETVIP", "type": "PERCENT", "value": 10, "desc": "Giảm 10% cho thành viên VIP" },
-    { "code": "CHAO2026", "type": "FIXED", "value": 30000, "desc": "Giảm 30.000đ đón đầu xu hướng 2026" }
+    {
+      "code": "KHAITRUONG",
+      "type": "FIXED",
+      "value": 20000,
+      "desc": "Giảm ngay 20.000đ mừng khai trương"
+    },
+    {
+      "code": "KIETVIP",
+      "type": "PERCENT",
+      "value": 10,
+      "desc": "Giảm 10% cho thành viên VIP"
+    },
+    {
+      "code": "CHAO2026",
+      "type": "FIXED",
+      "value": 30000,
+      "desc": "Giảm 30.000đ đón đầu xu hướng 2026"
+    }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "id": "msg-1793382399392",
+      "createdAt": "2026-10-30T17:46:39.392Z",
+      "name": "Kh�ch h�ng m?u",
+      "email": "khachhang@gmail.com",
+      "phone": "0987654321",
+      "message": "Ch�o Ki?t, shop c� k?ch b?n n8n t? d?ng dang b�i Facebook kh�ng?"
+    }
+  ],
   "reviews": []
 }
