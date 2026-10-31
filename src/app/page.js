@@ -9,8 +9,8 @@ import {
   ArrowUpDown, CheckCircle, TrendingUp, Shield, Lock, Award,
   CheckCircle2, FileText, ChevronDown, Copy, Check, MessageCircle,
   Clock, RefreshCw, Laptop, ArrowRight, Bot, Database, Cpu,
-  Play, Terminal, Flame, ShoppingBag, Send, DollarSign,
-  Star, UserCheck, HeartHandshake, PhoneCall, ExternalLink, Activity
+  Flame, ShoppingBag, Send, DollarSign, Star, UserCheck,
+  HeartHandshake, PhoneCall, ExternalLink, Activity
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -24,17 +24,6 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState(0);
   const [copiedCoupon, setCopiedCoupon] = useState(false);
 
-  // --- AUTOMATION SIMULATOR STATE ---
-  const [simStep, setSimStep] = useState(1);
-  const [simRunning, setSimRunning] = useState(false);
-  const [simLogs, setSimLogs] = useState([
-    { time: '00:00.12', text: '⚡ Trigger: Make.com khởi động chu kỳ quét Shopee API', color: 'text-indigo-400' },
-    { time: '00:00.35', text: '🔍 Quét thấy 12 mã giảm 50% & flash sale hôm nay', color: 'text-amber-400' },
-    { time: '00:00.68', text: '🧠 OpenAI GPT-4o: Tóm tắt deal sốc & chèn link affiliate', color: 'text-purple-400' },
-    { time: '00:00.95', text: '📢 Telegram Broadcaster: Bắn bài vào kênh 5.000 mem', color: 'text-blue-400' },
-    { time: '00:01.20', text: '💰 Khách bấm mua qua link: Hoa hồng +45.000đ về ví!', color: 'text-emerald-400 font-bold' }
-  ]);
-
   useEffect(() => {
     fetch('/api/products')
       .then((res) => res.json())
@@ -46,41 +35,6 @@ export default function HomePage() {
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, []);
-
-  const runSimulation = () => {
-    if (simRunning) return;
-    setSimRunning(true);
-    setSimStep(1);
-    setSimLogs([
-      { time: '00:00.05', text: '🚀 [BẮT ĐẦU] Kích hoạt trigger tự động Make/n8n...', color: 'text-indigo-400' }
-    ]);
-
-    setTimeout(() => {
-      setSimStep(2);
-      setSimLogs((prev) => [
-        ...prev,
-        { time: '00:00.38', text: '⚡ [SHOPEE API] Quét thấy 12 voucher 50% & flash sale mới!', color: 'text-amber-400' }
-      ]);
-    }, 900);
-
-    setTimeout(() => {
-      setSimStep(3);
-      setSimLogs((prev) => [
-        ...prev,
-        { time: '00:00.75', text: '🧠 [AI REWRITE] GPT-4o lọc deal sốc nhất & tự động gắn link Affiliate cá nhân...', color: 'text-purple-400' }
-      ]);
-    }, 1800);
-
-    setTimeout(() => {
-      setSimStep(4);
-      setSimLogs((prev) => [
-        ...prev,
-        { time: '00:01.10', text: '📢 [TELEGRAM BOT] Bắn bài kèm ảnh & nút mua vào kênh 5.000 thành viên...', color: 'text-blue-400' },
-        { time: '00:01.35', text: '💰 [HOA HỒNG] Khách click đặt hàng: +45.000đ hoa hồng thụ động ghi nhận!', color: 'text-emerald-400 font-bold' }
-      ]);
-      setSimRunning(false);
-    }, 2700);
-  };
 
   const handleCopyCoupon = (code) => {
     navigator.clipboard.writeText(code);
@@ -173,9 +127,9 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden bg-[#030712] text-slate-100 font-sans">
       {/* ============================================================== */}
-      {/* KHỐI 1: HERO SECTION 3D (LUMINOUS HORIZON + 3D INFLATED ASSETS) */}
+      {/* 1. HERO SECTION: LUMINOUS HORIZON + 3D INFLATED ASSETS */}
       {/* ============================================================== */}
-      <section className="relative pt-20 sm:pt-28 pb-32 sm:pb-36 bg-[linear-gradient(to_bottom,#000000,#130728_32%,#2e1065_62%,#6d28d9_90%)] overflow-hidden border-b border-purple-950/40">
+      <section className="relative pt-20 sm:pt-28 pb-28 sm:pb-36 bg-[linear-gradient(to_bottom,#000000,#130728_32%,#2e1065_62%,#6d28d9_90%)] overflow-hidden border-b border-purple-950/40">
         {/* The Signature Luminous Horizon Curve Ring */}
         <div className="horizon-eclipse w-[750px] sm:w-[1536px] sm:h-[650px] lg:w-[2200px] lg:h-[480px] top-[calc(100%-90px)] sm:top-[calc(80%-20px)]"></div>
 
@@ -254,11 +208,11 @@ export default function HomePage() {
               <ArrowRight className="w-4 h-4 shrink-0 text-purple-600" />
             </a>
             <a
-              href="#simulation"
+              href="#guarantee"
               className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-purple-500/40 bg-purple-950/40 hover:bg-purple-900/50 text-white font-bold text-sm backdrop-blur-md transition flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(168,85,247,0.2)]"
             >
-              <Activity className="w-4 h-4 text-purple-400 shrink-0 animate-pulse" />
-              <span>Xem Demo Hoạt Động</span>
+              <HeartHandshake className="w-4 h-4 text-purple-400 shrink-0" />
+              <span>Cam Kết Uy Tín & Bảo Hành</span>
             </a>
           </div>
 
@@ -298,7 +252,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* KHỐI 2: BĂNG CHUYỀN MARQUEE ĐỐI TÁC & HỆ SINH THÁI */}
+      {/* 2. BĂNG CHUYỀN MARQUEE ĐỐI TÁC & HỆ SINH THÁI */}
       {/* ============================================================== */}
       <section className="border-b border-white/10 bg-[#02050c] py-4 overflow-hidden relative">
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-[#02050c] to-transparent z-10"></div>
@@ -321,7 +275,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* KHỐI 3: KHO SẢN PHẨM MỞ BÁN (ĐẶT NGAY TRÊN CAO - CHỐT ĐƠN LIỀN) */}
+      {/* 3. KHO SẢN PHẨM MỞ BÁN (TRỌNG TÂM CỦA TOÀN BỘ CỬA HÀNG) */}
       {/* ============================================================== */}
       <section id="products" className="max-w-6xl mx-auto px-4 pt-14 pb-16">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
@@ -442,186 +396,69 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* KHỐI 4: KHUNG MAC OS 3D MÔ PHỎNG BOT CHẠY THỰC TẾ (DEMO SHOWCASE) */}
+      {/* 4. TIÊU CHUẨN VÀNG & CAM KẾT CHẤT LƯỢNG KHI MUA TOOL TẠI STORE */}
       {/* ============================================================== */}
-      <section id="simulation" className="max-w-6xl mx-auto px-4 pb-20">
-        <div className="rounded-3xl p-6 sm:p-10 bg-[#090d16] border border-white/10 shadow-[0_0_60px_rgba(124,58,237,0.12)] relative overflow-hidden">
-          {/* Top Window Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-3 h-3 rounded-full bg-rose-500/90 inline-block"></span>
-                <span className="w-3 h-3 rounded-full bg-amber-500/90 inline-block"></span>
-                <span className="w-3 h-3 rounded-full bg-emerald-500/90 inline-block"></span>
-                <span className="ml-2 text-xs font-mono text-slate-400">kiet-automation-engine // live-workflow-v2026.1</span>
-              </div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">
-                Kiểm Chứng Thực Tế: Mô Phỏng Bot Săn Deal Tự Động 24/7
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Bấm nút chạy thử bên dưới để xem luồng dữ liệu tự động quét deal Shopee, gọi AI gắn link và nổ hoa hồng.
-              </p>
-            </div>
+      <section className="max-w-6xl mx-auto px-4 pb-20">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
+            <Award className="w-3.5 h-3.5 text-purple-400" />
+            <span>Tiêu Chuẩn Chất Lượng</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-white">
+            4 Lý Do Khách Hàng Tin Chọn Kiệt Digital Store
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            Minh bạch, bảo mật tuyệt đối và đồng hành hỗ trợ kỹ thuật lâu dài
+          </p>
+        </div>
 
-            <button
-              type="button"
-              onClick={runSimulation}
-              disabled={simRunning}
-              className={`px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2 transition shadow-xl shrink-0 ${
-                simRunning
-                  ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-purple-600/30 active:scale-95 shimmer-btn'
-              }`}
-            >
-              <Play className={`w-4 h-4 ${simRunning ? 'animate-spin' : 'fill-current'}`} />
-              <span>{simRunning ? 'Đang chạy mô phỏng...' : 'Kích Hoạt Chạy Thử Ngay'}</span>
-            </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="p-6 rounded-3xl bg-[#0b0f19] border border-white/10 hover:border-purple-500/40 transition">
+            <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4 shadow-sm">
+              <Clock className="w-6 h-6" />
+            </div>
+            <h4 className="font-bold text-base text-white">Giao File Sau 3 Giây</h4>
+            <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+              Quét mã VietQR tự động 24/7. Nhận file gốc tải về ngay trên màn hình mà không cần đợi duyệt thủ công.
+            </p>
           </div>
 
-          {/* Interactive Pipeline Nodes (4 Stages) */}
-          <div className="py-10 grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6 relative">
-            {/* Stage 1 */}
-            <div
-              className={`p-5 rounded-2xl transition-all duration-300 relative border flex flex-col justify-between ${
-                simStep >= 1
-                  ? 'bg-amber-500/10 border-amber-500/60 shadow-[0_0_30px_rgba(245,158,11,0.15)]'
-                  : 'bg-black/40 border-white/5 opacity-50'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold shadow-md">
-                    <Flame className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    Trạm 1: Trigger
-                  </span>
-                </div>
-                <h4 className="font-extrabold text-sm text-white">API Shopee Flash Sale</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Tự động quét toàn bộ mã giảm 50% & voucher chớp nhoáng 24/7.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-amber-500/20 text-[11px] font-bold text-amber-400 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
-                <span>Tìm thấy 12 voucher</span>
-              </div>
+          <div className="p-6 rounded-3xl bg-[#0b0f19] border border-white/10 hover:border-emerald-500/40 transition">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-4 shadow-sm">
+              <ShieldCheck className="w-6 h-6" />
             </div>
-
-            {/* Stage 2 */}
-            <div
-              className={`p-5 rounded-2xl transition-all duration-300 relative border flex flex-col justify-between ${
-                simStep >= 2
-                  ? 'bg-purple-500/10 border-purple-500/60 shadow-[0_0_30px_rgba(168,85,247,0.15)]'
-                  : 'bg-black/40 border-white/5 opacity-50'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold shadow-md">
-                    <Bot className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                    Trạm 2: Xử Lý AI
-                  </span>
-                </div>
-                <h4 className="font-extrabold text-sm text-white">OpenAI GPT-4o Filter</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Lọc deal sốc nhất, tự viết caption giật tít & gắn link Affiliate cá nhân.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-purple-500/20 text-[11px] font-bold text-purple-400 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
-                <span>Gắn link affiliate 100%</span>
-              </div>
-            </div>
-
-            {/* Stage 3 */}
-            <div
-              className={`p-5 rounded-2xl transition-all duration-300 relative border flex flex-col justify-between ${
-                simStep >= 3
-                  ? 'bg-blue-500/10 border-blue-500/60 shadow-[0_0_30px_rgba(59,130,246,0.15)]'
-                  : 'bg-black/40 border-white/5 opacity-50'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center font-bold shadow-md">
-                    <Send className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                    Trạm 3: Phát Sóng
-                  </span>
-                </div>
-                <h4 className="font-extrabold text-sm text-white">Telegram Broadcaster</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Tự động đăng bài định dạng Markdown đẹp mắt kèm ảnh và nút Mua Ngay.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-blue-500/20 text-[11px] font-bold text-blue-400 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-                <span>Kênh 5.000 thành viên</span>
-              </div>
-            </div>
-
-            {/* Stage 4 */}
-            <div
-              className={`p-5 rounded-2xl transition-all duration-300 relative border flex flex-col justify-between ${
-                simStep >= 4
-                  ? 'bg-emerald-500/15 border-emerald-500 shadow-[0_0_35px_rgba(16,185,129,0.25)]'
-                  : 'bg-black/40 border-white/5 opacity-50'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold shadow-md">
-                    <DollarSign className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    Trạm 4: Kết Quả
-                  </span>
-                </div>
-                <h4 className="font-extrabold text-sm text-white">Hoa Hồng Về Ví Thụ Động</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Khách click mua deal từ kênh ➔ Hoa hồng Shopee Affiliate tự động ghi nhận.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-emerald-500/20 text-[11px] font-black text-emerald-400 flex items-center gap-1.5">
-                <span>+45.000 đ / đơn hàng</span>
-              </div>
-            </div>
+            <h4 className="font-bold text-base text-white">Sạch Mã Độc 100%</h4>
+            <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+              Mọi kịch bản, file tool và dữ liệu đều được quét sạch qua VirusTotal (0/72 cảnh báo), an toàn tuyệt đối.
+            </p>
           </div>
 
-          {/* Terminal Console Log Output */}
-          <div className="rounded-2xl bg-[#03060d] border border-white/10 p-4 font-mono text-xs shadow-inner">
-            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/10 text-slate-400 text-[11px]">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span className="ml-2 font-bold text-slate-300">live-workflow-terminal.log</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-emerald-400">● 24/7 ACTIVE</span>
-                <span>Latency: 12ms</span>
-              </div>
+          <div className="p-6 rounded-3xl bg-[#0b0f19] border border-white/10 hover:border-amber-500/40 transition">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mb-4 shadow-sm">
+              <RefreshCw className="w-6 h-6" />
             </div>
-            <div className="space-y-1.5">
-              {simLogs.map((log, idx) => (
-                <div key={idx} className="flex items-start gap-2.5">
-                  <span className="text-slate-500 shrink-0">[{log.time}]</span>
-                  <span className={log.color}>{log.text}</span>
-                </div>
-              ))}
+            <h4 className="font-bold text-base text-white">Update Trọn Đời Miễn Phí</h4>
+            <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+              Khi các nền tảng (Shopee, TikTok, Telegram) đổi thuật toán, bạn luôn được tải bản cập nhật mới nhất miễn phí.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-[#0b0f19] border border-white/10 hover:border-blue-500/40 transition">
+            <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-4 shadow-sm">
+              <Laptop className="w-6 h-6" />
             </div>
+            <h4 className="font-bold text-base text-white">Ultraviewer Hỗ Trợ 1-1</h4>
+            <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+              Không rành công nghệ? Kiệt trực tiếp Ultraviewer qua Zalo hỗ trợ cài đặt cho bạn từ A đến Z hoàn toàn miễn phí.
+            </p>
           </div>
         </div>
       </section>
 
       {/* ============================================================== */}
-      {/* KHỐI 5: PHẢN HỒI KHÁCH HÀNG THỰC TẾ (SOCIAL PROOF & REVIEWS) */}
+      {/* 5. PHẢN HỒI KHÁCH HÀNG THỰC TẾ (SOCIAL PROOF & REVIEWS) */}
       {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-20">
+      <section id="reviews" className="max-w-6xl mx-auto px-4 pb-20">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-black uppercase tracking-wider mb-2">
             <UserCheck className="w-3.5 h-3.5" />
@@ -671,9 +508,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* KHỐI 6: CAM KẾT FOUNDER + 3 BƯỚC NHẬN FILE & FAQ (CHỐT HẠ ĐƠN) */}
+      {/* 6. CAM KẾT FOUNDER + 3 BƯỚC NHẬN FILE & FAQ (CHỐT HẠ ĐƠN HÀNG) */}
       {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-20">
+      <section id="guarantee" className="max-w-6xl mx-auto px-4 pb-20">
         {/* Founder Guarantee Box with Real Portrait Photo */}
         <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/40 via-[#0b0f19] to-indigo-950/40 border border-purple-500/40 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 mb-16 relative overflow-hidden">
           <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6">
