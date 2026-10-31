@@ -674,34 +674,68 @@ export default function HomePage() {
       {/* KHỐI 6: CAM KẾT FOUNDER + 3 BƯỚC NHẬN FILE & FAQ (CHỐT HẠ ĐƠN) */}
       {/* ============================================================== */}
       <section className="max-w-6xl mx-auto px-4 pb-20">
-        {/* Founder Guarantee Box */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/40 via-[#0b0f19] to-indigo-950/40 border border-purple-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 mb-16 relative overflow-hidden">
-          <div className="flex items-start gap-5">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center font-black text-2xl shrink-0 shadow-lg shadow-purple-600/40">
-              <HeartHandshake className="w-7 h-7" />
+        {/* Founder Guarantee Box with Real Portrait Photo */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/40 via-[#0b0f19] to-indigo-950/40 border border-purple-500/40 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 mb-16 relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6">
+            {/* Real Founder Photo with Verified Glow */}
+            <div className="relative shrink-0">
+              <img
+                src="/images/founder-kiet.jpg"
+                alt="Ngô Dương Kiệt - Founder"
+                className="w-24 h-28 sm:w-28 sm:h-32 rounded-2xl object-cover object-top border-2 border-purple-500/60 shadow-xl shadow-purple-500/20"
+              />
+              <span className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow-md">
+                <CheckCircle2 className="w-3 h-3 text-slate-950" />
+                <span>Chính Chủ</span>
+              </span>
             </div>
+
             <div>
-              <div className="inline-block px-3 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-black uppercase tracking-wider mb-1.5 border border-purple-500/30">
-                Cam Kết Uy Tín Từ Ngô Dương Kiệt (Founder)
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-black uppercase tracking-wider mb-2 border border-purple-500/30">
+                <span>Cam Kết Uy Tín Từ Ngô Dương Kiệt (Founder)</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-white">
                 Bảo Hành 1-1 • Hỗ Trợ Cài Đặt Ultraviewer Miễn Phí
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed max-w-2xl">
-                Mình là Kiệt – Người phát triển các kịch bản và dữ liệu số trên trang này. Mình cam kết 100%: <strong>Tài nguyên sạch, không virus, đúng mô tả</strong>. Nếu bạn mua về mà gặp khó khăn trong quá trình sử dụng, mình sẵn sàng kết nối <strong>UltraViewer hỗ trợ 1-1 qua Zalo</strong>. Nếu xảy ra lỗi do hệ thống, mình hoàn tiền 100% ngay lập tức!
+                Mình là <strong>Kiệt</strong> – sinh sống tại <strong>Đà Nẵng</strong>, người phát triển và đóng gói các kịch bản, tool MMO trên website này. Mình cam kết 100%: <strong>Tài nguyên sạch, không virus, đúng mô tả</strong>. Nếu bạn gặp khó khăn trong quá trình sử dụng, mình sẵn sàng kết nối <strong>UltraViewer hỗ trợ 1-1 qua Zalo hoặc Facebook</strong>. Lỗi kỹ thuật hoàn tiền 100% ngay lập tức!
               </p>
+
+              {/* Founder Meta Details */}
+              <div className="mt-4 flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-slate-400 font-medium">
+                <span className="flex items-center gap-1.5 text-slate-300">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>Đà Nẵng, Việt Nam</span>
+                </span>
+                <span className="text-slate-600">•</span>
+                <span className="text-slate-300">ngoduongkiet53006@gmail.com</span>
+                <span className="text-slate-600">•</span>
+                <span className="text-slate-300">Zalo: 0352.279.413</span>
+              </div>
             </div>
           </div>
 
-          <a
-            href="https://zalo.me/0352279413"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-black transition flex items-center gap-2 shrink-0 shadow-lg shadow-purple-600/30 whitespace-nowrap shimmer-btn"
-          >
-            <PhoneCall className="w-4 h-4" />
-            <span>Chat Zalo: 0352.279.413</span>
-          </a>
+          {/* Action Contact Buttons */}
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0">
+            <a
+              href="https://zalo.me/0352279413"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 whitespace-nowrap shimmer-btn"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span>Chat Zalo: 0352.279.413</span>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1JCPpN7YR6/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 whitespace-nowrap"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>Facebook Chính Chủ</span>
+            </a>
+          </div>
         </div>
 
         {/* 3 Steps Mini Grid */}

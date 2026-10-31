@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, Zap, RefreshCw, MessageSquare } from 'lucide-react';
+import { Shield, Zap, RefreshCw, MessageSquare, MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -49,10 +49,84 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Verified Founder Business Information Block */}
+      <div className="max-w-6xl mx-auto px-4 py-10 border-b border-white/10 grid grid-cols-1 md:grid-cols-3 gap-8 text-xs text-slate-400">
+        {/* Col 1: Store & Founder Identity */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <span className="font-black text-base text-white">Kiệt Digital Store</span>
+            <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+              Chính Chủ
+            </span>
+          </div>
+          <p className="leading-relaxed">
+            Sáng lập & Điều hành bởi <strong>Ngô Dương Kiệt</strong>. Nền tảng phân phối kịch bản tự động hóa, tool MMO và tài nguyên số bản quyền 2026.
+          </p>
+          <div className="text-slate-300 font-semibold">
+            Tài khoản thụ hưởng: Techcombank <span className="text-purple-400 font-mono">19075242377010</span> (NGO DUONG KIET)
+          </div>
+        </div>
+
+        {/* Col 2: Address & Contact */}
+        <div className="space-y-2.5">
+          <h4 className="font-bold text-white text-sm">Thông Tin Liên Hệ & Trụ Sở</h4>
+          <div className="flex items-start gap-2 text-slate-300">
+            <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+            <span>Tổ 11, Thôn Thanh Ly 2, Xã Thăng Bình, TP. Đà Nẵng</span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-300">
+            <Mail className="w-4 h-4 text-purple-400 shrink-0" />
+            <a href="mailto:ngoduongkiet53006@gmail.com" className="hover:text-purple-400 transition">
+              ngoduongkiet53006@gmail.com
+            </a>
+          </div>
+          <div className="flex items-center gap-2 text-slate-300">
+            <Phone className="w-4 h-4 text-purple-400 shrink-0" />
+            <a href="https://zalo.me/0352279413" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition">
+              Hotline / Zalo: 0352.279.413
+            </a>
+          </div>
+        </div>
+
+        {/* Col 3: Social & Verified Channels */}
+        <div className="space-y-2.5">
+          <h4 className="font-bold text-white text-sm">Kênh Hỗ Trợ Chính Thức</h4>
+          <div className="flex flex-col gap-2">
+            <a
+              href="https://www.facebook.com/share/1JCPpN7YR6/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Facebook Cá Nhân Chính Chủ</span>
+            </a>
+            <a
+              href="https://zalo.me/0352279413"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold transition"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Zalo Trực Tiếp: 0352.279.413</span>
+            </a>
+            <a
+              href="https://t.me/kiet_mmo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 font-semibold transition"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Telegram: @kiet_mmo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Main Footer Links - Symmetrical Flex Bar */}
       <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
         <div className="text-center md:text-left">
-          © 2026 <strong className="text-white">Kiệt Digital Store</strong> • Sáng lập bởi Ngô Dương Kiệt • Techcombank: 19075242377010
+          © 2026 <strong className="text-white">Kiệt Digital Store</strong> • Sáng lập bởi Ngô Dương Kiệt • Bản quyền đã được bảo hộ
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5 font-semibold">
           <Link href="/terms" className="hover:text-purple-400 transition">Điều khoản dịch vụ</Link>
@@ -60,8 +134,8 @@ export default function Footer() {
           <Link href="/refund" className="hover:text-purple-400 transition">Chính sách hoàn tiền</Link>
           <span className="text-slate-700 hidden sm:inline">|</span>
           <span className="text-emerald-400 font-bold flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            VietQR Napas 24/7
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            VietQR Napas 24/7 Tự Động
           </span>
         </div>
       </div>
