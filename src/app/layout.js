@@ -1,6 +1,5 @@
 import './globals.css';
 import Header from '@/components/Header';
-import VerticalNavRail from '@/components/VerticalNavRail';
 import Footer from '@/components/Footer';
 import FloatingSupport from '@/components/FloatingSupport';
 
@@ -23,14 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen antialiased bg-[#f8f9fa] text-slate-800 selection:bg-slate-900 selection:text-white transition-colors">
-        <VerticalNavRail />
         <Header />
-        <main className="flex-1 lg:pl-16 xl:pl-20">
+        <main className="flex-1">
           {children}
         </main>
-        <div className="lg:pl-16 xl:pl-20">
-          <Footer />
-        </div>
+        <Footer />
         <FloatingSupport />
       </body>
     </html>

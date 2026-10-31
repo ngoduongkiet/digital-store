@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-[#f8f9fa]/90 backdrop-blur-md border-b border-slate-200/70 transition-colors">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         
         {/* Brand Logo in Editorial Serif */}
         <Link href="/" className="flex items-center gap-2.5 group">
