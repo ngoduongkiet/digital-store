@@ -22,7 +22,7 @@ export default function Header() {
             </span>
           </div>
           <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold border border-slate-200">
-            Automations 2026
+            Tự Động Hóa 2026
           </span>
         </Link>
 

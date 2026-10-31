@@ -213,7 +213,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#guarantee" className="hover:text-white transition whitespace-nowrap block">
-                  Câu Hỏi Thường Gặp (FAQ)
+                  Câu Hỏi Thường Gặp
                 </a>
               </li>
             </ul>

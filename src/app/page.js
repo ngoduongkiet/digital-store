@@ -71,7 +71,7 @@ export default function HomePage() {
   const testimonials = [
     {
       name: 'Nguyễn Thành Nam',
-      role: 'Chủ shop thời trang & Affiliate Marketer',
+      role: 'Chủ shop thời trang & Tiếp thị liên kết',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
       comment: 'Con bot Shopee Telegram của Kiệt giúp mình bắn deal tự động 24/7. Tháng vừa rồi hoa hồng Shopee nhảy thêm hơn 14 triệu mà không tốn công canh deal.',
       productBought: 'Bot Săn Deal Shopee Telegram',
@@ -79,15 +79,15 @@ export default function HomePage() {
     },
     {
       name: 'Vũ Quốc Bảo',
-      role: 'Agency Marketing B2B Hà Nội',
+      role: 'Agency Tiếp Thị Doanh Nghiệp (Hà Nội)',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-      comment: 'Tệp 25.000 data quán cafe và F&B lọc chuẩn từng quận huyện. Đội ngũ sales bên mình gọi điện chuyển đổi cực cao. Đáng từng xu!',
+      comment: 'Tệp 25.000 data quán cafe và F&B lọc chuẩn từng quận huyện. Đội ngũ kinh doanh bên mình gọi điện chuyển đổi cực cao. Đáng từng xu!',
       productBought: 'Tệp 25.000 Khách Hàng B2B F&B',
       rating: 5
     },
     {
       name: 'Lê Hoàng Yến',
-      role: 'Content Creator & Bán hàng E-commerce',
+      role: 'Sáng tạo nội dung & Bán hàng Online',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
       comment: 'Bộ prompt GPT-4o viết content thương mại chuẩn SEO dùng cực kỳ sướng. Bạn Kiệt nhiệt tình Ultraviewer hướng dẫn tận tình.',
       productBought: 'Bộ Prompt AI GPT-4o Đỉnh Cao',
@@ -99,13 +99,13 @@ export default function HomePage() {
     <div className="bg-[#f8f9fa] text-slate-800 font-sans">
       
       {/* ============================================================== */}
-      {/* 1. HERO SECTION (CHUẨN 100% BENTO FOCAL - NỘI DUNG CHUẨN MMO) */}
+      {/* 1. HERO SECTION (100% TIẾNG VIỆT - CHUẨN BENTO LUXURY) */}
       {/* ============================================================== */}
       <section className="relative pt-8 sm:pt-14 pb-16 sm:pb-20 border-b border-slate-200/80 bg-[#f8f9fa] overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Cột 1: Headline & Text & Buttons & 50K+ Avatars (lg:col-span-4) */}
+            {/* Cột 1: Tiêu đề & Giới thiệu & Nút bấm & Uy tín (lg:col-span-4) */}
             <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/60 text-slate-700 text-xs font-semibold">
@@ -114,15 +114,15 @@ export default function HomePage() {
                 </div>
 
                 <h1 className="font-editorial text-4xl sm:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.02] tracking-tight">
-                  Define Your <br />
-                  <span className="italic font-normal">Digital Weapon</span>
+                  Vũ Khí Số & <br />
+                  <span className="italic font-normal">Tự Động Hóa Thực Chiến</span>
                 </h1>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md">
-                  Nơi độ chuẩn xác kỹ thuật kết hợp cùng tự động hóa thực chiến. Khám phá kho kịch bản và tool phần mềm độc quyền để nhân bản doanh thu online mà không cần tốn hàng giờ trực máy.
+                  Nơi kỹ thuật lập trình tinh gọn kết hợp cùng tư duy kinh doanh thực chiến. Khám phá kho kịch bản và công cụ phần mềm độc quyền giúp bạn nhân bản doanh thu tự động mà không cần trực máy.
                 </p>
 
-                {/* Dual Pill Buttons (Chuẩn Slide 1) */}
+                {/* Nút bấm đôi dạng Pill */}
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <a
                     href="#products"
@@ -142,36 +142,36 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* 50K+ Verified Trust Avatar Cluster (Chuẩn Slide 1) */}
+              {/* Cụm Avatar Khách Hàng Xác Minh */}
               <div className="pt-4 border-t border-slate-200/70 flex items-center gap-3 text-xs text-slate-500">
                 <div className="flex -space-x-2 shrink-0">
                   <img
                     className="w-8 h-8 rounded-full border-2 border-white object-cover"
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
-                    alt="Buyer"
+                    alt="Khách hàng"
                   />
                   <img
                     className="w-8 h-8 rounded-full border-2 border-white object-cover"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
-                    alt="Buyer"
+                    alt="Khách hàng"
                   />
                   <img
                     className="w-8 h-8 rounded-full border-2 border-white object-cover"
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
-                    alt="Buyer"
+                    alt="Khách hàng"
                   />
                 </div>
                 <div>
-                  <div className="font-bold text-slate-900 text-xs">50.000+ Dòng Dữ Liệu & Users</div>
-                  <div className="text-[11px] text-slate-500">Cộng đồng MMO & E-Commerce tin dùng</div>
+                  <div className="font-bold text-slate-900 text-xs">50.000+ Dòng Dữ Liệu & Khách Hàng</div>
+                  <div className="text-[11px] text-slate-500">Cộng đồng MMO & Bán Hàng Online tin dùng</div>
                 </div>
               </div>
             </div>
 
-            {/* Cột 2: Cụm 3 Thẻ Dọc Xếp Tầng (Slide 1 Style - 100% Sản Phẩm & Người Thật) */}
+            {/* Cột 2: Cụm 3 Thẻ Dọc Xếp Tầng (lg:col-span-4) */}
             <div className="lg:col-span-4 flex flex-col justify-between gap-3.5">
               
-              {/* Thẻ 1: Peach / Warm Apricot (#FBE8DE) - Bot Shopee */}
+              {/* Thẻ 1: Màu Mơ Ấm (#FBE8DE) - Bot Shopee */}
               <a
                 href="#products"
                 className="bg-[#fbe8de] rounded-3xl p-4 flex items-center justify-between border border-orange-200/50 shadow-sm hover:shadow-md transition group"
@@ -179,15 +179,15 @@ export default function HomePage() {
                 <div className="flex items-center gap-3.5">
                   <img
                     src="/images/shopee-bot-cover.jpg"
-                    alt="Shopee Bot"
+                    alt="Bot Shopee"
                     className="w-16 h-20 rounded-2xl object-cover shrink-0 shadow-sm"
                   />
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-orange-700 bg-orange-200/60 px-2 py-0.5 rounded-full">
-                      Shopee Bot
+                      Bot Tự Động
                     </span>
                     <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Bot Săn Deal Shopee</h4>
-                    <p className="text-[11px] text-slate-600">Flash Sale 50% Auto 24/7</p>
+                    <p className="text-[11px] text-slate-600">Săn Giảm Giá 50% Tự Động 24/7</p>
                   </div>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
@@ -195,7 +195,7 @@ export default function HomePage() {
                 </div>
               </a>
 
-              {/* Thẻ 2: Warm Sand / Tan (#F6DDCF) - Ảnh thật Kiệt */}
+              {/* Thẻ 2: Màu Cát Ấm (#F6DDCF) - Ảnh thật Kiệt */}
               <a
                 href="#guarantee"
                 className="bg-[#f6ddcf] rounded-3xl p-4 flex items-center justify-between border border-amber-200/50 shadow-sm hover:shadow-md transition group"
@@ -208,7 +208,7 @@ export default function HomePage() {
                   />
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded-full">
-                      Founder & Dev
+                      Sáng Lập & Kỹ Thuật
                     </span>
                     <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Ngô Dương Kiệt</h4>
                     <p className="text-[11px] text-slate-600">Đà Nẵng • Ultraviewer 1-1</p>
@@ -219,7 +219,7 @@ export default function HomePage() {
                 </div>
               </a>
 
-              {/* Thẻ 3: Dusty Rose (#E8D7D8) - Data B2B Cafe */}
+              {/* Thẻ 3: Màu Hồng Đất (#E8D7D8) - Data B2B Cafe */}
               <a
                 href="#products"
                 className="bg-[#e8d7d8] rounded-3xl p-4 flex items-center justify-between border border-rose-200/50 shadow-sm hover:shadow-md transition group"
@@ -232,10 +232,10 @@ export default function HomePage() {
                   />
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200/60 px-2 py-0.5 rounded-full">
-                      B2B Lead Engine
+                      Dữ Liệu Khách Hàng
                     </span>
                     <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Tệp 25.000 Quán Cafe</h4>
-                    <p className="text-[11px] text-slate-600">Data F&B Chuẩn Từng Quận</p>
+                    <p className="text-[11px] text-slate-600">Dữ Liệu F&B Chuẩn Từng Quận</p>
                   </div>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
@@ -245,38 +245,38 @@ export default function HomePage() {
 
             </div>
 
-            {/* Cột 3: Thẻ Showcase Khổng Lồ Có Tag Giá (Slide 1 Style) */}
+            {/* Cột 3: Thẻ Trưng Bày Lớn Có Tag Giá (lg:col-span-4) */}
             <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden group">
               
-              {/* Top Sub-label */}
+              {/* Nhãn phụ phía trên */}
               <div>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
-                  High-Performance Automation
+                  Hệ Sinh Thái Tự Động Hóa Thực Chiến
                 </span>
                 <span className="text-xs font-bold text-slate-900">
-                  Shopee API v2026 Engine • Bot Deal Độc Quyền
+                  Kịch Bản Shopee API v2026 • Độc Quyền Bản Quyền
                 </span>
               </div>
 
-              {/* Central Product Graphic */}
+              {/* Ảnh minh họa trung tâm */}
               <div className="relative my-6 flex items-center justify-center">
                 <img
                   src="/images/shopee-bot-cover.jpg"
-                  alt="Shopee Bot Showcase"
+                  alt="Trưng bày Bot Shopee"
                   className="w-full h-52 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
                 />
 
-                {/* Floating Price Pill Tag */}
+                {/* Tag giá nổi dạng Pill */}
                 <div className="absolute -bottom-3 left-4 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-md flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   <div className="text-xs">
                     <span className="font-bold text-slate-900">199.000 đ</span>
-                    <span className="text-slate-400 text-[10px] ml-1">/ Shopee Bot v2026</span>
+                    <span className="text-slate-400 text-[10px] ml-1">/ Bản quyền v2026</span>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Quote & Text */}
+              {/* Châm ngôn & Thanh trạng thái dưới cùng */}
               <div className="pt-3 border-t border-slate-100">
                 <p className="font-editorial text-base text-slate-800 leading-snug">
                   "Tự động hóa quy trình kinh doanh, biến thời gian rảnh thành dòng thu nhập thụ động bền vững."
@@ -293,12 +293,12 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 2. SECTION: A DEEPER LOOK AT YOUR TOOLS (CHUẨN 100% SLIDE 2 BENTO) */}
+      {/* 2. SECTION: BỘ SƯU TẬP VŨ KHÍ SỐ & TOOL */}
       {/* ============================================================== */}
       <section id="products" className="py-16 sm:py-24 border-b border-slate-200/80 bg-white">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           
-          {/* Header Section 2 */}
+          {/* Tiêu đề Section 2 */}
           <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
@@ -328,23 +328,23 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Slide 2 Bento Split: Left Bento + Right Bento */}
+          {/* Cấu trúc Bento Split: Bento trái + Danh mục phải */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Bento Stack (Slide 2 Style) */}
+            {/* Bento Stack bên trái */}
             <div className="lg:col-span-5 space-y-4">
               
-              {/* Bento Card 1: Engineered for What's Next */}
+              {/* Thẻ Bento 1: Sẵn sàng tương lai */}
               <div className="bg-[#f8f9fa] rounded-3xl p-6 border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    Performance Architecture
+                    Kiến Trúc Hiệu Suất
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-0.5">
-                    Engineered for What's Next.
+                    Sẵn Sàng Cho Bản Cập Nhật Mới
                   </h4>
                   <p className="text-xs text-slate-500 mt-1 max-w-xs leading-relaxed">
-                    Tự động thích ứng và update code miễn phí trọn đời khi Shopee, TikTok hoặc Telegram đổi thuật toán.
+                    Tự động thích ứng và cập nhật mã nguồn miễn phí trọn đời khi Shopee, TikTok hoặc Telegram đổi thuật toán.
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
@@ -352,16 +352,16 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Bento Card 2: Performance Upgrade */}
+              {/* Thẻ Bento 2: Nâng tầm công nghệ */}
               <div className="bg-[#f0f4f8] rounded-3xl p-6 border border-sky-100 relative overflow-hidden flex items-center gap-5">
                 <img
                   src="/images/prompt-ecommerce-cover.jpg"
-                  alt="Prompt AI Package"
+                  alt="Gói Prompt AI"
                   className="w-20 h-24 rounded-2xl object-cover shrink-0 shadow-sm"
                 />
                 <div>
                   <span className="text-[10px] font-bold text-sky-700 uppercase tracking-widest bg-sky-200/60 px-2 py-0.5 rounded-full">
-                    AI Upgrade
+                    Nâng Tầm Trí Tuệ Nhân Tạo
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">
                     Bộ Prompt AI Thương Mại
@@ -372,10 +372,10 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Bento Card 3: HD Precision & 0/72 Clean */}
+              {/* Thẻ Bento 3: Mã sạch & An toàn */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">HD Precision & Clean Code</span>
+                  <span className="text-xs font-bold text-slate-900">Mã Nguồn Minh Bạch & Sạch 100%</span>
                   <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                     VirusTotal 0/72 Clean
                   </span>
@@ -398,7 +398,7 @@ export default function HomePage() {
 
             </div>
 
-            {/* Right Bento: Product Catalog List */}
+            {/* Danh mục sản phẩm bên phải */}
             <div className="lg:col-span-7 bg-[#f8f9fa] rounded-3xl p-6 sm:p-8 border border-slate-200/80">
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/80">
@@ -411,7 +411,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                {/* Filter Pills */}
+                {/* Các nút lọc danh mục */}
                 <div className="flex flex-wrap items-center gap-1.5">
                   {[
                     { id: 'ALL', label: 'Tất Cả' },
@@ -434,7 +434,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Product List Showcase */}
+              {/* Danh sách thẻ sản phẩm */}
               <div className="pt-6 space-y-4">
                 {filteredProducts.map((prod) => (
                   <div
@@ -450,7 +450,7 @@ export default function HomePage() {
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
-                            {prod.badge || 'TOP PICK'}
+                            {prod.badge || 'BÁN CHẠY'}
                           </span>
                           <span className="text-xs font-extrabold text-slate-900">
                             {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(prod.price)}
@@ -493,7 +493,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 2.5 INTERACTIVE WORKFLOW PIPELINE (CHUẨN MAGIC UI / N8N PIPELINE) */}
+      {/* 2.5 INTERACTIVE WORKFLOW PIPELINE (QUY TRÌNH TỰ ĐỘNG THỰC CHIẾN) */}
       {/* ============================================================== */}
       <section className="py-12 border-b border-slate-200/80 bg-gradient-to-b from-white to-[#f8f9fa]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -502,14 +502,14 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 3. SECTION: THE PINNACLE OF PERFORMANCE (CHUẨN 100% SLIDE 3 BENTO) */}
+      {/* 3. SECTION: 4 TIÊU CHUẨN KỸ THUẬT VÀNG */}
       {/* ============================================================== */}
       <section id="standards" className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              The Pinnacle of Engineering
+              Đỉnh Cao Kỹ Thuật
             </span>
             <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
               4 Tiêu Chuẩn Kỹ Thuật Vàng
@@ -519,17 +519,17 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Slide 3 Bento Grid: 3 left cards, 2 center cards, 1 right tall card */}
+          {/* Cấu trúc Bento 6 Thẻ Tiêu Chuẩn */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Left 3 Narrow Cards (lg:col-span-3) */}
+            {/* Cột trái 3 thẻ hẹp (lg:col-span-3) */}
             <div className="lg:col-span-3 flex flex-col justify-between gap-4">
               
-              {/* Card 1: Neural Engine / Pale Mint (#EEF7F2) */}
+              {/* Thẻ 1: Lập trình tinh gọn / Xanh bạc hà nhạt */}
               <div className="bg-[#eef7f2] p-5 rounded-3xl border border-emerald-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest block">
-                    Neural Engine
+                    Cốt Lõi Tinh Gọn
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Lập Trình Tinh Gọn</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
@@ -539,11 +539,11 @@ export default function HomePage() {
                 <div className="mt-4 font-mono font-bold text-sm text-slate-900">199.000 đ</div>
               </div>
 
-              {/* Card 2: Telegram Broadcaster / Pale Yellow (#FEF9E8) */}
+              {/* Thẻ 2: Phát sóng tự động / Vàng nhạt */}
               <div className="bg-[#fef9e8] p-5 rounded-3xl border border-amber-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-amber-800 uppercase tracking-widest block">
-                    Telegram Broadcaster
+                    Phát Sóng Tức Thì
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Phát Sóng Tự Động</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
@@ -553,11 +553,11 @@ export default function HomePage() {
                 <div className="mt-4 font-mono font-bold text-sm text-slate-900">299.000 đ</div>
               </div>
 
-              {/* Card 3: B2B Lead Engine / Pale Rose (#FDF2ED) */}
+              {/* Thẻ 3: Data chuẩn xác / Hồng nhạt */}
               <div className="bg-[#fdf2ed] p-5 rounded-3xl border border-rose-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-rose-800 uppercase tracking-widest block">
-                    B2B Lead Engine
+                    Dữ Liệu Chuẩn Xác
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Data Chuẩn 100%</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
@@ -569,19 +569,19 @@ export default function HomePage() {
 
             </div>
 
-            {/* Center 2 Cards (lg:col-span-5) */}
+            {/* Cột giữa 2 thẻ (lg:col-span-5) */}
             <div className="lg:col-span-5 flex flex-col justify-between gap-4">
               
-              {/* Card 4 (Top): The Best of Both Worlds / Soft Lavender (#F3EFFA) */}
+              {/* Thẻ 4 (Trên): Triết lý phát triển / Tím nhạt */}
               <div className="bg-[#f3effa] p-6 rounded-3xl border border-purple-100 shadow-sm flex items-center gap-5">
                 <img
                   src="/images/prompt-ecommerce-cover.jpg"
-                  alt="Philosophy"
+                  alt="Triết lý phát triển"
                   className="w-24 h-32 rounded-2xl object-cover shrink-0 shadow-sm"
                 />
                 <div>
                   <span className="text-[10px] font-bold text-purple-800 uppercase tracking-widest bg-purple-200/60 px-2 py-0.5 rounded-full">
-                    Philosophy
+                    Triết Lý Phát Triển
                   </span>
                   <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
                     Vừa Dùng Tool, Vừa Hiểu Bản Chất
@@ -592,11 +592,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Card 5 (Bottom): Insurance, Simplified / Warm Peach (#FBEEE8) */}
+              {/* Thẻ 5 (Dưới): Cam kết hoàn tiền / Mơ ấm */}
               <div className="bg-[#fbeee8] p-6 rounded-3xl border border-orange-100 shadow-sm flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-orange-800 uppercase tracking-widest block">
-                    Guarantee
+                    Cam Kết Tuyệt Đối
                   </span>
                   <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
                     Bảo Hành Hoàn Tiền 100%
@@ -620,11 +620,11 @@ export default function HomePage() {
 
             </div>
 
-            {/* Right 1 Tall Card (lg:col-span-4) Security Architecture */}
+            {/* Cột phải 1 thẻ cao (lg:col-span-4) Kiểm định mã sạch */}
             <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
-                  Security Architecture
+                  Bảo Mật Hệ Thống
                 </span>
                 <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
                   Kiểm Định Mã Sạch Tuyệt Đối
@@ -662,7 +662,7 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Left: Founder Photo & Bio (Slide 4 style) */}
+            {/* Ảnh & Tiểu sử nhà sáng lập */}
             <div className="lg:col-span-6 bg-[#fef9e8] p-8 sm:p-12 rounded-[2.5rem] border border-amber-200/60 shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6">
               <img
                 src="/images/founder-kiet.jpg"
@@ -671,7 +671,7 @@ export default function HomePage() {
               />
               <div className="space-y-2.5 text-center sm:text-left">
                 <span className="text-[10px] font-bold text-amber-800 uppercase tracking-widest bg-amber-200/60 px-2.5 py-0.5 rounded-full inline-block">
-                  Meet The Founder
+                  Nhà Sáng Lập Hệ Thống
                 </span>
                 <h3 className="font-editorial text-3xl font-bold text-slate-900">
                   Ngô Dương Kiệt
@@ -703,7 +703,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: See Things Clearly & Trust Indicators (Slide 4) */}
+            {/* Thẻ cam kết hỗ trợ & Tự động 24/7 */}
             <div className="lg:col-span-6 space-y-4">
               <div className="bg-[#eef7f2] p-6 rounded-3xl border border-emerald-100 flex items-center justify-between">
                 <div>
@@ -725,7 +725,7 @@ export default function HomePage() {
               <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-900">HỆ THỐNG GIAO HÀNG TỰ ĐỘNG</span>
-                  <span className="text-[10px] text-emerald-600 font-semibold">● Active Napas 24/7</span>
+                  <span className="text-[10px] text-emerald-600 font-semibold">● Hoạt Động Napas 24/7</span>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   Hệ thống VietQR hoạt động tự động xuyên đêm, bạn mua lúc 2h sáng hay giờ cao điểm đều nhận link tải file sau 3 giây.
@@ -738,7 +738,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 5. SECTION: NHẬN FILE CHỈ VỚI 3 BƯỚC (CHUẨN SLIDE 5 BENTO) */}
+      {/* 5. SECTION: NHẬN FILE CHỈ VỚI 3 BƯỚC */}
       {/* ============================================================== */}
       <section className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -790,10 +790,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* FAQs Accordion */}
+          {/* Câu hỏi thường gặp */}
           <div className="max-w-3xl mx-auto space-y-3">
             <div className="text-center mb-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500">FAQ</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500">GIẢI ĐÁP THẮC MẮC</span>
               <h4 className="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
                 Câu Hỏi Thường Gặp
               </h4>
@@ -829,7 +829,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 6. CUSTOMER REVIEWS (SOCIAL PROOF) */}
+      {/* 6. ĐÁNH GIÁ KHÁCH HÀNG (SOCIAL PROOF) */}
       {/* ============================================================== */}
       <section id="reviews" className="py-16 sm:py-24 bg-white">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">

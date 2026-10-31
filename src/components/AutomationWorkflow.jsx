@@ -143,7 +143,7 @@ export default function AutomationWorkflow() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-              Interactive Workflow Pipeline
+              Quy Trình Tự Động Hóa Thực Chiến
             </span>
           </div>
           <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
