@@ -4,13 +4,13 @@ import Footer from '@/components/Footer';
 import FloatingSupport from '@/components/FloatingSupport';
 
 export const metadata = {
-  title: 'Kiệt Digital Store - Kho Kịch Bản Tự Động Hóa & Tài Nguyên MMO Hàng Đầu',
-  description: 'Nền tảng phân phối kịch bản n8n, Make.com, dữ liệu khách hàng B2B, tool tự động hóa và tài nguyên kiếm tiền online (MMO) tự động 100% qua VietQR.',
-  keywords: 'n8n shopee, kịch bản make.com, tự động hóa mmo, data b2b quán cafe, prompt ai bán hàng',
-  authors: [{ name: 'Kiệt Digital Store' }],
+  title: 'Kiệt Digital Store - Kho Vũ Khí Số & Kịch Bản Tự Động Hóa MMO 2026',
+  description: 'Nền tảng phân phối kịch bản tự động hóa, tool MMO thực chiến, tệp data B2B và tài nguyên số bản quyền 100% tự động qua VietQR.',
+  keywords: 'tool shopee, kịch bản make n8n, data b2b cafe, prompt ai mmo, kiệt digital store',
+  authors: [{ name: 'Ngô Dương Kiệt' }],
   openGraph: {
-    title: 'Kiệt Digital Store - Tự Động Hóa Công Việc & Tài Nguyên MMO',
-    description: 'Quét mã VietQR nhận ngay kịch bản tự động n8n/Make.com, data khách hàng B2B chất lượng cao. Nhả hàng sau 3 giây!',
+    title: 'Kiệt Digital Store - Vũ Khí Số & Tự Động Hóa MMO Thực Chiến',
+    description: 'Quét mã VietQR nhả file tải sau 3 giây. Bảo hành hoàn tiền 100% từ Founder Ngô Dương Kiệt.',
     type: 'website',
     locale: 'vi_VN',
     url: 'https://digital-store-eight-ebon.vercel.app',
@@ -20,8 +20,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi" className="dark" suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen antialiased bg-[#030712] text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors">
+    <html lang="vi" suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen antialiased bg-[#f8f9fa] text-slate-800 selection:bg-slate-900 selection:text-white transition-colors">
         <Header />
         <main className="flex-1">
           {children}
