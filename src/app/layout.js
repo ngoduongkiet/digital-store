@@ -13,15 +13,15 @@ export const metadata = {
     description: 'Quét mã VietQR nhận ngay kịch bản tự động n8n/Make.com, data khách hàng B2B chất lượng cao. Nhả hàng sau 3 giây!',
     type: 'website',
     locale: 'vi_VN',
-    url: 'https://digital-store.vercel.app',
+    url: 'https://digital-store-eight-ebon.vercel.app',
     siteName: 'Kiệt Digital Store',
   }
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi" suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <html lang="vi" className="dark" suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen antialiased bg-[#030712] text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors">
         <Header />
         <main className="flex-1">
           {children}
