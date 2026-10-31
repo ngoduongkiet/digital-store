@@ -152,7 +152,7 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden bg-[#030712] text-slate-100">
       {/* ============================================================== */}
-      {/* 1. HERO SECTION: LUMINOUS HORIZON ECLIPSE (LINEAR / SAAS STYLE) */}
+      {/* 1. HERO SECTION: LUMINOUS HORIZON ECLIPSE WITH 3D INFLATED ASSETS */}
       {/* ============================================================== */}
       <section className="relative pt-20 sm:pt-28 pb-32 sm:pb-40 bg-[linear-gradient(to_bottom,#000000,#130728_32%,#2e1065_62%,#6d28d9_90%)] overflow-hidden border-b border-purple-950/40">
         {/* The Signature Luminous Horizon Curve Ring */}
@@ -161,24 +161,65 @@ export default function HomePage() {
         {/* Ambient Top Glow Dots */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-purple-600/20 blur-[140px] rounded-full pointer-events-none -z-10"></div>
 
+        {/* 3D FLOATING INFLATED ASSETS (AESTHETIC WOW FACTOR) */}
+        {/* Left Floating 3D Message Bubble */}
+        <div className="absolute left-2 sm:left-10 lg:left-20 top-24 sm:top-36 hidden sm:block pointer-events-none z-20 animate-float-slow">
+          <img
+            src="/assets/message.png"
+            alt="3D Message Notification"
+            className="w-20 sm:w-32 lg:w-44 drop-shadow-[0_20px_40px_rgba(168,85,247,0.45)]"
+            draggable="false"
+          />
+        </div>
+
+        {/* Right Floating 3D Cursor */}
+        <div className="absolute right-2 sm:right-10 lg:right-20 top-20 sm:top-32 hidden sm:block pointer-events-none z-20 animate-float-reverse">
+          <img
+            src="/assets/cursor.png"
+            alt="3D Floating Cursor"
+            className="w-20 sm:w-32 lg:w-44 drop-shadow-[0_20px_40px_rgba(99,102,241,0.45)]"
+            draggable="false"
+          />
+        </div>
+
+        {/* Bottom Left Floating 3D Helix */}
+        <div className="absolute left-4 sm:left-14 bottom-12 hidden lg:block pointer-events-none z-10 opacity-80 animate-float-reverse">
+          <img
+            src="/assets/helix2.png"
+            alt="3D Torus Helix"
+            className="w-28 lg:w-44 drop-shadow-[0_20px_50px_rgba(147,51,234,0.4)]"
+            draggable="false"
+          />
+        </div>
+
+        {/* Bottom Right Floating 3D Emoji Star */}
+        <div className="absolute right-4 sm:right-14 bottom-16 hidden lg:block pointer-events-none z-10 opacity-80 animate-float-slow">
+          <img
+            src="/assets/emojistar.png"
+            alt="3D Star Sphere"
+            className="w-24 lg:w-36 drop-shadow-[0_20px_50px_rgba(245,158,11,0.4)]"
+            draggable="false"
+          />
+        </div>
+
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
           {/* Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-bold mb-6 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>HỆ THỐNG TỰ ĐỘNG HÓA MMO & BÁN HÀNG 2026</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/40 bg-purple-950/60 text-purple-300 text-xs font-black tracking-wide mb-8 shadow-[0_0_25px_rgba(168,85,247,0.3)] backdrop-blur-md">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>CỖ MÁY SĂN DEAL & TỰ ĐỘNG HÓA MMO 2026</span>
           </div>
 
           {/* Balanced High-Converting Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] max-w-4xl mx-auto">
-            Kho Vũ Khí Tự Động Hóa MMO <br className="hidden sm:inline" />
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] max-w-4xl mx-auto">
+            Kiếm Tiền Tự Động Trong Lúc Ngủ <br className="hidden sm:inline" />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-300">
-              Để Máy Tự Chạy — Tiền Tự Về Ví 24/7
+              Bot Săn Sale Shopee & Data B2B Thực Chiến
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-5 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
-            Kịch bản Make.com/n8n tự động quét voucher Shopee 50%, data B2B 1.500 quán cà phê Sài Gòn & 500+ prompt AI bán hàng.
+          <p className="mt-6 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+            Cài đặt 1 lần — Kịch bản Make.com/n8n tự động quét voucher Shopee 50%, tự gắn link affiliate và đẩy bài vào Telegram 24/7.
             <strong className="text-white block sm:inline"> Quét mã VietQR nhả file tức thì sau 3 giây!</strong>
           </p>
 
@@ -186,14 +227,14 @@ export default function HomePage() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <a
               href="#products"
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 font-black text-sm shadow-[0_0_35px_rgba(255,255,255,0.35)] transition transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2.5 shimmer-btn"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 font-black text-sm shadow-[0_0_40px_rgba(255,255,255,0.4)] transition transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2.5 shimmer-btn"
             >
               <span>Xem Kho Tài Nguyên Mở Bán</span>
               <ArrowRight className="w-4 h-4 shrink-0 text-purple-600" />
             </a>
             <a
               href="#simulation"
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold text-sm backdrop-blur-md transition flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-purple-500/40 bg-purple-950/40 hover:bg-purple-900/50 text-white font-bold text-sm backdrop-blur-md transition flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(168,85,247,0.2)]"
             >
               <Activity className="w-4 h-4 text-purple-400 shrink-0 animate-pulse" />
               <span>Chạy Thử Bot Thực Tế</span>
