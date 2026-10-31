@@ -9,8 +9,8 @@ import {
   ArrowUpDown, CheckCircle, TrendingUp, Shield, Lock, Award,
   CheckCircle2, FileText, ChevronDown, Copy, Check, MessageCircle,
   Clock, RefreshCw, Laptop, ArrowRight, Bot, Database, Cpu,
-  Play, Terminal, Flame, ShoppingBag, Send, DollarSign, XCircle,
-  Calculator, Sliders, Activity, ExternalLink
+  Play, Terminal, Flame, ShoppingBag, Send, DollarSign,
+  Star, UserCheck, HeartHandshake, PhoneCall, ExternalLink, Activity
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -34,9 +34,6 @@ export default function HomePage() {
     { time: '00:00.95', text: '📢 Telegram Broadcaster: Bắn bài vào kênh 5.000 mem', color: 'text-blue-400' },
     { time: '00:01.20', text: '💰 Khách bấm mua qua link: Hoa hồng +45.000đ về ví!', color: 'text-emerald-400 font-bold' }
   ]);
-
-  // --- ROI CALCULATOR STATE ---
-  const [hoursPerDay, setHoursPerDay] = useState(4);
 
   useEffect(() => {
     fetch('/api/products')
@@ -70,7 +67,7 @@ export default function HomePage() {
       setSimStep(3);
       setSimLogs((prev) => [
         ...prev,
-        { time: '00:00.75', text: '🧠 [AI REWRITE] GPT-4o lọc deal sốc & tự động gắn link Affiliate cá nhân...', color: 'text-purple-400' }
+        { time: '00:00.75', text: '🧠 [AI REWRITE] GPT-4o lọc deal sốc nhất & tự động gắn link Affiliate cá nhân...', color: 'text-purple-400' }
       ]);
     }, 1800);
 
@@ -126,18 +123,46 @@ export default function HomePage() {
     { name: 'VietQR Napas 24/7', tag: 'Instant 3s Delivery' }
   ];
 
+  // Testimonials / Social Proof
+  const testimonials = [
+    {
+      name: 'Lê Tuấn Hưng',
+      role: 'Admin Kênh Săn Deal Telegram (12.000 member)',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
+      comment: 'Kịch bản Make.com săn deal Shopee chạy cực kỳ mượt. Import file đúng 3 phút là bot tự động quét và đẩy bài vào group. Hoa hồng tháng đầu tiên đã bù thừa gấp 10 lần tiền mua kịch bản.',
+      rating: 5,
+      productBought: 'Kịch bản Make/n8n: Bot Săn Deal Shopee'
+    },
+    {
+      name: 'Nguyễn Hoài Nam',
+      role: 'Telesale & Phân Phối Thiết Bị POS Sài Gòn',
+      avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80',
+      comment: 'Bộ data 1.500 quán cafe TP.HCM rất chất lượng, số điện thoại chủ quán chuẩn đến 90%. Đội telesale bên mình gọi 2 tuần đã chốt được 8 hợp đồng máy tính tiền và nguyên liệu.',
+      rating: 5,
+      productBought: 'Bộ Data B2B: 1.500 Quán Cafe & Nhà Hàng'
+    },
+    {
+      name: 'Trần Mai Anh',
+      role: 'Kinh Doanh Thời Trang Shopee & TikTok Shop',
+      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+      comment: 'Lúc đầu sợ web lừa đảo vì bán rẻ quá, nhưng quét VietQR xong đúng 3 giây sau màn hình tự nhả link tải file ngay. Bạn Kiệt còn Ultraviewer hướng dẫn tận tình nữa, chấm 10/10 uy tín!',
+      rating: 5,
+      productBought: 'Bộ File Tính Lãi Sàn & 500+ Prompt AI'
+    }
+  ];
+
   const faqs = [
     {
-      q: 'Sau khi chuyển khoản bao lâu tôi nhận được file?',
-      a: 'Hệ thống kết nối trực tiếp cổng thanh toán ngân hàng tự động. Ngay khi bạn quét mã VietQR và ngân hàng ghi nhận, màn hình sẽ lập tức chuyển đến trang nhận file kèm đường link tải trực tiếp nguyên bản. Đồng thời thông tin đơn hàng cũng được lưu lại để bạn tra cứu bất kỳ lúc nào.'
+      q: 'Sau khi quét mã VietQR bao lâu tôi nhận được file?',
+      a: 'Hệ thống kết nối trực tiếp cổng thanh toán ngân hàng tự động. Ngay khi bạn quét mã VietQR và ngân hàng ghi nhận (khoảng 3 giây), màn hình sẽ lập tức chuyển đến trang nhận file kèm đường link tải trực tiếp nguyên bản. Đồng thời thông tin đơn hàng cũng được lưu lại để bạn tra cứu bất kỳ lúc nào.'
     },
     {
       q: 'Tôi không rành về kỹ thuật/code, có cài đặt và sử dụng được không?',
-      a: 'Hoàn toàn được! Mỗi sản phẩm đều được đóng gói tỉ mỉ kèm theo video hướng dẫn ngắn 3 phút từng thao tác click chuột. Ngoài ra, bạn luôn có thể nhắn tin trực tiếp qua Zalo để chúng tôi hỗ trợ UltraViewer cài đặt giúp bạn miễn phí.'
+      a: 'Hoàn toàn được! Mỗi sản phẩm đều được đóng gói tỉ mỉ kèm theo video hướng dẫn ngắn 3 phút từng thao tác click chuột. Ngoài ra, bạn luôn có thể nhắn tin trực tiếp qua Zalo để Kiệt hỗ trợ UltraViewer cài đặt giúp bạn miễn phí từ A đến Z.'
     },
     {
       q: 'Nếu tải về file bị lỗi hoặc không chạy được thì sao?',
-      a: 'Chúng tôi cam kết bảo hành 1-1: Hỗ trợ kỹ thuật trực tiếp đến khi công cụ hoạt động trơn tru trên thiết bị của bạn. Trong trường hợp xảy ra lỗi do hệ thống mà không khắc phục được, chúng tôi hoàn lại 100% số tiền bạn đã thanh toán qua tài khoản ngân hàng.'
+      a: 'Kiệt cam kết bảo hành 1-1: Hỗ trợ kỹ thuật trực tiếp qua Ultraviewer đến khi công cụ hoạt động trơn tru trên thiết bị của bạn. Trong trường hợp xảy ra lỗi do hệ thống mà không khắc phục được, Kiệt hoàn lại 100% số tiền bạn đã thanh toán qua tài khoản ngân hàng.'
     },
     {
       q: 'Làm sao để tải lại file nếu sau này tôi đổi máy tính hoặc làm mất file?',
@@ -145,23 +170,19 @@ export default function HomePage() {
     }
   ];
 
-  // ROI calculations
-  const hoursSavedPerMonth = Math.round(hoursPerDay * 30 * 0.85);
-  const moneyValueSaved = (hoursSavedPerMonth * 50000).toLocaleString('vi-VN');
-
   return (
-    <div className="relative overflow-hidden bg-[#030712] text-slate-100">
+    <div className="relative overflow-hidden bg-[#030712] text-slate-100 font-sans">
       {/* ============================================================== */}
-      {/* 1. HERO SECTION: LUMINOUS HORIZON ECLIPSE WITH 3D INFLATED ASSETS */}
+      {/* KHỐI 1: HERO SECTION 3D (LUMINOUS HORIZON + 3D INFLATED ASSETS) */}
       {/* ============================================================== */}
-      <section className="relative pt-20 sm:pt-28 pb-32 sm:pb-40 bg-[linear-gradient(to_bottom,#000000,#130728_32%,#2e1065_62%,#6d28d9_90%)] overflow-hidden border-b border-purple-950/40">
+      <section className="relative pt-20 sm:pt-28 pb-32 sm:pb-36 bg-[linear-gradient(to_bottom,#000000,#130728_32%,#2e1065_62%,#6d28d9_90%)] overflow-hidden border-b border-purple-950/40">
         {/* The Signature Luminous Horizon Curve Ring */}
         <div className="horizon-eclipse w-[750px] sm:w-[1536px] sm:h-[650px] lg:w-[2200px] lg:h-[480px] top-[calc(100%-90px)] sm:top-[calc(80%-20px)]"></div>
 
         {/* Ambient Top Glow Dots */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-purple-600/20 blur-[140px] rounded-full pointer-events-none -z-10"></div>
 
-        {/* 3D FLOATING INFLATED ASSETS (AESTHETIC WOW FACTOR) */}
+        {/* 3D FLOATING INFLATED ASSETS */}
         {/* Left Floating 3D Message Bubble */}
         <div className="absolute left-2 sm:left-10 lg:left-20 top-24 sm:top-36 hidden sm:block pointer-events-none z-20 animate-float-slow">
           <img
@@ -277,10 +298,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 2. INFINITE MOVING MARQUEE (MAGIC UI STYLE) */}
+      {/* KHỐI 2: BĂNG CHUYỀN MARQUEE ĐỐI TÁC & HỆ SINH THÁI */}
       {/* ============================================================== */}
       <section className="border-b border-white/10 bg-[#02050c] py-4 overflow-hidden relative">
-        {/* Left & Right Fade Masks */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-[#02050c] to-transparent z-10"></div>
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-[#02050c] to-transparent z-10"></div>
 
@@ -301,9 +321,130 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 3. 3D MAC OS PERSPECTIVE AUTOMATION WORKFLOW SHOWCASE */}
+      {/* KHỐI 3: KHO SẢN PHẨM MỞ BÁN (ĐẶT NGAY TRÊN CAO - CHỐT ĐƠN LIỀN) */}
       {/* ============================================================== */}
-      <section id="simulation" className="max-w-6xl mx-auto px-4 py-16 sm:py-24">
+      <section id="products" className="max-w-6xl mx-auto px-4 pt-14 pb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <span>Sản Phẩm Đang Mở Bán</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">
+              Kho Tài Nguyên & Tool Sẵn Sàng Tải Về
+            </h2>
+            <p className="text-xs text-slate-400 mt-1">
+              File sạch nguyên bản • Tải về dùng ngay sau 3s • Hướng dẫn chi tiết & Hỗ trợ Ultraviewer 1-1
+            </p>
+          </div>
+          <span className="text-xs font-bold text-purple-300 bg-purple-950/60 border border-purple-800/60 px-4 py-2 rounded-2xl self-start sm:self-auto shadow-sm">
+            {filtered.length} tài nguyên sẵn sàng tải
+          </span>
+        </div>
+
+        {/* Search & Categories Bar */}
+        <div className="bg-[#0b0f19] p-4 sm:p-5 rounded-3xl border border-white/10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+          {/* Search Input */}
+          <div className="relative w-full md:w-64 lg:w-72 shrink-0">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm kiếm tool, data, prompt..."
+              className="w-full pl-9 pr-4 py-2.5 rounded-2xl border border-white/10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#030712] text-white"
+            />
+          </div>
+
+          {/* Categories Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 w-full md:w-auto">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-3.5 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-2 ${
+                  selectedCategory === cat.id
+                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
+                    : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5'
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                  selectedCategory === cat.id ? 'bg-white/25 text-white font-extrabold' : 'bg-white/10 text-slate-400'
+                }`}>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Sorting Dropdown */}
+          <div className="flex items-center gap-2 w-full md:w-auto justify-end shrink-0">
+            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-3.5 py-2 rounded-2xl border border-white/10 text-xs font-semibold bg-[#030712] text-slate-300 focus:outline-none"
+            >
+              <option value="DEFAULT">Thứ tự mặc định</option>
+              <option value="PRICE_ASC">Giá: Thấp đến Cao</option>
+              <option value="PRICE_DESC">Giá: Cao đến Thấp</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Product Grid */}
+        {loading ? (
+          <div className="py-20 text-center text-slate-400">Đang tải danh sách sản phẩm...</div>
+        ) : filtered.length === 0 ? (
+          <div className="py-16 text-center text-slate-400 bg-[#0b0f19] rounded-3xl p-8 border border-white/10">
+            <h3 className="font-bold text-white text-base">Không tìm thấy sản phẩm phù hợp!</h3>
+            <p className="text-xs text-slate-500 mt-1">Hãy thử tìm với từ khóa khác hoặc chuyển danh mục.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            {filtered.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onBuy={(prod) => setActiveProduct(prod)}
+                onPreview={(prod) => setPreviewProduct(prod)}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Voucher Bar Khai Trương Tích Hợp Tiện Lợi */}
+        <div className="mt-8 p-5 sm:p-6 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3.5 text-center sm:text-left">
+            <div className="w-11 h-11 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-black text-xl shrink-0 shadow-lg shadow-amber-500/30">
+              %
+            </div>
+            <div>
+              <h4 className="font-bold text-sm sm:text-base text-white">
+                Mã giảm giá khai trương: <span className="text-amber-400 font-mono font-black">KHAITRUONG</span> (-20.000đ)
+              </h4>
+              <p className="text-xs text-slate-300 mt-0.5">
+                Áp dụng cho mọi đơn hàng hôm nay. Bấm nút bên cạnh để sao chép mã và dán khi thanh toán.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => handleCopyCoupon('KHAITRUONG')}
+            className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black transition flex items-center gap-2 shadow-sm whitespace-nowrap shrink-0"
+          >
+            {copiedCoupon ? <Check className="w-4 h-4 text-emerald-950" /> : <Copy className="w-4 h-4" />}
+            <span>{copiedCoupon ? 'Đã sao chép mã!' : 'Sao chép mã'}</span>
+          </button>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* KHỐI 4: KHUNG MAC OS 3D MÔ PHỎNG BOT CHẠY THỰC TẾ (DEMO SHOWCASE) */}
+      {/* ============================================================== */}
+      <section id="simulation" className="max-w-6xl mx-auto px-4 pb-20">
         <div className="rounded-3xl p-6 sm:p-10 bg-[#090d16] border border-white/10 shadow-[0_0_60px_rgba(124,58,237,0.12)] relative overflow-hidden">
           {/* Top Window Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
@@ -314,11 +455,11 @@ export default function HomePage() {
                 <span className="w-3 h-3 rounded-full bg-emerald-500/90 inline-block"></span>
                 <span className="ml-2 text-xs font-mono text-slate-400">kiet-automation-engine // live-workflow-v2026.1</span>
               </div>
-              <h2 className="text-xl sm:text-3xl font-black text-white">
-                Mô Phỏng Trực Quan Bot Săn Deal & Bắn Telegram 24/7
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">
+                Kiểm Chứng Thực Tế: Mô Phỏng Bot Săn Deal Tự Động 24/7
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Nhìn tận mắt dữ liệu chạy tự động từ lúc quét voucher Shopee đến khi hoa hồng thụ động đổ về tài khoản.
+                Bấm nút chạy thử bên dưới để xem luồng dữ liệu tự động quét deal Shopee, gọi AI gắn link và nổ hoa hồng.
               </p>
             </div>
 
@@ -478,513 +619,138 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 4. SEARCH & FILTERS BAR */}
+      {/* KHỐI 5: PHẢN HỒI KHÁCH HÀNG THỰC TẾ (SOCIAL PROOF & REVIEWS) */}
       {/* ============================================================== */}
-      <section id="products" className="max-w-6xl mx-auto px-4 pt-6 pb-6">
-        <div className="bg-[#0b0f19] p-4 sm:p-5 rounded-3xl border border-white/10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Search Input */}
-          <div className="relative w-full md:w-64 lg:w-72 shrink-0">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm kiếm công cụ, data..."
-              className="w-full pl-9 pr-4 py-2.5 rounded-2xl border border-white/10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-[#030712] text-white"
-            />
-          </div>
-
-          {/* Categories Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 w-full md:w-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-2 ${
-                  selectedCategory === cat.id
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
-                    : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5'
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                  selectedCategory === cat.id ? 'bg-white/25 text-white font-extrabold' : 'bg-white/10 text-slate-400'
-                }`}>
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Sorting Dropdown */}
-          <div className="flex items-center gap-2 w-full md:w-auto justify-end shrink-0">
-            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-3.5 py-2 rounded-2xl border border-white/10 text-xs font-semibold bg-[#030712] text-slate-300 focus:outline-none"
-            >
-              <option value="DEFAULT">Thứ tự mặc định</option>
-              <option value="PRICE_ASC">Giá: Thấp đến Cao</option>
-              <option value="PRICE_DESC">Giá: Cao đến Thấp</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 5. PRODUCTS SECTION */}
-      {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 pb-4 border-b border-white/10">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-black text-white">
-              Tài Nguyên Đang Mở Bán
-            </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              File sạch nguyên bản • Tải về dùng ngay • Đầy đủ video hướng dẫn
-            </p>
-          </div>
-          <span className="text-xs font-bold text-purple-300 bg-purple-950/60 border border-purple-800/60 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
-            {filtered.length} tài nguyên sẵn sàng tải
-          </span>
-        </div>
-
-        {loading ? (
-          <div className="py-20 text-center text-slate-400">Đang tải danh sách sản phẩm...</div>
-        ) : filtered.length === 0 ? (
-          <div className="py-16 text-center text-slate-400 bg-[#0b0f19] rounded-3xl p-8 border border-white/10">
-            <h3 className="font-bold text-white text-base">Không tìm thấy sản phẩm phù hợp!</h3>
-            <p className="text-xs text-slate-500 mt-1">Hãy thử tìm với từ khóa khác hoặc chuyển danh mục.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {filtered.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onBuy={(prod) => setActiveProduct(prod)}
-                onPreview={(prod) => setPreviewProduct(prod)}
-              />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* ============================================================== */}
-      {/* 6. BEFORE VS AFTER COMPARISON (HIGH CONVERTING MATRIX) */}
-      {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="text-center mb-10">
-          <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-            Đòn Bẩy Năng Suất
+      <section className="max-w-6xl mx-auto px-4 pb-20">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-black uppercase tracking-wider mb-2">
+            <UserCheck className="w-3.5 h-3.5" />
+            <span>Đánh Giá Thực Tế Từ Khách Hàng</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">
-            Sự Khác Biệt Khi Bạn Dùng Tự Động Hóa
+            Người Dùng Nói Gì Về Tài Nguyên & Tool?
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Đừng lãng phí tuổi trẻ vào những thao tác thủ công lặp đi lặp lại
+            Được kiểm chứng hiệu quả thực chiến bởi các anh em kinh doanh online và làm MMO
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          {/* OLD MANUAL WAY */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-rose-950/20 border border-rose-900/40 flex flex-col justify-between space-y-6">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold">
-                  <XCircle className="w-5 h-5" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {testimonials.map((t, idx) => (
+            <div
+              key={idx}
+              className="bg-[#0b0f19] p-6 sm:p-7 rounded-3xl border border-white/10 hover:border-purple-500/40 flex flex-col justify-between space-y-6 shadow-xl transition"
+            >
+              <div className="space-y-4">
+                {/* 5 Stars */}
+                <div className="flex items-center gap-1 text-amber-400">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
                 </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                  "{t.comment}"
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center gap-3.5">
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  className="w-11 h-11 rounded-full object-cover border border-purple-500/40 shrink-0"
+                />
                 <div>
-                  <h3 className="font-black text-base sm:text-lg text-rose-400">
-                    Làm Thủ Công Truyền Thống
-                  </h3>
-                  <div className="text-xs text-rose-400/60 font-semibold">
-                    Tốn công sức • Hiệu quả bấp bênh
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-3.5 pt-2">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <span className="text-rose-400 font-bold shrink-0">✕</span>
-                  <span>Mất 6 - 8 tiếng mỗi ngày cắm mặt vào máy tính ngồi canh từng deal và voucher giảm giá.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <span className="text-rose-400 font-bold shrink-0">✕</span>
-                  <span>Chậm tay chỉ 5 giây là voucher 50% bị đối thủ hốt sạch, mất trắng cơ hội bán hàng.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <span className="text-rose-400 font-bold shrink-0">✕</span>
-                  <span>Mỏi mắt, đau lưng, không còn thời gian cho gia đình, học tập hoặc công việc chính.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <span className="text-rose-400 font-bold shrink-0">✕</span>
-                  <span>Hễ bạn tắt máy đi ngủ là dòng tiền hoa hồng dừng lại 100%.</span>
+                  <h4 className="font-bold text-sm text-white">{t.name}</h4>
+                  <p className="text-[11px] text-slate-400 leading-tight">{t.role}</p>
+                  <span className="text-[10px] text-purple-400 font-medium block mt-0.5">✓ Đã mua: {t.productBought}</span>
                 </div>
               </div>
             </div>
-
-            <div className="pt-4 border-t border-rose-900/40 text-xs font-bold text-rose-400">
-              Lãng phí 180 - 240 giờ làm việc vô ích mỗi tháng
-            </div>
-          </div>
-
-          {/* NEW AUTOMATION WAY */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#0b0f19] border border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.15)] flex flex-col justify-between space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-44 h-44 bg-emerald-500/10 blur-3xl pointer-events-none"></div>
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
-                  <CheckCircle className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-black text-base sm:text-lg text-emerald-400">
-                    Dùng Kịch Bản MMO Tự Động
-                  </h3>
-                  <div className="text-xs text-emerald-400/60 font-semibold">
-                    Giải phóng sức người • Thu nhập thụ động
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-3.5 pt-2">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                  <span>Kịch bản chạy ngầm 24/7 trên đám mây Make/n8n, tắt máy tính đi ngủ kịch bản vẫn săn deal đều đặn.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                  <span>Tự động quét và bắt trọn mọi deal ngon trong 0.3 giây với API siêu tốc, không bao giờ trễ nhịp.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                  <span>AI tự viết caption hấp dẫn, tự động chèn link tiếp thị affiliate và đẩy vào Telegram/Facebook.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
-                  <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                  <span>Bạn thảnh thơi làm việc chính hoặc đi chơi, hoa hồng vẫn đổ về tài khoản ngân hàng.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-emerald-500/20 text-xs font-black text-emerald-400">
-              Giải phóng 90% thời gian • Tăng gấp 10 lần hiệu suất làm MMO
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* ============================================================== */}
-      {/* 7. INTERACTIVE TIME SAVER & ROI CALCULATOR */}
+      {/* KHỐI 6: CAM KẾT FOUNDER + 3 BƯỚC NHẬN FILE & FAQ (CHỐT HẠ ĐƠN) */}
       {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="bg-[#0b0f19] rounded-3xl p-6 sm:p-10 border border-white/10 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+      <section className="max-w-6xl mx-auto px-4 pb-20">
+        {/* Founder Guarantee Box */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/40 via-[#0b0f19] to-indigo-950/40 border border-purple-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 mb-16 relative overflow-hidden">
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center font-black text-2xl shrink-0 shadow-lg shadow-purple-600/40">
+              <HeartHandshake className="w-7 h-7" />
+            </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-                <Calculator className="w-3.5 h-3.5" />
-                <span>Bảng Tính Tiết Kiệm Thời Gian</span>
+              <div className="inline-block px-3 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-black uppercase tracking-wider mb-1.5 border border-purple-500/30">
+                Cam Kết Uy Tín Từ Ngô Dương Kiệt (Founder)
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-white">
-                Bạn Sẽ Tiết Kiệm Được Bao Nhiêu Giờ Mỗi Tháng?
+                Bảo Hành 1-1 • Hỗ Trợ Cài Đặt Ultraviewer Miễn Phí
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Kéo thanh trượt để tính toán thời gian và giá trị công sức bạn giải phóng được nhờ tự động hóa.
+              <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed max-w-2xl">
+                Mình là Kiệt – Người phát triển các kịch bản và dữ liệu số trên trang này. Mình cam kết 100%: <strong>Tài nguyên sạch, không virus, đúng mô tả</strong>. Nếu bạn mua về mà gặp khó khăn trong quá trình sử dụng, mình sẵn sàng kết nối <strong>UltraViewer hỗ trợ 1-1 qua Zalo</strong>. Nếu xảy ra lỗi do hệ thống, mình hoàn tiền 100% ngay lập tức!
               </p>
             </div>
-            <div className="text-right shrink-0">
-              <span className="text-xs text-slate-400 block">Đầu tư một lần chỉ từ</span>
-              <span className="text-2xl font-black text-purple-400">99.000 đ</span>
-            </div>
           </div>
 
-          <div className="py-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Slider Control */}
-            <div className="md:col-span-7 space-y-6">
-              <div className="flex items-center justify-between">
-                <label className="text-xs sm:text-sm font-extrabold text-slate-200">
-                  Số giờ bạn dành cho MMO / bán hàng mỗi ngày:
-                </label>
-                <span className="px-3.5 py-1 rounded-xl bg-purple-600 text-white font-black text-sm">
-                  {hoursPerDay} Giờ / ngày
-                </span>
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="8"
-                step="1"
-                value={hoursPerDay}
-                onChange={(e) => setHoursPerDay(Number(e.target.value))}
-                className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-500"
-              />
-
-              <div className="flex justify-between text-[11px] text-slate-500 font-bold">
-                <span>1 tiếng (Bán thời gian)</span>
-                <span>4 tiếng (Bán chuyên)</span>
-                <span>8 tiếng (Toàn thời gian)</span>
-              </div>
-            </div>
-
-            {/* Live Reactive Numbers */}
-            <div className="md:col-span-5 grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-purple-950/40 border border-purple-800/60 text-center">
-                <span className="text-[11px] font-bold text-slate-400 block mb-1">
-                  Tiết kiệm mỗi tháng
-                </span>
-                <span className="text-2xl sm:text-3xl font-black text-purple-400">
-                  {hoursSavedPerMonth} Giờ
-                </span>
-                <span className="text-[10px] text-purple-300 block mt-1">Thảnh thơi nghỉ ngơi</span>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 text-center">
-                <span className="text-[11px] font-bold text-slate-400 block mb-1">
-                  Giá trị công sức
-                </span>
-                <span className="text-xl sm:text-2xl font-black text-emerald-400">
-                  ~{moneyValueSaved} đ
-                </span>
-                <span className="text-[10px] text-emerald-300 block mt-1">Quy đổi 50k/giờ</span>
-              </div>
-            </div>
-          </div>
+          <a
+            href="https://zalo.me/0352279413"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-black transition flex items-center gap-2 shrink-0 shadow-lg shadow-purple-600/30 whitespace-nowrap shimmer-btn"
+          >
+            <PhoneCall className="w-4 h-4" />
+            <span>Chat Zalo: 0352.279.413</span>
+          </a>
         </div>
-      </section>
 
-      {/* ============================================================== */}
-      {/* 8. BENTO GRID SHOWCASE */}
-      {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="text-center mb-10">
-          <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-            Tại Sao Chọn Kiệt Digital Store?
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white">
-            Giá Trị Thực Chiến - Không Lý Thuyết Suông
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Được xây dựng bởi người làm thực tế cho cộng đồng kinh doanh online tại Việt Nam
+        {/* 3 Steps Mini Grid */}
+        <div className="text-center mb-8">
+          <h3 className="text-xl sm:text-2xl font-black text-white">
+            Nhận File & Sử Dụng Chỉ Với 3 Bước
+          </h3>
+          <p className="text-xs text-slate-400 mt-1">
+            Quy trình hoàn toàn tự động qua VietQR Napas 24/7
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
-          {/* Bento 1: Automation Engine (7 Cols) */}
-          <div className="md:col-span-7 bg-[#0b0f19] p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6 h-full">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
-                <Bot className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-black text-white">
-                Kịch Bản Tự Động Hóa Chạy 24/7 Không Cần Treo Máy
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-lg">
-                Các blueprint n8n và Make.com đã được thiết lập sẵn các khối API: Quét deal Shopee, gọi AI lọc mã 50%, tự động gắn link affiliate và đẩy vào Telegram đúng chu kỳ. Bạn chỉ cần import file và nhập token là xong.
-              </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="p-6 rounded-2xl bg-[#0b0f19] border border-white/10 flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 font-black text-base flex items-center justify-center shrink-0 border border-purple-800">
+              01
             </div>
-            <div className="p-4 rounded-2xl bg-black border border-white/10 text-xs text-slate-400 font-mono space-y-1">
-              <div className="text-emerald-400 font-bold">● Make.com Scenario: Active</div>
-              <div>Trigger: Every 15 min → Shopee Deals → AI Rewrite → Telegram Push</div>
-            </div>
-          </div>
-
-          {/* Bento 2: Data B2B (5 Cols) */}
-          <div className="md:col-span-5 bg-[#0b0f19] p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6 h-full">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                <Database className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-black text-white">
-                Dữ Liệu Khách Hàng B2B Chuẩn Xác Tới 90%
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Được quét công khai từ Google Maps tại TP.HCM, lọc sạch số bàn chết. Sẵn sàng cho chiến dịch gọi Telesale, chào hàng phần mềm POS hoặc nguyên liệu quán cà phê.
-              </p>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-emerald-950/50 border border-emerald-800/60 text-emerald-300 text-xs font-bold">
-              ✓ 1.500 SĐT thật • Có địa chỉ Quận • Đánh giá sao
-            </div>
-          </div>
-
-          {/* Bento 3: AI Prompts (4 Cols) */}
-          <div className="md:col-span-4 bg-[#0b0f19] p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-3 h-full">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-3">
-                <Cpu className="w-5 h-5" />
-              </div>
-              <h4 className="font-black text-base text-white">500+ Prompt AI Chuẩn AIDA</h4>
-              <p className="text-xs text-slate-400 leading-relaxed mt-1.5">
-                Câu lệnh tối ưu cho ChatGPT-4o & Claude 3.5 Sonnet. Viết kịch bản video TikTok 15s giữ chân người xem và bài quảng cáo Facebook nổ đơn.
-              </p>
-            </div>
-            <div className="text-[11px] font-bold text-purple-400 pt-2">
-              ✓ Tối ưu riêng cho sàn TMĐT
+              <h4 className="font-bold text-sm text-white">Chọn Tool & Nhập Email</h4>
+              <p className="text-xs text-slate-400 mt-1">Bấm Xem thử mẫu miễn phí và nhập email nhận bản quyền tải về.</p>
             </div>
           </div>
 
-          {/* Bento 4: VietQR Fast Delivery (4 Cols) */}
-          <div className="md:col-span-4 bg-[#0b0f19] p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-3 h-full">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mb-3">
-                <Zap className="w-5 h-5" />
-              </div>
-              <h4 className="font-black text-base text-white">Giao Hàng Sau 3 Giây</h4>
-              <p className="text-xs text-slate-400 leading-relaxed mt-1.5">
-                Mã VietQR Napas 24/7 nhận diện tiền lập tức. Hệ thống tự động chuyển hướng sang trang nhận file và gửi link dự phòng về email của bạn.
-              </p>
+          <div className="p-6 rounded-2xl bg-[#0b0f19] border border-white/10 flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 font-black text-base flex items-center justify-center shrink-0 border border-purple-800">
+              02
             </div>
-            <div className="text-[11px] font-bold text-amber-400 pt-2">
-              ✓ Tự động nhả file 24/7
+            <div>
+              <h4 className="font-bold text-sm text-white">Quét Mã VietQR Ngân Hàng</h4>
+              <p className="text-xs text-slate-400 mt-1">Mở app Techcombank, VCB, MBBank... quét mã QR tự điền sẵn tiền.</p>
             </div>
           </div>
 
-          {/* Bento 5: Ultraviewer Support (4 Cols) */}
-          <div className="md:col-span-4 bg-[#0b0f19] p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-3 h-full">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-3">
-                <Laptop className="w-5 h-5" />
-              </div>
-              <h4 className="font-black text-base text-white">Hỗ Trợ Kỹ Thuật 1-1</h4>
-              <p className="text-xs text-slate-400 leading-relaxed mt-1.5">
-                Nếu bạn không rành về code hay máy tính, Kiệt sẽ trực tiếp kết nối UltraViewer qua Zalo để cài đặt hoàn thiện cho bạn hoàn toàn miễn phí.
-              </p>
+          <div className="p-6 rounded-2xl bg-[#0b0f19] border border-white/10 flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 font-black text-base flex items-center justify-center shrink-0 border border-emerald-800">
+              03
             </div>
-            <div className="text-[11px] font-bold text-blue-400 pt-2">
-              ✓ Đồng hành tới khi chạy được
+            <div>
+              <h4 className="font-bold text-sm text-white">Tải File Ngay Sau 3 Giây</h4>
+              <p className="text-xs text-slate-400 mt-1">Màn hình tự động nhả link tải file gốc, kèm quyền tải lại trọn đời.</p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ============================================================== */}
-      {/* 9. PROMO BANNER: VOUCHER KHAITRUONG */}
-      {/* ============================================================== */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <div className="p-6 sm:p-8 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
-          <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="w-14 h-14 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-black text-2xl shrink-0 shadow-lg shadow-amber-500/30">
-              %
-            </div>
-            <div>
-              <div className="inline-block px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-black uppercase tracking-wider mb-1 border border-amber-500/30">
-                Ưu Đãi Khai Trương Hôm Nay
-              </div>
-              <h4 className="font-black text-base sm:text-lg text-white">
-                Giảm ngay 20.000đ mừng khai trương Kiệt Digital Store
-              </h4>
-              <p className="text-xs text-slate-300 mt-0.5">
-                Áp dụng cho mọi đơn hàng. Bấm sao chép mã và dán vào ô giảm giá khi thanh toán.
-              </p>
-            </div>
+        {/* FAQs Accordion */}
+        <div className="max-w-3xl mx-auto space-y-3">
+          <div className="text-center mb-6">
+            <h4 className="text-lg font-bold text-white">Câu Hỏi Thường Gặp</h4>
           </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="font-mono font-black text-sm text-amber-400 bg-black/60 px-4 py-2.5 rounded-xl border border-amber-500/40 whitespace-nowrap">
-              KHAITRUONG
-            </span>
-            <button
-              type="button"
-              onClick={() => handleCopyCoupon('KHAITRUONG')}
-              className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-sm whitespace-nowrap"
-            >
-              {copiedCoupon ? <Check className="w-4 h-4 text-emerald-950 font-bold" /> : <Copy className="w-4 h-4" />}
-              <span>{copiedCoupon ? 'Đã sao chép' : 'Sao chép mã'}</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 10. REAL PROCESS STEPS (HOW IT WORKS) */}
-      {/* ============================================================== */}
-      <section id="how-it-works" className="bg-[#02050c] border-y border-white/10 py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-              Quy Trình Tự Động Hóa 24/7
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
-              Mua Hàng & Giao Nhận Chỉ Với 3 Bước
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
-              Minh bạch, bảo mật và nhả file trực tiếp ngay trên màn hình của bạn
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            <div className="bg-[#0b0f19] p-8 rounded-3xl border border-white/10 flex flex-col justify-between h-full space-y-6">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-purple-950/60 text-purple-400 font-black text-lg flex items-center justify-center mb-6 border border-purple-800/60 shadow-inner">
-                  01
-                </div>
-                <h3 className="font-extrabold text-base text-white mb-2">
-                  Chọn Tài Nguyên & Nhập Email
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  Bấm "Xem thử" để kiểm tra cấu trúc dữ liệu mẫu, sau đó nhập email cá nhân để hệ thống cấp quyền tải về và gửi bản lưu.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-[11px] font-bold text-purple-400">
-                ✓ Miễn phí xem trước dữ liệu
-              </div>
-            </div>
-
-            <div className="bg-[#0b0f19] p-8 rounded-3xl border border-white/10 flex flex-col justify-between h-full space-y-6">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-purple-950/60 text-purple-400 font-black text-lg flex items-center justify-center mb-6 border border-purple-800/60 shadow-inner">
-                  02
-                </div>
-                <h3 className="font-extrabold text-base text-white mb-2">
-                  Quét Mã VietQR Napas Tự Động
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  Mở app ngân hàng (Techcombank, Vietcombank, MBBank...) quét mã QR. Số tiền và nội dung chuyển khoản được điền sẵn chuẩn xác 100%.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-[11px] font-bold text-purple-400">
-                ✓ Hỗ trợ toàn bộ ngân hàng VN
-              </div>
-            </div>
-
-            <div className="bg-[#0b0f19] p-8 rounded-3xl border border-white/10 flex flex-col justify-between h-full space-y-6">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-emerald-950/60 text-emerald-400 font-black text-lg flex items-center justify-center mb-6 border border-emerald-800/60 shadow-inner">
-                  03
-                </div>
-                <h3 className="font-extrabold text-base text-white mb-2">
-                  Nhận File Tức Thì Sau 3 Giây
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  Màn hình tự động chuyển sang trang tải file nguyên bản không quảng cáo. Bạn có thể tra cứu và tải lại file trọn đời bằng mã đơn hàng.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-[11px] font-bold text-emerald-400">
-                ✓ Tải lại trọn đời không giới hạn
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 11. FAQS ACCORDION */}
-      {/* ============================================================== */}
-      <section className="max-w-4xl mx-auto px-4 py-20">
-        <div className="text-center mb-12">
-          <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider mb-2">
-            Giải Đáp Thắc Mắc
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-black text-white">
-            Câu Hỏi Thường Gặp
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Mọi thắc mắc của bạn về việc mua và sử dụng tài nguyên số
-          </p>
-        </div>
-
-        <div className="space-y-3.5">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
@@ -993,7 +759,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                className="w-full p-5 text-left font-bold text-sm text-white flex items-center justify-between gap-4"
+                className="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm text-white flex items-center justify-between gap-4"
               >
                 <span>{faq.q}</span>
                 <ChevronDown
@@ -1003,34 +769,12 @@ export default function HomePage() {
                 />
               </button>
               {openFaq === idx && (
-                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/10">
+                <div className="px-4 sm:px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/10">
                   {faq.a}
                 </div>
               )}
             </div>
           ))}
-        </div>
-
-        {/* Support Banner */}
-        <div className="mt-10 p-6 rounded-3xl bg-[#0b0f19] border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0 shadow-lg shadow-purple-600/30">
-              <MessageCircle className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-bold text-sm text-white">Cần tư vấn thêm trước khi mua?</h4>
-              <p className="text-xs text-slate-400 mt-0.5">Kiệt luôn trực Zalo & Telegram hỗ trợ bạn 24/7</p>
-            </div>
-          </div>
-          <a
-            href="https://zalo.me/0352279413"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition flex items-center gap-2 shrink-0 shadow-lg shadow-purple-600/30"
-          >
-            <span>Nhắn Zalo: 0352.279.413</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
         </div>
       </section>
 
