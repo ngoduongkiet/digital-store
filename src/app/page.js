@@ -163,24 +163,22 @@ export default function HomePage() {
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
           {/* Badge Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs font-black tracking-wide mb-8 shadow-[0_0_25px_rgba(168,85,247,0.25)]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>BẢN CHUẨN THỰC CHIẾN 2026</span>
-            <span className="text-purple-400/60">•</span>
-            <span className="text-white">TỰ ĐỘNG HÓA MMO</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-bold mb-6 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>HỆ THỐNG TỰ ĐỘNG HÓA MMO & BÁN HÀNG 2026</span>
           </div>
 
-          {/* Huge Hero Headline */}
-          <h1 className="text-4xl sm:text-7xl md:text-8xl font-black text-white tracking-tighter leading-[1.06] max-w-5xl mx-auto">
-            Giải Phóng 90% Sức Người <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-indigo-200 to-pink-300">
-              Nhân Bản Thu Nhập Thụ Động
+          {/* Balanced High-Converting Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] max-w-4xl mx-auto">
+            Kho Vũ Khí Tự Động Hóa MMO <br className="hidden sm:inline" />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-300">
+              Để Máy Tự Chạy — Tiền Tự Về Ví 24/7
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-slate-300 text-sm sm:text-xl max-w-2xl mx-auto leading-relaxed font-normal">
-            Kho kịch bản tự động hóa Make.com/n8n, data B2B 1.500 quán cà phê & bộ 500+ prompt AI bán hàng.
+          <p className="mt-5 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+            Kịch bản Make.com/n8n tự động quét voucher Shopee 50%, data B2B 1.500 quán cà phê Sài Gòn & 500+ prompt AI bán hàng.
             <strong className="text-white block sm:inline"> Quét mã VietQR nhả file tức thì sau 3 giây!</strong>
           </p>
 
