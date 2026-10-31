@@ -2,6 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingSupport from '@/components/FloatingSupport';
+import LiveSalesToast from '@/components/LiveSalesToast';
 
 export const metadata = {
   title: 'Kiệt Digital Store - Kho Vũ Khí Số & Kịch Bản Tự Động Hóa MMO 2026',
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <FloatingSupport />
+        <LiveSalesToast />
       </body>
     </html>
   );

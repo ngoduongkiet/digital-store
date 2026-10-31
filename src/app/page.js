@@ -9,7 +9,7 @@ import AutomationWorkflow from '@/components/AutomationWorkflow';
 import {
   Sparkles, ShieldCheck, Zap, Search, CheckCircle2, ChevronDown,
   RefreshCw, Laptop, ArrowRight, ArrowUpRight, Star, PhoneCall,
-  ExternalLink, FileCode2, Eye
+  ExternalLink, FileCode2, Eye, Shield, Users, Layers, Award
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -99,7 +99,7 @@ export default function HomePage() {
     <div className="bg-[#f8f9fa] text-slate-800 font-sans">
       
       {/* ============================================================== */}
-      {/* 1. HERO SECTION (CHUẨN 100% SLIDE 1 FOCAL EYEWEAR) */}
+      {/* 1. HERO SECTION (CHUẨN 100% BENTO FOCAL - NỘI DUNG CHUẨN MMO) */}
       {/* ============================================================== */}
       <section className="relative pt-8 sm:pt-14 pb-16 sm:pb-20 border-b border-slate-200/80 bg-[#f8f9fa] overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -119,7 +119,7 @@ export default function HomePage() {
                 </h1>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md">
-                  Where structural accuracy meets effortless automation. Khám phá kho kịch bản và tool phần mềm thực chiến để nhân bản doanh thu và tự động hóa quy trình kinh doanh online.
+                  Nơi độ chuẩn xác kỹ thuật kết hợp cùng tự động hóa thực chiến. Khám phá kho kịch bản và tool phần mềm độc quyền để nhân bản doanh thu online mà không cần tốn hàng giờ trực máy.
                 </p>
 
                 {/* Dual Pill Buttons (Chuẩn Slide 1) */}
@@ -128,7 +128,7 @@ export default function HomePage() {
                     href="#products"
                     className="px-6 py-3.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition flex items-center gap-2 shadow-sm"
                   >
-                    <span>Explore the Collection</span>
+                    <span>Khám Phá Bộ Sưu Tập</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
 
@@ -136,7 +136,7 @@ export default function HomePage() {
                     href="#guarantee"
                     className="px-6 py-3.5 rounded-full border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2"
                   >
-                    <span>Find Your Style</span>
+                    <span>Cam Kết Từ Kiệt</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                   </a>
                 </div>
@@ -162,38 +162,44 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <div className="font-bold text-slate-900 text-xs">50K+ Verified Trust</div>
-                  <div className="text-[11px] text-slate-500">Active MMO Operators</div>
+                  <div className="font-bold text-slate-900 text-xs">50.000+ Dòng Dữ Liệu & Users</div>
+                  <div className="text-[11px] text-slate-500">Cộng đồng MMO & E-Commerce tin dùng</div>
                 </div>
               </div>
             </div>
 
-            {/* Cột 2: Cụm 3 Thẻ Dọc Xếp Tầng (Slide 1: Olivia Taylor, Helena Carter, Sophia Lauren) (lg:col-span-4) */}
+            {/* Cột 2: Cụm 3 Thẻ Dọc Xếp Tầng (Slide 1 Style - 100% Sản Phẩm & Người Thật) */}
             <div className="lg:col-span-4 flex flex-col justify-between gap-3.5">
               
-              {/* Thẻ 1: Peach / Warm Apricot (#FBE8DE) */}
-              <div className="bg-[#fbe8de] rounded-3xl p-4 flex items-center justify-between border border-orange-200/50 shadow-sm hover:shadow-md transition group">
+              {/* Thẻ 1: Peach / Warm Apricot (#FBE8DE) - Bot Shopee */}
+              <a
+                href="#products"
+                className="bg-[#fbe8de] rounded-3xl p-4 flex items-center justify-between border border-orange-200/50 shadow-sm hover:shadow-md transition group"
+              >
                 <div className="flex items-center gap-3.5">
                   <img
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
-                    alt="Olivia Taylor"
+                    src="/images/shopee-bot-cover.jpg"
+                    alt="Shopee Bot"
                     className="w-16 h-20 rounded-2xl object-cover shrink-0 shadow-sm"
                   />
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-orange-700 bg-orange-200/60 px-2 py-0.5 rounded-full">
                       Shopee Bot
                     </span>
-                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Olivia Taylor</h4>
-                    <p className="text-[11px] text-slate-600">Flash Sale 50% Hunter</p>
+                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Bot Săn Deal Shopee</h4>
+                    <p className="text-[11px] text-slate-600">Flash Sale 50% Auto 24/7</p>
                   </div>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </div>
+              </a>
 
               {/* Thẻ 2: Warm Sand / Tan (#F6DDCF) - Ảnh thật Kiệt */}
-              <div className="bg-[#f6ddcf] rounded-3xl p-4 flex items-center justify-between border border-amber-200/50 shadow-sm hover:shadow-md transition group">
+              <a
+                href="#guarantee"
+                className="bg-[#f6ddcf] rounded-3xl p-4 flex items-center justify-between border border-amber-200/50 shadow-sm hover:shadow-md transition group"
+              >
                 <div className="flex items-center gap-3.5">
                   <img
                     src="/images/founder-kiet.jpg"
@@ -205,47 +211,50 @@ export default function HomePage() {
                       Founder & Dev
                     </span>
                     <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Ngô Dương Kiệt</h4>
-                    <p className="text-[11px] text-slate-600">Đà Nẵng, Việt Nam</p>
+                    <p className="text-[11px] text-slate-600">Đà Nẵng • Ultraviewer 1-1</p>
                   </div>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </div>
+              </a>
 
-              {/* Thẻ 3: Dusty Rose (#E8D7D8) */}
-              <div className="bg-[#e8d7d8] rounded-3xl p-4 flex items-center justify-between border border-rose-200/50 shadow-sm hover:shadow-md transition group">
+              {/* Thẻ 3: Dusty Rose (#E8D7D8) - Data B2B Cafe */}
+              <a
+                href="#products"
+                className="bg-[#e8d7d8] rounded-3xl p-4 flex items-center justify-between border border-rose-200/50 shadow-sm hover:shadow-md transition group"
+              >
                 <div className="flex items-center gap-3.5">
                   <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
-                    alt="Sophia Lauren"
+                    src="/images/data-cafe-cover.jpg"
+                    alt="Data B2B"
                     className="w-16 h-20 rounded-2xl object-cover shrink-0 shadow-sm"
                   />
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200/60 px-2 py-0.5 rounded-full">
                       B2B Lead Engine
                     </span>
-                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Sophia Lauren</h4>
-                    <p className="text-[11px] text-slate-600">25.000+ Verified Data</p>
+                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Tệp 25.000 Quán Cafe</h4>
+                    <p className="text-[11px] text-slate-600">Data F&B Chuẩn Từng Quận</p>
                   </div>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </div>
+              </a>
 
             </div>
 
-            {/* Cột 3: Thẻ Showcase Khổng Lồ Có Tag Giá ₱6,499 (Slide 1) (lg:col-span-4) */}
+            {/* Cột 3: Thẻ Showcase Khổng Lồ Có Tag Giá (Slide 1 Style) */}
             <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden group">
               
               {/* Top Sub-label */}
               <div>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
-                  Optical Shielding Systems
+                  High-Performance Automation
                 </span>
                 <span className="text-xs font-bold text-slate-900">
-                  Advanced Lens Armor • Shopee Bot Pro
+                  Shopee API v2026 Engine • Bot Deal Độc Quyền
                 </span>
               </div>
 
@@ -253,11 +262,11 @@ export default function HomePage() {
               <div className="relative my-6 flex items-center justify-center">
                 <img
                   src="/images/shopee-bot-cover.jpg"
-                  alt="Product Showcase"
+                  alt="Shopee Bot Showcase"
                   className="w-full h-52 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
                 />
 
-                {/* Floating Price Pill Tag (Chuẩn Slide 1: ₱6,499 / Focal Aero-01) */}
+                {/* Floating Price Pill Tag */}
                 <div className="absolute -bottom-3 left-4 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-md flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   <div className="text-xs">
@@ -270,7 +279,7 @@ export default function HomePage() {
               {/* Bottom Quote & Text */}
               <div className="pt-3 border-t border-slate-100">
                 <p className="font-editorial text-base text-slate-800 leading-snug">
-                  "Transforming everyday vision into an expression of passive revenue." 👓
+                  "Tự động hóa quy trình kinh doanh, biến thời gian rảnh thành dòng thu nhập thụ động bền vững."
                 </p>
                 <div className="mt-2 flex items-center justify-between text-[11px] text-slate-500">
                   <span>VietQR Napas 24/7</span>
@@ -284,22 +293,22 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 2. SECTION: A DEEPER LOOK AT YOUR TOOLS (CHUẨN 100% SLIDE 2 FOCAL) */}
+      {/* 2. SECTION: A DEEPER LOOK AT YOUR TOOLS (CHUẨN 100% SLIDE 2 BENTO) */}
       {/* ============================================================== */}
       <section id="products" className="py-16 sm:py-24 border-b border-slate-200/80 bg-white">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           
-          {/* Header (Slide 2: A Deeper Look at Your Vision) */}
+          {/* Header Section 2 */}
           <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                A Deeper Look at Your Vision
+                Kiến Trúc Tự Động Hóa Thực Chiến
               </span>
               <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
-                A Deeper Look at Your Tools
+                Khám Phá Các Vũ Khí Số Của Kiệt
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-xl leading-relaxed">
-                Go beyond standard scripts. Hệ thống tool và data của Kiệt được tinh chỉnh thực chiến để mang lại hiệu năng cao nhất, sạch mã độc 100% và dễ dàng sử dụng cho mọi người.
+                Vượt trội hơn các kịch bản sơ sài thông thường. Toàn bộ tool, bot và data của Kiệt được kiểm định thực chiến, 100% sạch mã độc và có tài liệu video hướng dẫn từng bước.
               </p>
             </div>
 
@@ -308,13 +317,13 @@ export default function HomePage() {
                 href="/my-orders"
                 className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition shadow-sm"
               >
-                Book an Eye Analysis (Tra Cứu Đơn)
+                Tra Cứu Đơn Hàng Tự Động
               </Link>
               <a
                 href="#standards"
                 className="px-5 py-2.5 rounded-full border border-slate-300 hover:border-slate-800 text-slate-700 text-xs font-semibold transition"
               >
-                Explore Lens Tech (Tiêu Chuẩn)
+                Tiêu Chuẩn Mã Sạch (0/72 Clean)
               </a>
             </div>
           </div>
@@ -322,10 +331,10 @@ export default function HomePage() {
           {/* Slide 2 Bento Split: Left Bento + Right Bento */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Bento Stack (Slide 2) */}
+            {/* Left Bento Stack (Slide 2 Style) */}
             <div className="lg:col-span-5 space-y-4">
               
-              {/* Bento Card: Engineered for What's Next */}
+              {/* Bento Card 1: Engineered for What's Next */}
               <div className="bg-[#f8f9fa] rounded-3xl p-6 border border-slate-200/80 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -334,8 +343,8 @@ export default function HomePage() {
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-0.5">
                     Engineered for What's Next.
                   </h4>
-                  <p className="text-xs text-slate-500 mt-1 max-w-xs">
-                    Tự động thích ứng khi các sàn TMĐT hay Telegram đổi thuật toán.
+                  <p className="text-xs text-slate-500 mt-1 max-w-xs leading-relaxed">
+                    Tự động thích ứng và update code miễn phí trọn đời khi Shopee, TikTok hoặc Telegram đổi thuật toán.
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
@@ -343,36 +352,36 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Bento Card: Your Ultimate Visual Upgrade */}
+              {/* Bento Card 2: Performance Upgrade */}
               <div className="bg-[#f0f4f8] rounded-3xl p-6 border border-sky-100 relative overflow-hidden flex items-center gap-5">
                 <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
-                  alt="Model with Glasses"
+                  src="/images/prompt-ecommerce-cover.jpg"
+                  alt="Prompt AI Package"
                   className="w-20 h-24 rounded-2xl object-cover shrink-0 shadow-sm"
                 />
                 <div>
                   <span className="text-[10px] font-bold text-sky-700 uppercase tracking-widest bg-sky-200/60 px-2 py-0.5 rounded-full">
-                    Upgrade
+                    AI Upgrade
                   </span>
                   <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">
-                    Your Ultimate Performance Upgrade
+                    Bộ Prompt AI Thương Mại
                   </h4>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Nhân bản doanh số mà không phải tăng thêm nhân sự hay giờ làm việc.
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Nhân bản nội dung bán hàng và viết kịch bản quảng cáo triệu view chỉ trong 30 giây.
                   </p>
                 </div>
               </div>
 
-              {/* Bento Card: HD Precision */}
+              {/* Bento Card 3: HD Precision & 0/72 Clean */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">HD Precision</span>
+                  <span className="text-xs font-bold text-slate-900">HD Precision & Clean Code</span>
                   <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                     VirusTotal 0/72 Clean
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Toàn bộ mã nguồn và kịch bản đều minh bạch, không mã độc, hướng dẫn cài đặt Ultraviewer 1-1 tận tình cho bạn.
+                  Toàn bộ mã nguồn và kịch bản đều minh bạch, không mã độc backdoor, hỗ trợ Ultraviewer 1-1 tận tình cho bạn từ Đà Nẵng.
                 </p>
                 <div className="pt-2">
                   <a
@@ -381,7 +390,7 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-purple-600 transition"
                   >
-                    <span>Upgrade Your Systems</span>
+                    <span>Cần Tư Vấn Riêng (Chat Zalo)</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -389,20 +398,20 @@ export default function HomePage() {
 
             </div>
 
-            {/* Right Bento: The Core Weapons & Catalog (Slide 2: The Focal Icons) */}
+            {/* Right Bento: Product Catalog List */}
             <div className="lg:col-span-7 bg-[#f8f9fa] rounded-3xl p-6 sm:p-8 border border-slate-200/80">
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/80">
                 <div>
                   <h3 className="font-editorial text-2xl font-bold text-slate-900">
-                    The Focal Icons
+                    Bộ Sưu Tập Tool & Kịch Bản Tuyển Chọn
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    See your world clearly. Toàn bộ tool thực chiến đã sẵn sàng.
+                    Tối ưu hóa hiệu suất MMO. Toàn bộ tool thực chiến đã sẵn sàng nhả file sau 3 giây.
                   </p>
                 </div>
 
-                {/* Filter Pills (Slide 2 style: Optical, Sun, Progressives, Blue Light) */}
+                {/* Filter Pills */}
                 <div className="flex flex-wrap items-center gap-1.5">
                   {[
                     { id: 'ALL', label: 'Tất Cả' },
@@ -425,7 +434,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Product List Showcase (Slide 2: 3 Frame items) */}
+              {/* Product List Showcase */}
               <div className="pt-6 space-y-4">
                 {filteredProducts.map((prod) => (
                   <div
@@ -493,20 +502,20 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 3. SECTION: THE PINNACLE OF PERFORMANCE (CHUẨN 100% SLIDE 3 FOCAL) */}
+      {/* 3. SECTION: THE PINNACLE OF PERFORMANCE (CHUẨN 100% SLIDE 3 BENTO) */}
       {/* ============================================================== */}
       <section id="standards" className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              The Pinnacle of Vision
+              The Pinnacle of Engineering
             </span>
             <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
-              The Pinnacle of Performance
+              4 Tiêu Chuẩn Kỹ Thuật Vàng
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Experience the perfect fusion of automation technology and high-converting marketing strategy.
+              Sự kết hợp hoàn hảo giữa công nghệ tự động hóa gọn nhẹ và chiến lược gia tăng tỷ lệ chuyển đổi.
             </p>
           </div>
 
@@ -516,43 +525,43 @@ export default function HomePage() {
             {/* Left 3 Narrow Cards (lg:col-span-3) */}
             <div className="lg:col-span-3 flex flex-col justify-between gap-4">
               
-              {/* Card 1: Neural Shield / Pale Mint (#EEF7F2) */}
+              {/* Card 1: Neural Engine / Pale Mint (#EEF7F2) */}
               <div className="bg-[#eef7f2] p-5 rounded-3xl border border-emerald-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest block">
                     Neural Engine
                   </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Neural Shield</h4>
+                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Lập Trình Tinh Gọn</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Advanced automation pipelines wrapped in sleek Python & API scripts.
+                    Mã nguồn Python & NodeJS tối ưu hóa, chạy mượt mà trên VPS giá rẻ hoặc máy tính cá nhân.
                   </p>
                 </div>
                 <div className="mt-4 font-mono font-bold text-sm text-slate-900">199.000 đ</div>
               </div>
 
-              {/* Card 2: Apex Aviator / Pale Yellow (#FEF9E8) */}
+              {/* Card 2: Telegram Broadcaster / Pale Yellow (#FEF9E8) */}
               <div className="bg-[#fef9e8] p-5 rounded-3xl border border-amber-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-amber-800 uppercase tracking-widest block">
                     Telegram Broadcaster
                   </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Apex Broadcaster</h4>
+                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Phát Sóng Tự Động</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Ultra-lightweight bot phát sóng vào kênh 5.000 mem tự động 24/7.
+                    Tự động lọc deal và bắn vào kênh 5.000+ thành viên liên tục 24/7 mà không cần mở máy.
                   </p>
                 </div>
                 <div className="mt-4 font-mono font-bold text-sm text-slate-900">299.000 đ</div>
               </div>
 
-              {/* Card 3: The Focal Alpha / Pale Rose (#FDF2ED) */}
+              {/* Card 3: B2B Lead Engine / Pale Rose (#FDF2ED) */}
               <div className="bg-[#fdf2ed] p-5 rounded-3xl border border-rose-100 flex flex-col justify-between h-full shadow-sm">
                 <div>
                   <span className="text-[10px] font-bold text-rose-800 uppercase tracking-widest block">
                     B2B Lead Engine
                   </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">The Alpha Leads</h4>
+                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Data Chuẩn 100%</h4>
                   <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Bold geometric data targeting quán cafe, F&B lọc chuẩn từng quận.
+                    Dữ liệu quán cafe, nhà hàng lọc sạch từng quận, sẵn sàng import vào Excel & Zalo Marketing.
                   </p>
                 </div>
                 <div className="mt-4 font-mono font-bold text-sm text-slate-900">299.000 đ</div>
@@ -566,8 +575,8 @@ export default function HomePage() {
               {/* Card 4 (Top): The Best of Both Worlds / Soft Lavender (#F3EFFA) */}
               <div className="bg-[#f3effa] p-6 rounded-3xl border border-purple-100 shadow-sm flex items-center gap-5">
                 <img
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=250&q=80"
-                  alt="Business Expert"
+                  src="/images/prompt-ecommerce-cover.jpg"
+                  alt="Philosophy"
                   className="w-24 h-32 rounded-2xl object-cover shrink-0 shadow-sm"
                 />
                 <div>
@@ -575,10 +584,10 @@ export default function HomePage() {
                     Philosophy
                   </span>
                   <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    The Best of Both Worlds
+                    Vừa Dùng Tool, Vừa Hiểu Bản Chất
                   </h4>
                   <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Vừa học kỹ thuật tư duy tự động hóa, vừa sở hữu công cụ kiếm tiền thụ động thực tế mỗi ngày.
+                    Không chỉ nhận tool chạy sẵn, bạn còn nhận video hướng dẫn nguyên lý tự động hóa để tự làm chủ công nghệ lâu dài.
                   </p>
                 </div>
               </div>
@@ -590,10 +599,10 @@ export default function HomePage() {
                     Guarantee
                   </span>
                   <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    Insurance, Simplified.
+                    Bảo Hành Hoàn Tiền 100%
                   </h4>
                   <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Bảo hành 100% hoàn tiền từ Kiệt nếu tool lỗi không chạy được hoặc không đúng như mô tả. Không rườm rà thủ tục.
+                    Nếu tool lỗi kỹ thuật không chạy được hoặc không đúng như mô tả, Kiệt hoàn tiền 100% ngay lập tức qua số tài khoản của bạn. Không rườm rà thủ tục.
                   </p>
                 </div>
                 <div className="pt-4 mt-2">
@@ -603,7 +612,7 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition inline-flex items-center gap-1.5 shadow-sm"
                   >
-                    <span>Explore Systems (Chat Zalo)</span>
+                    <span>Trao Đổi Trực Tiếp (Zalo Kiệt)</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -611,33 +620,33 @@ export default function HomePage() {
 
             </div>
 
-            {/* Right 1 Tall Card (lg:col-span-4) FocusGuard & Precision Optics */}
+            {/* Right 1 Tall Card (lg:col-span-4) Security Architecture */}
             <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
                   Security Architecture
                 </span>
                 <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                  FocusGuard™ Security
+                  Kiểm Định Mã Sạch Tuyệt Đối
                 </h4>
                 <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                  Total protection against backdoors. Kiểm định 100% qua VirusTotal trước khi bàn giao file cho khách hàng.
+                  Cam kết bảo vệ máy tính của khách hàng. Toàn bộ kịch bản và mã nguồn đều được kiểm định qua VirusTotal trước khi bàn giao.
                 </p>
 
                 <div className="my-6 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
                   <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-                    <span>Precision Scripts</span>
-                    <span className="text-emerald-600">✓ 0/72 Clean</span>
+                    <span>Mã Nguồn Minh Bạch</span>
+                    <span className="text-emerald-600 font-bold">✓ 0/72 Clean</span>
                   </div>
                   <p className="text-[11px] text-slate-500 leading-relaxed">
-                    From advanced Shopee API scrapers to ultra-crisp Telegram bots, Kiệt trực tiếp kiểm tra từng dòng code.
+                    Từ các kịch bản API Shopee đến bot Telegram cá nhân, Kiệt trực tiếp kiểm tra từng dòng code trước khi đóng gói lên hệ thống.
                   </p>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <span>Ultraviewer 1-1</span>
-                <span className="font-bold text-slate-900">Hỗ Trợ Tận Tâm 24/7</span>
+                <span className="font-bold text-slate-900">Hỗ Trợ Tận Tâm Từ Đà Nẵng</span>
               </div>
             </div>
 
@@ -646,7 +655,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 4. SECTION: SEE THINGS CLEARLY & FOUNDER SPOTLIGHT (SLIDE 4) */}
+      {/* 4. SECTION: SÁNG LẬP & CAM KẾT TỪ KIỆT (ĐÀ NẴNG) */}
       {/* ============================================================== */}
       <section id="guarantee" className="py-16 sm:py-24 border-b border-slate-200/80 bg-white">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -668,7 +677,7 @@ export default function HomePage() {
                   Ngô Dương Kiệt
                 </h3>
                 <p className="text-xs text-slate-700 leading-relaxed">
-                  Mình sinh sống tại <strong>Đà Nẵng</strong>, phát triển và tuyển chọn các giải pháp tự động hóa MMO. Cam kết mã sạch 100%, bảo hành hoàn tiền nếu không đúng mô tả và sẵn sàng Ultraviewer hỗ trợ bạn từ A-Z!
+                  Mình sinh sống tại <strong>Đà Nẵng</strong>, trực tiếp lập trình và phát triển các giải pháp tự động hóa MMO. Cam kết mã sạch 100%, bảo hành hoàn tiền nếu không đúng mô tả và sẵn sàng Ultraviewer hỗ trợ bạn từ A-Z!
                 </p>
 
                 <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
@@ -699,13 +708,13 @@ export default function HomePage() {
               <div className="bg-[#eef7f2] p-6 rounded-3xl border border-emerald-100 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest">
-                    Clarity & Support
+                    Hỗ Trợ Kỹ Thuật Trực Tuyến
                   </span>
                   <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    See Things Clearly.
+                    Cài Đặt UltraViewer 1-1 Miễn Phí
                   </h4>
                   <p className="text-xs text-slate-600 mt-1.5 max-w-sm">
-                    Book Ultraviewer hỗ trợ cài đặt trực tiếp qua Zalo chỉ với một vài cú click.
+                    Bạn không rành máy tính? Kiệt sẽ kết nối UltraViewer cài đặt giúp bạn chỉ với vài phút trao đổi qua Zalo.
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 font-bold text-xs">
@@ -715,7 +724,7 @@ export default function HomePage() {
 
               <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">CLEAR GUARD • Uptime 100%</span>
+                  <span className="text-xs font-bold text-slate-900">HỆ THỐNG GIAO HÀNG TỰ ĐỘNG</span>
                   <span className="text-[10px] text-emerald-600 font-semibold">● Active Napas 24/7</span>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">
@@ -729,14 +738,14 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 5. SECTION: BUILT TO ADAPT (CHUẨN 100% SLIDE 5 FOCAL) */}
+      {/* 5. SECTION: NHẬN FILE CHỈ VỚI 3 BƯỚC (CHUẨN SLIDE 5 BENTO) */}
       {/* ============================================================== */}
       <section className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
           
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              Built To Adapt. Born To Feel.
+              Quy Trình Tự Động Hóa 100%
             </span>
             <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
               Nhận File & Sử Dụng Chỉ Với 3 Bước
