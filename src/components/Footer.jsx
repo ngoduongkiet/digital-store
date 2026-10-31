@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Phone, Send, ArrowUpRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { Mail, Phone, Send, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -19,23 +19,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#0b132b] text-slate-300 font-sans overflow-hidden border-t border-slate-800">
-      {/* 1. Giant Background Watermark Brand Typography (Chuẩn Slide 7 của Focal) */}
+    <footer className="relative bg-[#0b132b] text-slate-300 font-sans overflow-hidden border-t border-slate-800 text-xs">
+      
+      {/* Background Subtle Watermark (Tối Giản, Không Che Chữ) */}
       <div 
-        className="absolute -bottom-6 left-0 right-0 overflow-hidden pointer-events-none select-none opacity-5 whitespace-nowrap"
+        className="absolute bottom-2 left-0 right-0 overflow-hidden pointer-events-none select-none opacity-[0.03] text-center"
         aria-hidden="true"
       >
-        <span className="font-editorial text-[90px] sm:text-[140px] lg:text-[180px] font-black tracking-widest uppercase text-white block">
-          KIỆT DIGITAL STORE KIỆT DIGITAL STORE
+        <span className="font-editorial text-5xl sm:text-7xl lg:text-9xl font-black tracking-[0.25em] uppercase text-white block">
+          KIỆT DIGITAL STORE
         </span>
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 pt-10 pb-8">
         
-        {/* Top Newsletter / Resource Signup Bar (Chuẩn Slide 5 của Focal) */}
-        <div className="pb-12 border-b border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Top Newsletter / Resource Signup Bar (Gọn Gàng & Thanh Lịch) */}
+        <div className="pb-8 border-b border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h3 className="font-editorial text-xl sm:text-2xl font-bold text-white tracking-tight">
               Nhận Kịch Bản & Tool MMO Mới Nhất
             </h3>
             <p className="text-xs text-slate-400 mt-1">
@@ -49,12 +50,12 @@ export default function Footer() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Nhập email của bạn..."
-              className="flex-1 h-11 px-4 rounded-full bg-slate-900/90 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-400 transition"
+              className="flex-1 h-10 px-4 rounded-full bg-slate-900/90 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-400 transition"
               required
             />
             <button
               type="submit"
-              className="h-11 px-5 rounded-full bg-white hover:bg-slate-200 text-slate-950 font-bold text-xs transition flex items-center gap-1.5 shrink-0"
+              className="h-10 px-5 rounded-full bg-white hover:bg-slate-200 text-slate-950 font-bold text-xs transition flex items-center gap-1.5 shrink-0"
             >
               <span>{subscribed ? 'Đã Đăng Ký!' : 'Đăng Ký'}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -62,28 +63,31 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* 4 Main Columns (Chuẩn Focal Eyewear) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-12 py-12 border-b border-slate-800/80 text-xs">
+        {/* 4 Main Columns: Căn Chỉnh Đều Tăm Tắp, Không Bị Tràn Hay Rớt Chữ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 py-10 border-b border-slate-800/80">
           
-          {/* Cột 1: Thương hiệu & Founder (5 Cột) */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-5 space-y-3.5">
+          {/* Cột 1: Thương hiệu & Sáng lập (Chiếm 2/5 độ rộng = 40%) */}
+          <div className="lg:col-span-2 space-y-3.5">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-white text-slate-950 flex items-center justify-center font-black text-xs">
+              <div className="w-7 h-7 rounded-full bg-white text-slate-950 flex items-center justify-center font-black text-xs">
                 K
               </div>
-              <span className="font-editorial text-xl font-bold text-white tracking-tight">
+              <span className="font-editorial text-lg sm:text-xl font-bold text-white tracking-tight">
                 Kiệt Digital Store
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-semibold border border-emerald-500/20">
+                Chính Chủ
               </span>
             </div>
 
-            <p className="text-slate-400 leading-relaxed text-xs max-w-sm">
+            <p className="text-slate-400 leading-relaxed text-xs max-w-md">
               Hệ thống phân phối kịch bản tự động hóa, tool MMO và tài nguyên số bản quyền thực chiến hàng đầu Việt Nam. Tự động gửi link tải sau 3 giây quét mã VietQR Napas 24/7.
             </p>
 
             <div className="space-y-1.5 text-slate-400 text-[11px] pt-1">
               <p>
                 <strong className="text-slate-200">Sáng lập & Phát triển:</strong> Ngô Dương Kiệt{' '}
-                <span className="text-emerald-400 font-semibold">✓ Chính chủ</span>
+                <span className="text-emerald-400 font-semibold">✓ Đã xác minh</span>
               </p>
               <p>
                 <strong className="text-slate-200">Trụ sở:</strong> Tổ 11, thôn Thanh Ly 2, xã Thăng Bình, TP. Đà Nẵng
@@ -141,48 +145,48 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Cột 2: Sản Phẩm (2 Cột) */}
+          {/* Cột 2: Sản Phẩm (Chiếm 1/5 = 20%, đủ rộng cho text) */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Bộ Sưu Tập Tool
             </h4>
-            <ul className="space-y-2 text-slate-400">
+            <ul className="space-y-2 text-slate-400 text-xs">
               <li>
-                <a href="#products" className="hover:text-white transition">
+                <a href="#products" className="hover:text-white transition whitespace-nowrap block">
                   Tool Shopee Flash Sale
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-white transition">
+                <a href="#products" className="hover:text-white transition whitespace-nowrap block">
                   Telegram Bot AI 24/7
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-white transition">
+                <a href="#products" className="hover:text-white transition whitespace-nowrap block">
                   Data 25.000+ Khách B2B
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-white transition">
+                <a href="#products" className="hover:text-white transition whitespace-nowrap block">
                   Prompt AI Viết Content
                 </a>
               </li>
               <li>
-                <a href="#products" className="text-purple-400 hover:text-purple-300 transition font-medium">
-                  Flash Sale - Giảm 50%
+                <a href="#products" className="text-purple-400 hover:text-purple-300 transition whitespace-nowrap block font-medium">
+                  Ưu Đãi Giảm Giá 50%
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Cột 3: Hỗ Trợ & Bảo Hành (3 Cột) */}
+          {/* Cột 3: Hỗ Trợ & Bảo Hành (Chiếm 1/5 = 20%) */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Hỗ Trợ & Bảo Hành
             </h4>
-            <ul className="space-y-2 text-slate-400">
+            <ul className="space-y-2 text-slate-400 text-xs">
               <li>
-                <Link href="/my-orders" className="text-purple-300 hover:text-white transition font-medium">
+                <Link href="/my-orders" className="text-purple-300 hover:text-white transition whitespace-nowrap block font-medium">
                   Tra Cứu Đơn Hàng Đã Mua
                 </Link>
               </li>
@@ -191,58 +195,58 @@ export default function Footer() {
                   href="https://zalo.me/0352279413" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-white transition flex items-center gap-1"
+                  className="hover:text-white transition flex items-center gap-1 whitespace-nowrap"
                 >
                   <span>Cài Đặt Ultraviewer 1-1</span>
                   <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </a>
               </li>
               <li>
-                <Link href="/refund" className="hover:text-white transition">
+                <Link href="/refund" className="hover:text-white transition whitespace-nowrap block">
                   Chính Sách Hoàn Tiền 100%
                 </Link>
               </li>
               <li>
-                <a href="#standards" className="hover:text-white transition">
+                <a href="#standards" className="hover:text-white transition whitespace-nowrap block">
                   Kiểm Định VirusTotal (0/72)
                 </a>
               </li>
               <li>
-                <a href="#guarantee" className="hover:text-white transition">
+                <a href="#guarantee" className="hover:text-white transition whitespace-nowrap block">
                   Câu Hỏi Thường Gặp (FAQ)
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Cột 4: Liên Hệ & Trụ Sở (2 Cột) */}
+          {/* Cột 4: Liên Hệ & Trụ Sở (Chiếm 1/5 = 20%) */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Liên Hệ & Pháp Lý
             </h4>
-            <ul className="space-y-2 text-slate-400">
+            <ul className="space-y-2 text-slate-400 text-xs">
               <li>
-                <a href="tel:0352279413" className="hover:text-white transition font-medium text-slate-300">
+                <a href="tel:0352279413" className="hover:text-white transition font-medium text-slate-300 whitespace-nowrap block">
                   Hotline: 0352.279.413
                 </a>
               </li>
               <li>
-                <a href="mailto:ngoduongkiet53006@gmail.com" className="hover:text-white transition truncate block">
+                <a href="mailto:ngoduongkiet53006@gmail.com" className="hover:text-white transition truncate block text-[11px]">
                   ngoduongkiet53006@gmail.com
                 </a>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-white transition">
+                <Link href="/terms" className="hover:text-white transition whitespace-nowrap block">
                   Điều Khoản Dịch Vụ
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition">
+                <Link href="/privacy" className="hover:text-white transition whitespace-nowrap block">
                   Chính Sách Bảo Mật
                 </Link>
               </li>
               <li>
-                <Link href="/admin" className="text-slate-600 hover:text-slate-400 transition text-[11px]">
+                <Link href="/admin" className="text-slate-600 hover:text-slate-400 transition text-[11px] whitespace-nowrap block">
                   Cổng Quản Trị Hệ Thống
                 </Link>
               </li>
