@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import CheckoutModal from '@/components/CheckoutModal';
 import PreviewModal from '@/components/PreviewModal';
+import AutomationWorkflow from '@/components/AutomationWorkflow';
 import {
   Sparkles, ShieldCheck, Zap, Search, CheckCircle2, ChevronDown,
   RefreshCw, Laptop, ArrowRight, ArrowUpRight, Star, PhoneCall,
@@ -479,6 +480,15 @@ export default function HomePage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 2.5 INTERACTIVE WORKFLOW PIPELINE (CHUẨN MAGIC UI / N8N PIPELINE) */}
+      {/* ============================================================== */}
+      <section className="py-12 border-b border-slate-200/80 bg-gradient-to-b from-white to-[#f8f9fa]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+          <AutomationWorkflow />
         </div>
       </section>
 
