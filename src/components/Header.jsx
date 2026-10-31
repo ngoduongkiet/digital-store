@@ -26,7 +26,7 @@ export default function Header() {
               </span>
             </div>
             <span className="text-[11px] font-medium text-slate-400 block -mt-0.5">
-              Kho Kịch Bản Tự Động Hóa & MMO
+              Kho Tool & Tài Nguyên Số MMO
             </span>
           </div>
         </Link>
@@ -36,7 +36,7 @@ export default function Header() {
           <Link href="/" className="hover:text-white transition">Sản phẩm</Link>
           <a href="#simulation" className="hover:text-purple-400 transition flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Chạy thử bot</span>
+            <span>Xem Demo</span>
           </a>
           <Link href="/about" className="hover:text-white transition">Giới thiệu</Link>
           <Link href="/contact" className="hover:text-white transition">Liên hệ & Hỗ trợ</Link>

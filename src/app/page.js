@@ -206,21 +206,21 @@ export default function HomePage() {
           {/* Badge Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/40 bg-purple-950/60 text-purple-300 text-xs font-black tracking-wide mb-8 shadow-[0_0_25px_rgba(168,85,247,0.3)] backdrop-blur-md">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>CỖ MÁY SĂN DEAL & TỰ ĐỘNG HÓA MMO 2026</span>
+            <span>KHO TOOL & TÀI NGUYÊN SỐ THỰC CHIẾN 2026</span>
           </div>
 
-          {/* Balanced High-Converting Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.18] max-w-4xl mx-auto">
-            Kiếm Tiền Tự Động Trong Lúc Ngủ <br className="hidden sm:inline" />
+          {/* Balanced Umbrella High-Converting Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] max-w-4xl mx-auto">
+            Vũ Khí Số & Tool MMO Tự Động <br className="hidden sm:inline" />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-300">
-              Bot Săn Sale Shopee & Data B2B Thực Chiến
+              Tối Ưu Hiệu Suất — Nhân Bản Doanh Thu
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="mt-6 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
-            Cài đặt 1 lần — Kịch bản Make.com/n8n tự động quét voucher Shopee 50%, tự gắn link affiliate và đẩy bài vào Telegram 24/7.
-            <strong className="text-white block sm:inline"> Quét mã VietQR nhả file tức thì sau 3 giây!</strong>
+            Nền tảng cung cấp các tool tự động hóa, kịch bản phần mềm, data khách hàng và tài nguyên kiếm tiền online (MMO) thực chiến.
+            <strong className="text-white block sm:inline"> Quét mã VietQR nhả file tải ngay sau 3 giây!</strong>
           </p>
 
           {/* Hero CTAs */}
@@ -229,7 +229,7 @@ export default function HomePage() {
               href="#products"
               className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 font-black text-sm shadow-[0_0_40px_rgba(255,255,255,0.4)] transition transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2.5 shimmer-btn"
             >
-              <span>Xem Kho Tài Nguyên Mở Bán</span>
+              <span>Khám Phá Kho Tool & Tài Nguyên</span>
               <ArrowRight className="w-4 h-4 shrink-0 text-purple-600" />
             </a>
             <a
@@ -237,7 +237,7 @@ export default function HomePage() {
               className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-purple-500/40 bg-purple-950/40 hover:bg-purple-900/50 text-white font-bold text-sm backdrop-blur-md transition flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(168,85,247,0.2)]"
             >
               <Activity className="w-4 h-4 text-purple-400 shrink-0 animate-pulse" />
-              <span>Chạy Thử Bot Thực Tế</span>
+              <span>Xem Demo Hoạt Động</span>
             </a>
           </div>
 
