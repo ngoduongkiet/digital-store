@@ -121,7 +121,7 @@ export default function ProductCard({ product, onBuy, onPreview }) {
 
             <button
               onClick={() => onBuy(product)}
-              className="h-10 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white text-xs font-black flex items-center gap-1.5 shadow-md shadow-indigo-500/25 dark:shadow-none transition transform active:scale-95 whitespace-nowrap"
+              className="h-10 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white text-xs font-black flex items-center gap-1.5 shadow-md shadow-indigo-500/25 dark:shadow-none transition transform active:scale-95 whitespace-nowrap shimmer-btn"
             >
               <span>Mua ngay</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
