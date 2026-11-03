@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import CheckoutModal from '@/components/CheckoutModal';
 import PreviewModal from '@/components/PreviewModal';
+import {
+  Terminal, ShieldCheck, Zap, Search, CheckCircle2, ChevronDown,
+  ArrowRight, ArrowDown, Star, PhoneCall, Play, Pause,
+  Database, Sparkles, Activity, Layers, MessageCircle, Lock,
+  ChevronLeft, ChevronRight, Award, ExternalLink
+} from 'lucide-react';
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -123,8 +129,8 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-background min-h-screen">
-      {/* Dynamic Keyframes for marquee */}
+    <div className="flex flex-col w-full bg-[#f8f9fa] min-h-screen">
+      {/* Keyframes for Marquee */}
       <style jsx global>{`
         @keyframes marquee-left {
           0% { transform: translateX(0%); }
@@ -137,12 +143,12 @@ export default function HomePage() {
         .animate-marquee-left {
           display: flex;
           width: max-content;
-          animation: marquee-left 45s linear infinite;
+          animation: marquee-left 48s linear infinite;
         }
         .animate-marquee-right {
           display: flex;
           width: max-content;
-          animation: marquee-right 45s linear infinite;
+          animation: marquee-right 48s linear infinite;
         }
         .pause-marquee:hover {
           animation-play-state: paused;
@@ -152,124 +158,140 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* 1. HERO SECTION (Luxestate Architectural Luxury Aesthetic) */}
-      <section className="relative w-full overflow-hidden bg-surface py-12 lg:py-20">
-        {/* Ambient atmospheric glow */}
-        <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[980px] h-[480px] bg-gradient-to-b from-surface-variant/70 via-secondary-container/20 to-transparent blur-3xl opacity-60"></div>
+      {/* 1. HERO SECTION (Promax Architectural Aesthetic) */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-b from-indigo-50/40 via-[#f8f9fa] to-[#f8f9fa] pt-8 sm:pt-12 pb-16 lg:pb-24 border-b border-slate-200/60">
+        
+        {/* Subtle Ambient Radial Glow */}
+        <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-indigo-200/20 via-blue-100/10 to-transparent blur-3xl opacity-70"></div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          {/* Top Editorial Badges */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest shadow-sm border border-surface-container">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="font-label-sm text-xs text-on-surface uppercase tracking-wider font-semibold">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Top Badges Row */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-2xs border border-slate-200/80">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-xs text-slate-800 uppercase tracking-wider font-bold">
                 Bản Quyền 2026 • Tự Động Hóa MMO Chuẩn Enterprise
               </span>
             </div>
-            <div className="hidden sm:flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-medium">
-                <span className="material-symbols-outlined text-[15px] text-emerald-600">verified_user</span>
+
+            <div className="hidden sm:flex items-center gap-2.5">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-slate-600 text-xs font-semibold border border-slate-200/80 shadow-2xs">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 VirusTotal 0/72 Clean
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-medium">
-                <span className="material-symbols-outlined text-[15px] text-on-surface">bolt</span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-slate-600 text-xs font-semibold border border-slate-200/80 shadow-2xs">
+                <Zap className="w-4 h-4 text-amber-500" />
                 VietQR Tự Động 3s
               </span>
             </div>
           </div>
 
-          {/* Main Asymmetric Hero Grid */}
+          {/* Main Hero Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
             {/* Left Column: Typography & Authority Copy */}
             <div className="lg:col-span-6 flex flex-col space-y-6">
               <div className="space-y-3">
-                <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-widest">
+                  <Terminal className="w-3.5 h-3.5 text-slate-900" />
                   Kiến Trúc Tự Động Hóa Thực Chiến
-                </span>
-                <h1 className="font-display-xl text-4xl sm:text-5xl lg:text-6xl text-on-surface font-extrabold tracking-tight leading-[1.08]">
+                </div>
+
+                <h1 className="text-4xl sm:text-6xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
                   VŨ KHÍ SỐ &amp;<br />
-                  <span className="text-on-surface/85">TỰ ĐỘNG HÓA</span><br />
-                  <span className="italic font-medium text-secondary">THỰC CHIẾN</span>
+                  <span className="bg-gradient-to-r from-slate-950 via-slate-800 to-indigo-950 bg-clip-text text-transparent">
+                    TỰ ĐỘNG HÓA
+                  </span><br />
+                  <span className="italic font-medium text-slate-500 text-3xl sm:text-5xl lg:text-5xl">
+                    THỰC CHIẾN 2026
+                  </span>
                 </h1>
               </div>
 
-              <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl leading-relaxed">
-                Nơi kỹ thuật lập trình tinh gọn kết hợp cùng tư duy kinh doanh thực chiến. Khám phá kho kịch bản và công cụ phần mềm độc quyền giúp bạn nhân bản doanh thu tự động mà không cần trực máy.
+              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+                Nơi kỹ thuật lập trình tinh gọn kết hợp cùng tư duy kinh doanh thực chiến. Khám phá kho kịch bản và công cụ độc quyền giúp bạn nhân bản doanh thu tự động mà không cần trực máy.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 <a
                   href="#kho-vu-khi-so"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow-md hover:scale-[1.02] hover:bg-primary-container transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-slate-900 text-white text-xs uppercase tracking-wider font-bold shadow-md hover:bg-black hover:scale-[1.02] transition-all"
                 >
                   <span>Khám Phá Kho Kịch Bản</span>
-                  <span className="material-symbols-outlined text-[18px]">arrow_downward</span>
+                  <ArrowDown className="w-4 h-4" />
                 </a>
                 <a
                   href="https://zalo.me/0352279413"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-xs hover:bg-surface-container transition-all shadow-sm border border-surface-container"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-slate-800 text-xs font-semibold hover:bg-slate-50 border border-slate-300 shadow-2xs transition-all"
                 >
-                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  <MessageCircle className="w-4 h-4 text-emerald-600" />
                   <span>UltraViewer 1-1 Với Kiệt</span>
                 </a>
               </div>
 
               {/* Editorial Trust Badges Row */}
-              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-                  <p className="font-headline-sm text-xl font-bold text-on-surface">50.000+</p>
-                  <p className="font-body-sm text-xs text-on-surface-variant">Data &amp; Khách B2B</p>
+              <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+                <div className="p-4 rounded-2xl bg-white shadow-2xs border border-slate-200/80">
+                  <p className="text-xl sm:text-2xl font-black text-slate-900">50.000+</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Data &amp; Khách B2B</p>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-                  <p className="font-headline-sm text-xl font-bold text-emerald-600">0 / 72</p>
-                  <p className="font-body-sm text-xs text-on-surface-variant">VirusTotal Sạch 100%</p>
+                <div className="p-4 rounded-2xl bg-white shadow-2xs border border-slate-200/80">
+                  <p className="text-xl sm:text-2xl font-black text-emerald-600">0 / 72</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">VirusTotal Sạch 100%</p>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-                  <p className="font-headline-sm text-xl font-bold text-on-surface">3 Giây</p>
-                  <p className="font-body-sm text-xs text-on-surface-variant">VietQR Nhả File Drive</p>
+                <div className="p-4 rounded-2xl bg-white shadow-2xs border border-slate-200/80">
+                  <p className="text-xl sm:text-2xl font-black text-slate-900">3 Giây</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">VietQR Nhả File Drive</p>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
-                  <p className="font-headline-sm text-xl font-bold text-on-surface">100%</p>
-                  <p className="font-body-sm text-xs text-on-surface-variant">Hoàn Tiền Nếu Lỗi</p>
+                <div className="p-4 rounded-2xl bg-white shadow-2xs border border-slate-200/80">
+                  <p className="text-xl sm:text-2xl font-black text-slate-900">100%</p>
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">Hoàn Tiền Nếu Lỗi</p>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Hero Showcase Card */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden bg-surface-container-lowest shadow-xl border border-surface-container">
-                <div className="relative aspect-[16/11] w-full overflow-hidden">
+              <div className="relative rounded-3xl overflow-hidden bg-white shadow-2xl border border-slate-200">
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-950">
                   <img
                     src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80"
                     alt="Bot Săn Deal Shopee API & Telegram Broadcaster"
                     className="w-full h-full object-cover transform hover:scale-105 duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
 
                   {/* Top Left Badge */}
-                  <div className="absolute top-5 left-5">
-                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-xs font-bold shadow-sm">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold shadow-sm border border-white/10">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
                       API v2026 LIVE STREAMING
                     </span>
                   </div>
 
                   {/* Bottom Overlay Details */}
-                  <div className="absolute bottom-5 inset-x-5 text-on-primary">
-                    <p className="font-label-sm text-xs uppercase tracking-wider text-surface-variant">
+                  <div className="absolute bottom-5 inset-x-5 text-white">
+                    <p className="text-xs uppercase tracking-wider text-slate-300 font-semibold">
                       Hệ Sinh Thái Tự Động Hóa Thực Chiến
                     </p>
                     <div className="flex items-center justify-between gap-4 mt-1">
-                      <h3 className="font-headline-md text-xl sm:text-2xl font-bold">
+                      <h3 className="text-lg sm:text-2xl font-bold leading-tight">
                         Bot Săn Deal Shopee API &amp; Telegram Broadcaster
                       </h3>
                       <div className="text-right shrink-0">
-                        <span className="font-price-hero text-2xl sm:text-3xl font-extrabold text-on-primary">
+                        <span className="text-2xl sm:text-3xl font-black text-white">
                           199.000đ
                         </span>
-                        <span className="block font-label-sm text-xs text-surface-variant">
+                        <span className="block text-[11px] text-slate-300">
                           Bản quyền trọn đời
                         </span>
                       </div>
@@ -278,15 +300,15 @@ export default function HomePage() {
                 </div>
 
                 {/* Card footer CTA buttons */}
-                <div className="p-4 sm:p-5 flex items-center justify-between gap-3 bg-surface-container-lowest">
-                  <div className="flex items-center gap-2 text-xs text-secondary font-medium">
-                    <span className="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
-                    <span>Bảo hành hoàn tiền 100% trong 7 ngày</span>
+                <div className="p-4 sm:p-5 flex items-center justify-between gap-3 bg-white">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-600 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Hoàn tiền 100% trong 7 ngày</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Link
                       href="/product/workflow-shopee"
-                      className="px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-semibold transition-all"
+                      className="px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-all"
                     >
                       Xem Kiến Trúc
                     </Link>
@@ -295,7 +317,7 @@ export default function HomePage() {
                         const prod = products.find((p) => p.id === 'workflow-shopee');
                         if (prod) setActiveProduct(prod);
                       }}
-                      className="px-5 py-2 rounded-full bg-primary text-on-primary hover:bg-primary-container text-xs font-semibold shadow-sm transition-all"
+                      className="px-5 py-2 rounded-full bg-slate-900 text-white hover:bg-black text-xs font-bold shadow-sm transition-all"
                     >
                       Mua Ngay 199.000đ
                     </button>
@@ -308,17 +330,17 @@ export default function HomePage() {
       </section>
 
       {/* 2. INFINITE MARQUEE TICKER (2 HÀNG TỰ ĐỘNG CHẠY NGANG VÔ TẬN) */}
-      <section className="relative w-full bg-background py-16 lg:py-24 overflow-hidden" id="kho-vu-khi-so">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <section className="relative w-full bg-[#f8f9fa] py-16 lg:py-24 overflow-hidden" id="kho-vu-khi-so">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-semibold uppercase tracking-wider">
-              <span className="material-symbols-outlined text-[16px]">sync_alt</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/80 text-xs text-slate-700 font-bold uppercase tracking-wider">
+              <Activity className="w-3.5 h-3.5 text-slate-900" />
               Chuyển Động Trực Quan 2 Chiều
             </div>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
               Kho Vũ Khí Số &amp; Tool Tự Động Hóa Thực Chiến
             </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
               Hệ thống tuyển chọn tối ưu hóa hiệu suất MMO. Tự động giao mã nguồn và kịch bản bản quyền sau 3 giây quét mã VietQR Napas. Rê chuột để dừng xem chi tiết.
             </p>
           </div>
@@ -326,14 +348,12 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMarqueePaused(!marqueePaused)}
-              className="px-4 py-2 rounded-full bg-surface-container-lowest border border-surface-container text-on-surface font-label-md text-xs shadow-sm hover:bg-surface-container flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-full bg-white border border-slate-300 text-slate-800 text-xs font-bold shadow-2xs hover:bg-slate-50 flex items-center gap-2 transition-all"
             >
-              <span className="material-symbols-outlined text-[18px]">
-                {marqueePaused ? 'play_arrow' : 'pause'}
-              </span>
+              {marqueePaused ? <Play className="w-3.5 h-3.5 fill-current" /> : <Pause className="w-3.5 h-3.5 fill-current" />}
               <span>{marqueePaused ? 'Tiếp Tục Chạy' : 'Tạm Dừng Chạy'}</span>
             </button>
-            <span className="text-xs font-label-sm text-on-surface-variant hidden sm:inline-block">
+            <span className="text-xs font-semibold text-slate-500 hidden sm:inline-block">
               ● 12 Vũ Khí Đang Hoạt Động
             </span>
           </div>
@@ -341,65 +361,70 @@ export default function HomePage() {
 
         {/* ROW 1: TOOLS & BOTS (Chạy từ PHẢI sang TRÁI) */}
         <div className="w-full overflow-hidden mb-6 relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#f8f9fa] to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#f8f9fa] to-transparent z-10"></div>
           
           <div className={`animate-marquee-left pause-marquee flex gap-6 px-4 ${marqueePaused ? 'marquee-paused' : ''}`}>
             {[...row1Products, ...row1Products, ...row1Products].map((item, idx) => (
               <div
                 key={`row1-${item.id}-${idx}`}
-                className="w-[340px] md:w-[380px] shrink-0 bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg border border-surface-container transition-all duration-300 flex flex-col justify-between group"
+                className="w-[360px] min-w-[360px] max-w-[360px] h-[450px] shrink-0 bg-white rounded-3xl p-5 shadow-2xs hover:shadow-xl border border-slate-200/80 transition-all duration-300 flex flex-col justify-between group"
               >
-                <div className="space-y-4">
-                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                <div className="space-y-3.5">
+                  <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 shrink-0">
                     <img
                       src={item.imageUrl}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 duration-500"
                     />
-                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[11px] font-bold text-slate-900 shadow-sm border border-slate-200/60">
                       {item.badge || 'TOOL MMO'}
                     </span>
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-xs font-semibold">
+                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-900 text-white text-[10px] font-bold">
                       {item.version || 'v2026 Live'}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-headline-sm text-base font-bold text-on-surface line-clamp-1">
+                    <h3 className="text-base font-bold text-slate-900 line-clamp-1 group-hover:text-indigo-600 transition-colors">
                       {item.title}
                     </h3>
-                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                    <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
                       {item.shortDesc}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 pt-1 font-body-sm text-xs text-secondary">
-                    <span className="material-symbols-outlined text-[16px]">speed</span>
-                    <span>1.2s / vòng quét</span>
+                  <div className="flex items-center gap-2 pt-1 text-xs text-slate-500">
+                    <span className="flex items-center gap-1 font-medium">
+                      <Zap className="w-3.5 h-3.5 text-amber-500" />
+                      1.2s / vòng quét
+                    </span>
                     <span className="mx-1">•</span>
-                    <span className="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
-                    <span>0/72 Clean</span>
+                    <span className="flex items-center gap-1 font-medium text-emerald-600">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      0/72 Clean
+                    </span>
                   </div>
                 </div>
 
-                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
-                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                    <span className="block text-[11px] text-slate-400 font-medium">Giá trọn đời</span>
+                    <span className="text-lg font-black text-slate-900">
                       {formatPrice(item.price)}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setPreviewProduct(item)}
-                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                      className="px-3.5 py-2 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-all"
                     >
                       Xem Thử
                     </button>
                     <button
                       onClick={() => setActiveProduct(item)}
-                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                      className="px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-all shadow-sm"
                     >
                       Mua Ngay
                     </button>
@@ -412,59 +437,60 @@ export default function HomePage() {
 
         {/* ROW 2: DATA B2B & PROMPTS (Chạy từ TRÁI sang PHẢI) */}
         <div className="w-full overflow-hidden relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#f8f9fa] to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#f8f9fa] to-transparent z-10"></div>
 
           <div className={`animate-marquee-right pause-marquee flex gap-6 px-4 ${marqueePaused ? 'marquee-paused' : ''}`}>
             {[...row2Products, ...row2Products, ...row2Products].map((item, idx) => (
               <div
                 key={`row2-${item.id}-${idx}`}
-                className="w-[340px] md:w-[380px] shrink-0 bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg border border-surface-container transition-all duration-300 flex flex-col justify-between group"
+                className="w-[360px] min-w-[360px] max-w-[360px] h-[450px] shrink-0 bg-white rounded-3xl p-5 shadow-2xs hover:shadow-xl border border-slate-200/80 transition-all duration-300 flex flex-col justify-between group"
               >
-                <div className="space-y-4">
-                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                <div className="space-y-3.5">
+                  <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 shrink-0">
                     <img
                       src={item.imageUrl}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 duration-500"
                     />
-                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[11px] font-bold text-slate-900 shadow-sm border border-slate-200/60">
                       {item.badge || 'DATA B2B'}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-headline-sm text-base font-bold text-on-surface line-clamp-1">
+                    <h3 className="text-base font-bold text-slate-900 line-clamp-1 group-hover:text-indigo-600 transition-colors">
                       {item.title}
                     </h3>
-                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                    <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
                       {item.shortDesc}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 pt-1 font-body-sm text-xs text-secondary">
-                    <span className="material-symbols-outlined text-[16px]">database</span>
+                  <div className="flex items-center gap-2 pt-1 text-xs text-slate-500 font-medium">
+                    <Database className="w-3.5 h-3.5 text-slate-700" />
                     <span>{item.fileSize || 'Data Chuẩn 100%'}</span>
                   </div>
                 </div>
 
-                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
-                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                    <span className="block text-[11px] text-slate-400 font-medium">Giá trọn đời</span>
+                    <span className="text-lg font-black text-slate-900">
                       {formatPrice(item.price)}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setPreviewProduct(item)}
-                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                      className="px-3.5 py-2 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-all"
                     >
                       Xem Thử
                     </button>
                     <button
                       onClick={() => setActiveProduct(item)}
-                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                      className="px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-all shadow-sm"
                     >
                       Mua Ngay
                     </button>
@@ -477,29 +503,27 @@ export default function HomePage() {
       </section>
 
       {/* 2.5 CATALOG GRID WITH SEARCH & FILTER */}
-      <section className="w-full bg-surface py-16 lg:py-20 border-t border-surface-container">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-white py-16 lg:py-20 border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
-              <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">
                 Danh Mục Hoàn Chỉnh
               </span>
-              <h2 className="font-headline-lg text-2xl sm:text-3xl font-bold text-on-surface tracking-tight mt-1">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
                 Lọc &amp; Tìm Kiếm Vũ Khí Số
               </h2>
             </div>
 
             {/* Search Input */}
             <div className="relative w-full md:w-80">
-              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-secondary">
-                <span className="material-symbols-outlined text-[18px]">search</span>
-              </span>
+              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Tìm kiếm tool, data, prompt..."
-                className="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-surface-container rounded-full text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary"
+                className="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-slate-800 transition shadow-inner"
               />
             </div>
           </div>
@@ -512,8 +536,8 @@ export default function HomePage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-primary text-on-primary shadow-sm'
-                    : 'bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-surface-container hover:bg-surface-container'
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 border border-slate-200/80'
                 }`}
               >
                 {cat.name}
@@ -526,16 +550,17 @@ export default function HomePage() {
             {filteredProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-md border border-surface-container flex flex-col justify-between group transition-all"
+                className="bg-white rounded-3xl p-6 shadow-2xs hover:shadow-xl hover:-translate-y-1 border border-slate-200/80 flex flex-col justify-between group transition-all duration-300"
               >
                 <div className="space-y-4">
-                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-100">
                     <img
                       src={prod.imageUrl}
                       alt={prod.title}
                       className="w-full h-full object-cover group-hover:scale-105 duration-500"
                     />
-                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[11px] font-bold text-slate-900 shadow-sm border border-slate-200/60">
                       {prod.badge}
                     </span>
                   </div>
@@ -543,44 +568,44 @@ export default function HomePage() {
                   <div>
                     <Link
                       href={`/product/${prod.id}`}
-                      className="font-headline-sm text-base font-bold text-on-surface hover:text-primary transition-colors block line-clamp-1"
+                      className="text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors block line-clamp-1"
                     >
                       {prod.title}
                     </Link>
-                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                    <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
                       {prod.shortDesc}
                     </p>
                   </div>
 
-                  <div className="space-y-1.5 pt-1 border-t border-surface-container text-xs text-secondary">
+                  <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600">
                     <div className="flex items-center justify-between">
-                      <span>Định dạng:</span>
-                      <span className="font-medium text-on-surface">{prod.fileFormat}</span>
+                      <span className="text-slate-400">Định dạng:</span>
+                      <span className="font-semibold text-slate-800">{prod.fileFormat}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Kiểm duyệt:</span>
-                      <span className="font-medium text-emerald-600">{prod.testedClean}</span>
+                      <span className="text-slate-400">Kiểm duyệt:</span>
+                      <span className="font-semibold text-emerald-600">{prod.testedClean}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                <div className="pt-5 mt-4 flex items-center justify-between border-t border-slate-100">
                   <div>
-                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
-                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                    <span className="block text-[11px] text-slate-400 font-medium">Giá trọn đời</span>
+                    <span className="text-lg font-black text-slate-900">
                       {formatPrice(prod.price)}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setPreviewProduct(prod)}
-                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                      className="px-3.5 py-2 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-all"
                     >
                       Xem Thử
                     </button>
                     <button
                       onClick={() => setActiveProduct(prod)}
-                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                      className="px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition-all shadow-sm"
                     >
                       Mua Ngay
                     </button>
@@ -593,78 +618,78 @@ export default function HomePage() {
       </section>
 
       {/* 3. QUY TRÌNH TỰ ĐỘNG HÓA 3 BƯỚC THỰC CHIẾN */}
-      <section className="w-full bg-surface py-20 lg:py-28 relative" id="quy-trinh-4-buoc">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-[#f8f9fa] py-20 lg:py-28 relative" id="quy-trinh-4-buoc">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-14 space-y-3">
-            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+            <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">
               Tiêu Chuẩn Vận Hành Độc Quyền
             </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
               Quy Trình Triển Khai &amp; Bàn Giao Vũ Khí Số
             </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Quy trình 3 bước phổ quát được chuẩn hóa cho mọi phần mềm, bot tự động và kịch bản số. Đảm bảo từ người mới bắt đầu đến anh em MMO lão làng đều có thể đưa vào vận hành trơn tru ngay lập tức.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-8 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-sm">
+                  <span className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-black text-slate-900 text-sm">
                     01
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-surface-container-low font-label-sm text-xs text-secondary font-semibold uppercase">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700 uppercase">
                     3s Cấp Phép
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  <h3 className="text-lg font-bold text-slate-900">
                     Nhận Kịch Bản &amp; Hướng Dẫn Chi Tiết
                   </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                     Sau khi thanh toán, hệ thống tự động cấp link tải Google Drive gốc kèm toàn bộ video hướng dẫn cài đặt chi tiết từng cú click chuột.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-8 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-sm">
+                  <span className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-black text-slate-900 text-sm">
                     02
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-surface-container-low font-label-sm text-xs text-secondary font-semibold uppercase">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700 uppercase">
                     1 Click Setup
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  <h3 className="text-lg font-bold text-slate-900">
                     Kích Hoạt &amp; Cấu Hình 1 Lần Duy Nhất
                   </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                     Chỉ cần điền token hoặc cookie vào file cấu hình. Nếu gặp khó khăn, Kiệt trực tiếp UltraViewer kết nối máy tính hỗ trợ 1-1 miễn phí.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-8 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm shadow">
+                  <span className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-black text-sm shadow-sm">
                     03
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-label-sm text-xs font-semibold uppercase">
+                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase">
                     Tự Động 24/7
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  <h3 className="text-lg font-bold text-slate-900">
                     Vận Hành Tự Động &amp; Thu Tiền Thụ Động
                   </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                     Hệ thống tự động chạy ngầm trên VPS hoặc đám mây, quét deal, đẩy đơn và báo cáo doanh thu về Telegram không gián đoạn.
                   </p>
                 </div>
@@ -675,82 +700,82 @@ export default function HomePage() {
       </section>
 
       {/* 4. DỊCH VỤ VIẾT TOOL THEO YÊU CẦU (#custom-automation) */}
-      <section className="w-full bg-surface-container-lowest py-20 lg:py-24 relative border-y border-surface-container" id="custom-automation">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-white py-20 lg:py-24 relative border-y border-slate-200" id="custom-automation">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12 space-y-3">
-            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+            <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">
               Dịch Vụ Đo Ni Đóng Giày
             </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
               Lập Trình Tool &amp; Tự Động Hóa Riêng Theo Yêu Cầu
             </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Ngoài các giải pháp có sẵn, Kiệt trực tiếp phát triển các module phần mềm chuyên biệt theo đúng quy trình và đặc thù kinh doanh riêng của doanh nghiệp bạn.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-6 hover:shadow-md transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[24px]">database</span>
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center shadow-2xs">
+                  <Database className="w-6 h-6 text-slate-900" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                <h3 className="text-lg font-bold text-slate-900">
                   Cào Data Khách Hàng Đa Kênh
                 </h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Thu thập data khách hàng tiềm năng, quét sản phẩm đối thủ từ Shopee, TikTok Shop, Google Maps, Facebook Group theo tiêu chí riêng, tự động làm sạch và xuất Excel.
                 </p>
               </div>
-              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
-                <span className="font-label-sm text-xs font-semibold text-secondary">Bàn Giao: 1 - 3 Ngày</span>
-                <span className="material-symbols-outlined text-[18px] text-secondary">code</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-600">Bàn Giao: 1 - 3 Ngày</span>
+                <Sparkles className="w-4 h-4 text-amber-500" />
               </div>
             </div>
 
-            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-6 hover:shadow-md transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[24px]">smart_toy</span>
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center shadow-2xs">
+                  <Terminal className="w-6 h-6 text-slate-900" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                <h3 className="text-lg font-bold text-slate-900">
                   Bot Telegram &amp; Zalo Nghiệp Vụ
                 </h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Tự động báo cáo doanh thu, bắn đơn hàng theo thời gian thực, quản lý hội nhóm, thông báo biến động số dư và tích hợp webhook AI phản hồi tin nhắn khách hàng 24/7.
                 </p>
               </div>
-              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
-                <span className="font-label-sm text-xs font-semibold text-secondary">Độ Trễ Siêu Thấp</span>
-                <span className="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-600">Độ Trễ Siêu Thấp</span>
+                <Zap className="w-4 h-4 text-emerald-600" />
               </div>
             </div>
 
-            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-6 hover:shadow-md transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[24px]">neurology</span>
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center shadow-2xs">
+                  <Layers className="w-6 h-6 text-slate-900" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                <h3 className="text-lg font-bold text-slate-900">
                   Tích Hợp AI &amp; Tự Động Hóa Nội Dung
                 </h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Xây dựng hệ thống tự động sinh bài viết SEO, kịch bản video ngắn, auto đăng tải đa kênh kết hợp API OpenAI GPT-4o, Claude 3.5 giúp tiết kiệm 90% chi phí nhân sự.
                 </p>
               </div>
-              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
-                <span className="font-label-sm text-xs font-semibold text-secondary">Tối Ưu Chi Phí API</span>
-                <span className="material-symbols-outlined text-[18px] text-secondary">auto_awesome</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-600">Tối Ưu Chi Phí API</span>
+                <Award className="w-4 h-4 text-indigo-600" />
               </div>
             </div>
           </div>
 
-          <div className="mt-8 p-6 rounded-2xl bg-surface flex flex-col md:flex-row items-center justify-between gap-6 border border-surface-container">
+          <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
             <div className="space-y-1">
-              <p className="font-headline-sm text-base sm:text-lg font-bold text-on-surface">
+              <p className="text-base sm:text-xl font-bold">
                 Bạn Có Ý Tưởng &amp; Muốn Khảo Sát Tính Khả Thi?
               </p>
-              <p className="font-body-sm text-xs text-on-surface-variant">
+              <p className="text-xs sm:text-sm text-slate-300">
                 Kiệt trực tiếp phân tích yêu cầu kỹ thuật và báo giá minh bạch, demo giải pháp mẫu trước khi thực hiện.
               </p>
             </div>
@@ -758,9 +783,9 @@ export default function HomePage() {
               href="https://zalo.me/0352279413"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow hover:bg-primary-container transition-all flex items-center gap-2 shrink-0"
+              className="px-7 py-3.5 rounded-full bg-white text-slate-900 text-xs uppercase tracking-wider font-bold shadow hover:bg-slate-100 transition-all flex items-center gap-2 shrink-0"
             >
-              <span className="material-symbols-outlined text-[18px]">chat</span>
+              <MessageCircle className="w-4 h-4 text-emerald-600" />
               <span>Trao Đổi Bài Toán Riêng Với Kiệt</span>
             </a>
           </div>
@@ -768,64 +793,64 @@ export default function HomePage() {
       </section>
 
       {/* 5. 4 TIÊU CHUẨN KỸ THUẬT VÀNG (#tieu-chuan-vang) */}
-      <section className="w-full bg-background py-20 lg:py-28 relative" id="tieu-chuan-vang">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-[#f8f9fa] py-20 lg:py-28 relative" id="tieu-chuan-vang">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+            <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">
               Kỷ Luật &amp; Trách Nhiệm Kỹ Thuật
             </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
               4 Tiêu Chuẩn Kỹ Thuật Vàng Độc Quyền
             </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
+            <p className="text-sm sm:text-base text-slate-600">
               Khác biệt hoàn toàn với những tool trôi nổi chứa mã độc. Kiệt cam kết tối đa tính minh bạch, sự an toàn và quyền lợi tuyệt đối cho máy tính của bạn.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
-                  <span className="material-symbols-outlined text-[24px]">code</span>
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-900">
+                  <Terminal className="w-6 h-6 text-slate-900" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Lập Trình Tinh Gọn</h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900">Lập Trình Tinh Gọn</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Tối ưu hóa tài nguyên phần cứng, không ngốn RAM hay CPU. Viết bằng Python/Node.js hiện đại, dễ dàng tùy biến theo nhu cầu.
                 </p>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-emerald-600">
-                  <span className="material-symbols-outlined text-[24px]">verified_user</span>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                  <ShieldCheck className="w-6 h-6 text-emerald-600" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Mã Sạch 0/72 Clean</h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900">Mã Sạch 0/72 Clean</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   100% tệp tin được quét và xác thực qua VirusTotal trước khi bàn giao. Tuyệt đối không chứa trojan, spyware hay mã độc ngầm.
                 </p>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
-                  <span className="material-symbols-outlined text-[24px]">bolt</span>
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600">
+                  <Zap className="w-6 h-6 text-amber-600" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Giao Tự Động 3 Giây</h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900">Giao Tự Động 3 Giây</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Tích hợp Napas 24/7 tự động xác nhận giao dịch. Quét mã VietQR là nhận link tải Google Drive gốc ngay lập tức, không phải chờ duyệt.
                 </p>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+            <div className="bg-white p-7 rounded-3xl shadow-2xs border border-slate-200/80 flex flex-col justify-between hover:shadow-lg transition-all">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
-                  <span className="material-symbols-outlined text-[24px]">published_with_changes</span>
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                  <Award className="w-6 h-6 text-indigo-600" />
                 </div>
-                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Hoàn Tiền 100% 7 Ngày</h3>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-900">Hoàn Tiền 100% 7 Ngày</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Nếu tool phát sinh lỗi kỹ thuật hoặc không đúng với mô tả cam kết, Kiệt hoàn trả 100% số tiền ngay trong ngày qua số tài khoản của bạn.
                 </p>
               </div>
@@ -835,20 +860,20 @@ export default function HomePage() {
       </section>
 
       {/* 6. FOUNDER SPOTLIGHT SECTION */}
-      <section className="w-full bg-surface py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="bg-surface-container rounded-3xl p-8 lg:p-14 relative overflow-hidden shadow-sm flex flex-col lg:flex-row items-center justify-between gap-10">
+      <section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 lg:p-14 relative overflow-hidden shadow-2xs flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="space-y-6 max-w-2xl z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest shadow-sm font-label-sm text-xs text-on-surface font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-2xs text-xs text-slate-800 font-bold uppercase tracking-wider border border-slate-200">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Hỗ Trợ Kỹ Thuật UltraViewer 1-1 Trực Tiếp
               </div>
 
-              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Sẵn Sàng Nhân Bản Doanh Thu Với Tự Động Hóa Thực Chiến?
               </h2>
 
-              <p className="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Đừng để quy trình thủ công kìm hãm quy mô kinh doanh của bạn. Kiệt trực tiếp tư vấn giải pháp, kết nối UltraViewer cài đặt và đồng hành cho đến khi công cụ vận hành sinh lời 24/7.
               </p>
 
@@ -857,54 +882,54 @@ export default function HomePage() {
                   href="https://zalo.me/0352279413"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow hover:bg-primary-container transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 text-white text-xs uppercase tracking-wider font-bold shadow hover:bg-black transition-all"
                 >
-                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
                   <span>Liên Hệ Zalo Với Kiệt</span>
                 </a>
                 <a
                   href="#kho-vu-khi-so"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all shadow-sm border border-surface-container"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-slate-800 text-xs font-semibold hover:bg-slate-100 transition-all shadow-2xs border border-slate-300"
                 >
-                  <span className="material-symbols-outlined text-[18px]">terminal</span>
+                  <Terminal className="w-4 h-4" />
                   <span>Khám Phá Vũ Khí Số</span>
                 </a>
               </div>
             </div>
 
             {/* Founder Card */}
-            <div className="relative z-10 w-full lg:w-[380px] shrink-0 bg-surface-container-lowest p-6 rounded-2xl shadow-md border border-surface-container flex flex-col space-y-4">
+            <div className="relative z-10 w-full lg:w-[380px] shrink-0 bg-white p-6 rounded-3xl shadow-md border border-slate-200 flex flex-col space-y-4">
               <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
-                  <span className="material-symbols-outlined text-[24px]">terminal</span>
+                <div className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-xs">
+                  <Terminal className="w-6 h-6 text-emerald-400" />
                 </div>
                 <div>
-                  <h4 className="font-headline-sm text-lg font-bold text-on-surface">Ngô Dương Kiệt</h4>
-                  <p className="font-body-sm text-xs text-on-surface-variant">Lead Developer &amp; Founder</p>
+                  <h4 className="text-lg font-bold text-slate-900">Ngô Dương Kiệt</h4>
+                  <p className="text-xs text-slate-500 font-medium">Lead Developer &amp; Founder</p>
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2 border-t border-surface-container font-body-sm text-xs text-on-surface-variant">
+              <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-slate-600">
                 <div className="flex items-center justify-between">
                   <span>Khu vực hỗ trợ:</span>
-                  <span className="font-semibold text-on-surface">Sơn Trà, Đà Nẵng</span>
+                  <span className="font-bold text-slate-900">Sơn Trà, Đà Nẵng</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Tốc độ bàn giao:</span>
-                  <span className="font-semibold text-emerald-600">3 Giây Tự Động</span>
+                  <span className="font-bold text-emerald-600">3 Giây Tự Động</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Hình thức trợ giúp:</span>
-                  <span className="font-semibold text-on-surface">UltraViewer 1-1</span>
+                  <span className="font-bold text-slate-900">UltraViewer 1-1</span>
                 </div>
               </div>
 
               <div className="pt-2">
                 <a
                   href="tel:0352279413"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low text-on-surface font-label-md text-xs font-semibold hover:bg-surface-container transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-slate-100 text-slate-800 text-xs font-bold hover:bg-slate-200 transition-all"
                 >
-                  <span className="material-symbols-outlined text-[18px]">call</span>
+                  <PhoneCall className="w-4 h-4" />
                   <span>Hotline: 0352.279.413</span>
                 </a>
               </div>
@@ -914,18 +939,18 @@ export default function HomePage() {
       </section>
 
       {/* 7. ĐÁNH GIÁ THỰC TẾ & TESTIMONIALS CAROUSEL (#danh-gia) */}
-      <section className="w-full bg-surface py-20 lg:py-28 relative" id="danh-gia">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-[#f8f9fa] py-20 lg:py-28 relative" id="danh-gia">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <div className="max-w-2xl space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container font-label-sm text-xs text-on-surface font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-200/80 text-xs text-slate-800 font-bold uppercase tracking-wider">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Đánh Giá Thực Chiến
               </div>
-              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Cộng Đồng MMO &amp; Bán Hàng Nói Gì Về Kiệt?
               </h2>
-              <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Được kiểm chứng hiệu quả thực chiến bởi hơn 120+ anh em kinh doanh online, chủ shop đa sàn và agency tiếp thị. Người thật việc thật, kết quả đo lường minh bạch.
               </p>
             </div>
@@ -933,57 +958,57 @@ export default function HomePage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setCurrentTestimonial((prev) => (prev > 0 ? prev - 1 : testimonials.length - 1))}
-                className="w-11 h-11 rounded-full bg-surface-container-lowest border border-surface-container shadow-sm hover:bg-surface-container flex items-center justify-center text-on-surface transition-all active:scale-95"
+                className="w-11 h-11 rounded-full bg-white border border-slate-300 shadow-2xs hover:bg-slate-100 flex items-center justify-center text-slate-800 transition-all active:scale-95"
                 aria-label="Previous review"
               >
-                <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setCurrentTestimonial((prev) => (prev < testimonials.length - 1 ? prev + 1 : 0))}
-                className="w-11 h-11 rounded-full bg-surface-container-lowest border border-surface-container shadow-sm hover:bg-surface-container flex items-center justify-center text-on-surface transition-all active:scale-95"
+                className="w-11 h-11 rounded-full bg-white border border-slate-300 shadow-2xs hover:bg-slate-100 flex items-center justify-center text-slate-800 transition-all active:scale-95"
                 aria-label="Next review"
               >
-                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
 
           {/* Testimonial Active Card */}
-          <div className="bg-surface-container-lowest p-8 lg:p-10 rounded-3xl shadow-sm border border-surface-container transition-all">
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-sm border border-slate-200/80 transition-all">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
                 <div className="flex items-center gap-1 text-amber-500">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="material-symbols-outlined text-[20px]">star</span>
+                    <Star key={i} className="w-5 h-5 fill-current" />
                   ))}
-                  <span className="text-xs font-semibold text-on-surface ml-2">5.0 / 5.0 Đánh giá</span>
+                  <span className="text-xs font-bold text-slate-800 ml-2">5.0 / 5.0 Đánh giá</span>
                 </div>
 
-                <p className="font-headline-sm text-lg sm:text-xl font-medium text-on-surface leading-relaxed">
+                <p className="text-lg sm:text-xl font-medium text-slate-800 leading-relaxed">
                   "{testimonials[currentTestimonial].comment}"
                 </p>
 
-                <div className="pt-2 flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full bg-surface-container text-xs font-semibold text-on-surface">
+                <div className="pt-2 flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 text-xs font-bold text-slate-800">
                     Đã mua: {testimonials[currentTestimonial].productBought}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold">
                     {testimonials[currentTestimonial].channel}
                   </span>
                 </div>
               </div>
 
-              <div className="lg:col-span-4 flex items-center gap-4 lg:border-l lg:border-surface-container lg:pl-8">
+              <div className="lg:col-span-4 flex items-center gap-4 lg:border-l lg:border-slate-200 lg:pl-8">
                 <img
                   src={testimonials[currentTestimonial].avatar}
                   alt={testimonials[currentTestimonial].name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-surface-container shadow"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-slate-200 shadow-sm"
                 />
                 <div>
-                  <h4 className="font-headline-sm text-base font-bold text-on-surface">
+                  <h4 className="text-base font-bold text-slate-900">
                     {testimonials[currentTestimonial].name}
                   </h4>
-                  <p className="font-body-sm text-xs text-on-surface-variant">
+                  <p className="text-xs text-slate-500 font-medium">
                     {testimonials[currentTestimonial].role}
                   </p>
                 </div>
@@ -994,16 +1019,16 @@ export default function HomePage() {
       </section>
 
       {/* 8. FAQ ACCORDION */}
-      <section className="w-full bg-surface-container-lowest py-20 lg:py-28 relative border-t border-surface-container">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-white py-20 lg:py-28 relative border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 space-y-3">
-            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+            <span className="text-xs uppercase tracking-widest text-slate-500 font-bold">
               Hỏi Đáp Trực Quan
             </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
               Giải Đáp Thắc Mắc Kỹ Thuật Thường Gặp
             </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
+            <p className="text-sm sm:text-base text-slate-600">
               Mọi quy trình được minh bạch hóa từ thanh toán đến hỗ trợ sau khi nhận file.
             </p>
           </div>
@@ -1014,23 +1039,21 @@ export default function HomePage() {
               return (
                 <div
                   key={index}
-                  className="rounded-2xl border border-surface-container bg-surface-container-low overflow-hidden transition-all"
+                  className="rounded-3xl border border-slate-200/80 bg-slate-50/60 overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-base font-bold text-on-surface hover:text-primary transition-colors"
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors"
                   >
                     <span>{faq.q}</span>
-                    <span
-                      className={`material-symbols-outlined text-[20px] transition-transform duration-200 ${
+                    <ChevronDown
+                      className={`w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
-                    >
-                      expand_more
-                    </span>
+                    />
                   </button>
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-surface-container pt-3">
+                    <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200 pt-3">
                       {faq.a}
                     </div>
                   )}

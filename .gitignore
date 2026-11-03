@@ -8,3 +8,4 @@ yarn-error.log*
 *.pem
 stitch_imports/
 stitch_tailwind.json
+screenshot_*.png

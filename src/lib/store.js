@@ -80,7 +80,7 @@ const INITIAL_PRODUCTS = [
     "fileSize": "5.1 MB",
     "version": "v2.8 Stable",
     "testedClean": "VirusTotal 0/72 Clean",
-    "imageUrl": "https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=800&auto=format&fit=crop&q=60",
+    "imageUrl": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&auto=format&fit=crop&q=60",
     "downloadUrl": "/downloads/bot-telegram-affiliate-vip.zip",
     "fileName": "bot-telegram-affiliate-vip.zip",
     "features": [
