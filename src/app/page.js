@@ -2,25 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import ProductCard from '@/components/ProductCard';
 import CheckoutModal from '@/components/CheckoutModal';
 import PreviewModal from '@/components/PreviewModal';
-import AutomationWorkflow from '@/components/AutomationWorkflow';
-import {
-  Sparkles, ShieldCheck, Zap, Search, CheckCircle2, ChevronDown,
-  RefreshCw, Laptop, ArrowRight, ArrowUpRight, Star, PhoneCall,
-  ExternalLink, FileCode2, Eye, Shield, Users, Layers, Award
-} from 'lucide-react';
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('DEFAULT');
   const [activeProduct, setActiveProduct] = useState(null);
   const [previewProduct, setPreviewProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [marqueePaused, setMarqueePaused] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/products')
@@ -34,20 +28,68 @@ export default function HomePage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredProducts = products
-    .filter((prod) => {
-      const matchCategory = selectedCategory === 'ALL' || prod.category === selectedCategory;
-      const matchSearch =
-        prod.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        prod.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchCategory && matchSearch;
-    })
-    .sort((a, b) => {
-      if (sortBy === 'PRICE_ASC') return a.price - b.price;
-      if (sortBy === 'PRICE_DESC') return b.price - a.price;
-      if (sortBy === 'RATING') return b.rating - a.rating;
-      return (b.salesCount || 0) - (a.salesCount || 0);
-    });
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
+  const filteredProducts = products.filter((prod) => {
+    const matchCategory = selectedCategory === 'ALL' || prod.category === selectedCategory;
+    const matchSearch =
+      prod.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      prod.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCategory && matchSearch;
+  });
+
+  const row1Products = products.filter((p) => p.category === 'Tool & Bot MMO');
+  const row2Products = products.filter((p) => p.category !== 'Tool & Bot MMO');
+
+  const testimonials = [
+    {
+      name: 'Nguyễn Thành Nam',
+      role: 'Chủ shop thời trang & MMO Shopee',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+      comment: 'Con bot Shopee Telegram của Kiệt giúp mình tự động quét voucher và bắn deal liên tục 24/7. Tháng vừa rồi doanh thu hoa hồng Shopee nhảy thêm hơn 14 triệu mà không tốn công trực máy.',
+      productBought: 'Bot Săn Deal Shopee API v2026',
+      rating: 5,
+      channel: 'Zalo Verified'
+    },
+    {
+      name: 'Trần Đình Bảo',
+      role: 'Telesale & Phân phối F&B Sài Gòn',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+      comment: 'Tệp 25.000 quán cafe cực kỳ chuẩn xác, quét đúng số điện thoại chủ quán và quản lý. Tỷ lệ máy sống trên 92%, đội sale của mình gọi chốt được hơn 40 khách chỉ trong tuần đầu.',
+      productBought: 'Tệp 25.000 Quán Cafe & Nhà Hàng F&B',
+      rating: 5,
+      channel: 'VietQR Napas'
+    },
+    {
+      name: 'Hoàng Hải Yến',
+      role: 'Content Creator & Bán hàng TikTok',
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+      comment: 'Bộ prompt AI viết kịch bản TikTok thực sự quá chất. Chỉ cần đổi tên sản phẩm là ra kịch bản giật tít 3s giữ chân người xem cực đỉnh. Đã lên 2 video cắn xu hướng triệu view.',
+      productBought: 'Bộ Prompt AI GPT-4o Bán Hàng Triệu View',
+      rating: 5,
+      channel: 'Telegram Feedback'
+    },
+    {
+      name: 'Lê Duy Khang',
+      role: 'Chủ xưởng nội thất & Gia dụng',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+      comment: 'Tool Zalo của Kiệt chạy rất êm, có độ trễ ngẫu nhiên nên không hề bị checkpoint hay khóa tài khoản. Cảm ơn Kiệt đã UltraViewer cài đặt và cấu hình trực tiếp giúp mình.',
+      productBought: 'Tool Auto Bắn Tin Nhắn Zalo Nuôi Khách',
+      rating: 5,
+      channel: 'UltraViewer 1-1'
+    },
+    {
+      name: 'Phạm Minh Trí',
+      role: 'Marketing Agency Lead',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
+      comment: 'Tool cào Google Maps theo tọa độ GPS giải quyết triệt để bài toán tìm khách hàng cho team mình. Quét 10 phút được cả nghìn data có đầy đủ số hotline và link Google Maps.',
+      productBought: 'Auto Crawl Dữ Liệu Google Maps GPS',
+      rating: 5,
+      channel: 'Zalo Verified'
+    }
+  ];
 
   const faqs = [
     {
@@ -55,832 +97,951 @@ export default function HomePage() {
       a: 'Hệ thống tự động 100%. Sau khi bạn quét mã VietQR qua app ngân hàng, hệ thống Napas sẽ khớp lệnh trong 3 giây và tự động mở link tải Google Drive gốc, kèm quyền tải lại trọn đời vào email của bạn.'
     },
     {
-      q: 'Tôi không rành về kỹ thuật hay code thì có cài đặt và dùng được không?',
+      q: 'Tôi không rành về kỹ thuật hay lập trình thì có dùng được không?',
       a: 'Hoàn toàn được! Mỗi sản phẩm đều có video hướng dẫn chi tiết từng cú click chuột. Ngoài ra, Kiệt hỗ trợ trực tiếp 1-1 qua UltraViewer và Zalo cho bạn đến khi tool chạy mượt mà.'
     },
     {
-      q: 'Chính sách bảo hành và hoàn tiền của Kiệt như thế nào?',
-      a: 'Kiệt cam kết 100%: Toàn bộ tool, script và data đều được kiểm tra sạch mã độc (VirusTotal 0/72). Nếu tool lỗi kỹ thuật không hoạt động như mô tả, Kiệt hoàn tiền 100% ngay lập tức qua số tài khoản của bạn.'
+      q: 'Chính sách bảo hành và cam kết hoàn tiền của Kiệt như thế nào?',
+      a: 'Kiệt cam kết 100%: Toàn bộ tool, script và data đều được kiểm tra sạch mã độc (VirusTotal 0/72 Clean). Nếu tool lỗi kỹ thuật không hoạt động như mô tả, Kiệt hoàn tiền 100% ngay lập tức qua số tài khoản của bạn.'
     },
     {
       q: 'Khi các nền tảng (Shopee, TikTok, Telegram) cập nhật thuật toán thì sao?',
       a: 'Bạn được cập nhật các phiên bản mới hoàn toàn MIỄN PHÍ trọn đời. Khi có bản cập nhật mới, link tải sẽ tự động cập nhật code mới nhất.'
+    },
+    {
+      q: 'Tôi có thể yêu cầu viết tool riêng hoặc cào data theo tiêu chí đặc biệt không?',
+      a: 'Có! Kiệt nhận lập trình tool tự động hóa riêng theo bài toán kinh doanh cụ thể của bạn. Bạn chỉ cần nhắn Zalo 0352.279.413 để trao đổi yêu cầu kỹ thuật và nhận báo giá trực tiếp.'
     }
   ];
 
-  const testimonials = [
-    {
-      name: 'Nguyễn Thành Nam',
-      role: 'Chủ shop thời trang & Tiếp thị liên kết',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
-      comment: 'Con bot Shopee Telegram của Kiệt giúp mình bắn deal tự động 24/7. Tháng vừa rồi hoa hồng Shopee nhảy thêm hơn 14 triệu mà không tốn công canh deal.',
-      productBought: 'Bot Săn Deal Shopee Telegram',
-      rating: 5
-    },
-    {
-      name: 'Vũ Quốc Bảo',
-      role: 'Agency Tiếp Thị Doanh Nghiệp (Hà Nội)',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-      comment: 'Tệp 25.000 data quán cafe và F&B lọc chuẩn từng quận huyện. Đội ngũ kinh doanh bên mình gọi điện chuyển đổi cực cao. Đáng từng xu!',
-      productBought: 'Tệp 25.000 Khách Hàng B2B F&B',
-      rating: 5
-    },
-    {
-      name: 'Lê Hoàng Yến',
-      role: 'Sáng tạo nội dung & Bán hàng Online',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
-      comment: 'Bộ prompt GPT-4o viết content thương mại chuẩn SEO dùng cực kỳ sướng. Bạn Kiệt nhiệt tình Ultraviewer hướng dẫn tận tình.',
-      productBought: 'Bộ Prompt AI GPT-4o Đỉnh Cao',
-      rating: 5
-    }
+  const categories = [
+    { id: 'ALL', name: 'Tất Cả Vũ Khí' },
+    { id: 'Tool & Bot MMO', name: 'Tool & Bot MMO' },
+    { id: 'Data Khách Hàng B2B', name: 'Data B2B F&B / Spa' },
+    { id: 'Prompt AI & Kịch Bản', name: 'Prompt AI & Kịch Bản' },
+    { id: 'Kịch Bản Tự Động', name: 'Kịch Bản Tự Động' }
   ];
 
   return (
-    <div className="bg-[#f8f9fa] text-slate-800 font-sans">
-      
-      {/* ============================================================== */}
-      {/* 1. HERO SECTION (100% TIẾNG VIỆT - CHUẨN BENTO LUXURY) */}
-      {/* ============================================================== */}
-      <section className="relative pt-8 sm:pt-14 pb-16 sm:pb-20 border-b border-slate-200/80 bg-[#f8f9fa] overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            
-            {/* Cột 1: Tiêu đề & Giới thiệu & Nút bấm & Uy tín (lg:col-span-4) */}
-            <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/60 text-slate-700 text-xs font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Bản Quyền 2026 • Tự Động Hóa MMO</span>
-                </div>
+    <div className="flex flex-col w-full bg-background min-h-screen">
+      {/* Dynamic Keyframes for marquee */}
+      <style jsx global>{`
+        @keyframes marquee-left {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0%); }
+        }
+        .animate-marquee-left {
+          display: flex;
+          width: max-content;
+          animation: marquee-left 45s linear infinite;
+        }
+        .animate-marquee-right {
+          display: flex;
+          width: max-content;
+          animation: marquee-right 45s linear infinite;
+        }
+        .pause-marquee:hover {
+          animation-play-state: paused;
+        }
+        .marquee-paused {
+          animation-play-state: paused !important;
+        }
+      `}</style>
 
-                <h1 className="font-editorial text-4xl sm:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.02] tracking-tight">
-                  Vũ Khí Số & <br />
-                  <span className="italic font-normal">Tự Động Hóa Thực Chiến</span>
-                </h1>
+      {/* 1. HERO SECTION (Luxestate Architectural Luxury Aesthetic) */}
+      <section className="relative w-full overflow-hidden bg-surface py-12 lg:py-20">
+        {/* Ambient atmospheric glow */}
+        <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[980px] h-[480px] bg-gradient-to-b from-surface-variant/70 via-secondary-container/20 to-transparent blur-3xl opacity-60"></div>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md">
-                  Nơi kỹ thuật lập trình tinh gọn kết hợp cùng tư duy kinh doanh thực chiến. Khám phá kho kịch bản và công cụ phần mềm độc quyền giúp bạn nhân bản doanh thu tự động mà không cần trực máy.
-                </p>
-
-                {/* Nút bấm đôi dạng Pill */}
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <a
-                    href="#products"
-                    className="px-6 py-3.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition flex items-center gap-2 shadow-sm"
-                  >
-                    <span>Khám Phá Bộ Sưu Tập</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-
-                  <a
-                    href="#guarantee"
-                    className="px-6 py-3.5 rounded-full border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 text-xs font-semibold transition flex items-center gap-2"
-                  >
-                    <span>Cam Kết Từ Kiệt</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Cụm Avatar Khách Hàng Xác Minh */}
-              <div className="pt-4 border-t border-slate-200/70 flex items-center gap-3 text-xs text-slate-500">
-                <div className="flex -space-x-2 shrink-0">
-                  <img
-                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
-                    alt="Khách hàng"
-                  />
-                  <img
-                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
-                    alt="Khách hàng"
-                  />
-                  <img
-                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
-                    alt="Khách hàng"
-                  />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 text-xs">50.000+ Dòng Dữ Liệu & Khách Hàng</div>
-                  <div className="text-[11px] text-slate-500">Cộng đồng MMO & Bán Hàng Online tin dùng</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Cột 2: Cụm 3 Thẻ Dọc Xếp Tầng (lg:col-span-4) */}
-            <div className="lg:col-span-4 flex flex-col justify-between gap-3.5">
-              
-              {/* Thẻ 1: Màu Mơ Ấm (#FBE8DE) - Bot Shopee */}
-              <a
-                href="#products"
-                className="bg-[#fbe8de] rounded-3xl p-4 flex items-center justify-between border border-orange-200/50 shadow-sm hover:shadow-md transition group"
-              >
-                <div className="flex items-center gap-3.5">
-                  <img
-                    src="/images/shopee-bot-cover.jpg"
-                    alt="Bot Shopee"
-                    className="w-16 h-20 rounded-2xl object-cover shrink-0 shadow-sm"
-                  />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-orange-700 bg-orange-200/60 px-2 py-0.5 rounded-full">
-                      Bot Tự Động
-                    </span>
-                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Bot Săn Deal Shopee</h4>
-                    <p className="text-[11px] text-slate-600">Săn Giảm Giá 50% Tự Động 24/7</p>
-                  </div>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </a>
-
-              {/* Thẻ 2: Màu Cát Ấm (#F6DDCF) - Ảnh thật Kiệt */}
-              <a
-                href="#guarantee"
-                className="bg-[#f6ddcf] rounded-3xl p-4 flex items-center justify-between border border-amber-200/50 shadow-sm hover:shadow-md transition group"
-              >
-                <div className="flex items-center gap-3.5">
-                  <img
-                    src="/images/founder-kiet.jpg"
-                    alt="Ngô Dương Kiệt"
-                    className="w-16 h-20 rounded-2xl object-cover object-top shrink-0 shadow-sm"
-                  />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded-full">
-                      Sáng Lập & Kỹ Thuật
-                    </span>
-                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Ngô Dương Kiệt</h4>
-                    <p className="text-[11px] text-slate-600">Đà Nẵng • Ultraviewer 1-1</p>
-                  </div>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </a>
-
-              {/* Thẻ 3: Màu Hồng Đất (#E8D7D8) - Data B2B Cafe */}
-              <a
-                href="#products"
-                className="bg-[#e8d7d8] rounded-3xl p-4 flex items-center justify-between border border-rose-200/50 shadow-sm hover:shadow-md transition group"
-              >
-                <div className="flex items-center gap-3.5">
-                  <img
-                    src="/images/data-cafe-cover.jpg"
-                    alt="Data B2B"
-                    className="w-16 h-20 rounded-2xl object-cover shrink-0 shadow-sm"
-                  />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 bg-rose-200/60 px-2 py-0.5 rounded-full">
-                      Dữ Liệu Khách Hàng
-                    </span>
-                    <h4 className="font-editorial text-lg font-bold text-slate-900 mt-1">Tệp 25.000 Quán Cafe</h4>
-                    <p className="text-[11px] text-slate-600">Dữ Liệu F&B Chuẩn Từng Quận</p>
-                  </div>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-white/80 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center transition shadow-sm shrink-0">
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </a>
-
-            </div>
-
-            {/* Cột 3: Thẻ Trưng Bày Lớn Có Tag Giá (lg:col-span-4) */}
-            <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden group">
-              
-              {/* Nhãn phụ phía trên */}
-              <div>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
-                  Hệ Sinh Thái Tự Động Hóa Thực Chiến
-                </span>
-                <span className="text-xs font-bold text-slate-900">
-                  Kịch Bản Shopee API v2026 • Độc Quyền Bản Quyền
-                </span>
-              </div>
-
-              {/* Ảnh minh họa trung tâm */}
-              <div className="relative my-6 flex items-center justify-center">
-                <img
-                  src="/images/shopee-bot-cover.jpg"
-                  alt="Trưng bày Bot Shopee"
-                  className="w-full h-52 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-                />
-
-                {/* Tag giá nổi dạng Pill */}
-                <div className="absolute -bottom-3 left-4 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-md flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <div className="text-xs">
-                    <span className="font-bold text-slate-900">199.000 đ</span>
-                    <span className="text-slate-400 text-[10px] ml-1">/ Bản quyền v2026</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Châm ngôn & Thanh trạng thái dưới cùng */}
-              <div className="pt-3 border-t border-slate-100">
-                <p className="font-editorial text-base text-slate-800 leading-snug">
-                  "Tự động hóa quy trình kinh doanh, biến thời gian rảnh thành dòng thu nhập thụ động bền vững."
-                </p>
-                <div className="mt-2 flex items-center justify-between text-[11px] text-slate-500">
-                  <span>VietQR Napas 24/7</span>
-                  <span className="font-semibold text-slate-800">Giao File 3 Giây ↗</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 2. SECTION: BỘ SƯU TẬP VŨ KHÍ SỐ & TOOL */}
-      {/* ============================================================== */}
-      <section id="products" className="py-16 sm:py-24 border-b border-slate-200/80 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          
-          {/* Tiêu đề Section 2 */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                Kiến Trúc Tự Động Hóa Thực Chiến
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          {/* Top Editorial Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest shadow-sm border border-surface-container">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="font-label-sm text-xs text-on-surface uppercase tracking-wider font-semibold">
+                Bản Quyền 2026 • Tự Động Hóa MMO Chuẩn Enterprise
               </span>
-              <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
-                Khám Phá Các Vũ Khí Số Của Kiệt
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-xl leading-relaxed">
-                Vượt trội hơn các kịch bản sơ sài thông thường. Toàn bộ tool, bot và data của Kiệt được kiểm định thực chiến, 100% sạch mã độc và có tài liệu video hướng dẫn từng bước.
-              </p>
             </div>
-
-            <div className="flex items-center gap-3 shrink-0">
-              <Link
-                href="/my-orders"
-                className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition shadow-sm"
-              >
-                Tra Cứu Đơn Hàng Tự Động
-              </Link>
-              <a
-                href="#standards"
-                className="px-5 py-2.5 rounded-full border border-slate-300 hover:border-slate-800 text-slate-700 text-xs font-semibold transition"
-              >
-                Tiêu Chuẩn Mã Sạch (0/72 Clean)
-              </a>
+            <div className="hidden sm:flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-medium">
+                <span className="material-symbols-outlined text-[15px] text-emerald-600">verified_user</span>
+                VirusTotal 0/72 Clean
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-medium">
+                <span className="material-symbols-outlined text-[15px] text-on-surface">bolt</span>
+                VietQR Tự Động 3s
+              </span>
             </div>
           </div>
 
-          {/* Cấu trúc Bento Split: Bento trái + Danh mục phải */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Bento Stack bên trái */}
-            <div className="lg:col-span-5 space-y-4">
-              
-              {/* Thẻ Bento 1: Sẵn sàng tương lai */}
-              <div className="bg-[#f8f9fa] rounded-3xl p-6 border border-slate-200/80 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    Kiến Trúc Hiệu Suất
-                  </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-0.5">
-                    Sẵn Sàng Cho Bản Cập Nhật Mới
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-1 max-w-xs leading-relaxed">
-                    Tự động thích ứng và cập nhật mã nguồn miễn phí trọn đời khi Shopee, TikTok hoặc Telegram đổi thuật toán.
-                  </p>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shrink-0">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
+          {/* Main Asymmetric Hero Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Column: Typography & Authority Copy */}
+            <div className="lg:col-span-6 flex flex-col space-y-6">
+              <div className="space-y-3">
+                <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+                  Kiến Trúc Tự Động Hóa Thực Chiến
+                </span>
+                <h1 className="font-display-xl text-4xl sm:text-5xl lg:text-6xl text-on-surface font-extrabold tracking-tight leading-[1.08]">
+                  VŨ KHÍ SỐ &amp;<br />
+                  <span className="text-on-surface/85">TỰ ĐỘNG HÓA</span><br />
+                  <span className="italic font-medium text-secondary">THỰC CHIẾN</span>
+                </h1>
               </div>
 
-              {/* Thẻ Bento 2: Nâng tầm công nghệ */}
-              <div className="bg-[#f0f4f8] rounded-3xl p-6 border border-sky-100 relative overflow-hidden flex items-center gap-5">
-                <img
-                  src="/images/prompt-ecommerce-cover.jpg"
-                  alt="Gói Prompt AI"
-                  className="w-20 h-24 rounded-2xl object-cover shrink-0 shadow-sm"
-                />
-                <div>
-                  <span className="text-[10px] font-bold text-sky-700 uppercase tracking-widest bg-sky-200/60 px-2 py-0.5 rounded-full">
-                    Nâng Tầm Trí Tuệ Nhân Tạo
-                  </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">
-                    Bộ Prompt AI Thương Mại
-                  </h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Nhân bản nội dung bán hàng và viết kịch bản quảng cáo triệu view chỉ trong 30 giây.
-                  </p>
-                </div>
+              <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl leading-relaxed">
+                Nơi kỹ thuật lập trình tinh gọn kết hợp cùng tư duy kinh doanh thực chiến. Khám phá kho kịch bản và công cụ phần mềm độc quyền giúp bạn nhân bản doanh thu tự động mà không cần trực máy.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="#kho-vu-khi-so"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow-md hover:scale-[1.02] hover:bg-primary-container transition-all"
+                >
+                  <span>Khám Phá Kho Kịch Bản</span>
+                  <span className="material-symbols-outlined text-[18px]">arrow_downward</span>
+                </a>
+                <a
+                  href="https://zalo.me/0352279413"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-xs hover:bg-surface-container transition-all shadow-sm border border-surface-container"
+                >
+                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  <span>UltraViewer 1-1 Với Kiệt</span>
+                </a>
               </div>
 
-              {/* Thẻ Bento 3: Mã sạch & An toàn */}
-              <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">Mã Nguồn Minh Bạch & Sạch 100%</span>
-                  <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    VirusTotal 0/72 Clean
-                  </span>
+              {/* Editorial Trust Badges Row */}
+              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                  <p className="font-headline-sm text-xl font-bold text-on-surface">50.000+</p>
+                  <p className="font-body-sm text-xs text-on-surface-variant">Data &amp; Khách B2B</p>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Toàn bộ mã nguồn và kịch bản đều minh bạch, không mã độc backdoor, hỗ trợ Ultraviewer 1-1 tận tình cho bạn từ Đà Nẵng.
-                </p>
-                <div className="pt-2">
-                  <a
-                    href="https://zalo.me/0352279413"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-purple-600 transition"
-                  >
-                    <span>Cần Tư Vấn Riêng (Chat Zalo)</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                  <p className="font-headline-sm text-xl font-bold text-emerald-600">0 / 72</p>
+                  <p className="font-body-sm text-xs text-on-surface-variant">VirusTotal Sạch 100%</p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                  <p className="font-headline-sm text-xl font-bold text-on-surface">3 Giây</p>
+                  <p className="font-body-sm text-xs text-on-surface-variant">VietQR Nhả File Drive</p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-surface-container-lowest shadow-sm border border-surface-container">
+                  <p className="font-headline-sm text-xl font-bold text-on-surface">100%</p>
+                  <p className="font-body-sm text-xs text-on-surface-variant">Hoàn Tiền Nếu Lỗi</p>
                 </div>
               </div>
-
             </div>
 
-            {/* Danh mục sản phẩm bên phải */}
-            <div className="lg:col-span-7 bg-[#f8f9fa] rounded-3xl p-6 sm:p-8 border border-slate-200/80">
-              
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/80">
-                <div>
-                  <h3 className="font-editorial text-2xl font-bold text-slate-900">
-                    Bộ Sưu Tập Tool & Kịch Bản Tuyển Chọn
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Tối ưu hóa hiệu suất MMO. Toàn bộ tool thực chiến đã sẵn sàng nhả file sau 3 giây.
-                  </p>
-                </div>
+            {/* Right Column: Hero Showcase Card */}
+            <div className="lg:col-span-6 relative">
+              <div className="relative rounded-2xl overflow-hidden bg-surface-container-lowest shadow-xl border border-surface-container">
+                <div className="relative aspect-[16/11] w-full overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80"
+                    alt="Bot Săn Deal Shopee API & Telegram Broadcaster"
+                    className="w-full h-full object-cover transform hover:scale-105 duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent"></div>
 
-                {/* Các nút lọc danh mục */}
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {[
-                    { id: 'ALL', label: 'Tất Cả' },
-                    { id: 'AUTOMATION', label: 'Tool Bot' },
-                    { id: 'PROMPT', label: 'Prompt AI' },
-                    { id: 'DATA', label: 'Data B2B' }
-                  ].map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${
-                        selectedCategory === cat.id
-                          ? 'bg-slate-900 text-white shadow-sm'
-                          : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-400'
-                      }`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+                  {/* Top Left Badge */}
+                  <div className="absolute top-5 left-5">
+                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-xs font-bold shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                      API v2026 LIVE STREAMING
+                    </span>
+                  </div>
 
-              {/* Danh sách thẻ sản phẩm */}
-              <div className="pt-6 space-y-4">
-                {filteredProducts.map((prod) => (
-                  <div
-                    key={prod.id}
-                    className="bg-white rounded-2xl p-4 border border-slate-200/80 hover:border-slate-400 transition flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm"
-                  >
-                    <div className="flex items-center gap-4 w-full sm:w-auto">
-                      <img
-                        src={prod.imageUrl}
-                        alt={prod.title}
-                        className="w-16 h-16 rounded-xl object-cover shrink-0"
-                      />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
-                            {prod.badge || 'BÁN CHẠY'}
-                          </span>
-                          <span className="text-xs font-extrabold text-slate-900">
-                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(prod.price)}
-                          </span>
-                        </div>
-                        <h4 className="font-bold text-sm text-slate-900 mt-1 line-clamp-1">
-                          {prod.title}
-                        </h4>
-                        <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
-                          {prod.shortDesc}
-                        </p>
+                  {/* Bottom Overlay Details */}
+                  <div className="absolute bottom-5 inset-x-5 text-on-primary">
+                    <p className="font-label-sm text-xs uppercase tracking-wider text-surface-variant">
+                      Hệ Sinh Thái Tự Động Hóa Thực Chiến
+                    </p>
+                    <div className="flex items-center justify-between gap-4 mt-1">
+                      <h3 className="font-headline-md text-xl sm:text-2xl font-bold">
+                        Bot Săn Deal Shopee API &amp; Telegram Broadcaster
+                      </h3>
+                      <div className="text-right shrink-0">
+                        <span className="font-price-hero text-2xl sm:text-3xl font-extrabold text-on-primary">
+                          199.000đ
+                        </span>
+                        <span className="block font-label-sm text-xs text-surface-variant">
+                          Bản quyền trọn đời
+                        </span>
                       </div>
                     </div>
-
-                    <div className="flex items-center gap-2 w-full sm:w-auto justify-end shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => setPreviewProduct(prod)}
-                        className="px-3.5 py-2 rounded-full border border-slate-200 hover:border-slate-800 text-slate-700 text-xs font-semibold transition"
-                      >
-                        Xem Thử
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setActiveProduct(prod)}
-                        className="px-4 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition flex items-center gap-1 shadow-sm"
-                      >
-                        <Zap className="w-3.5 h-3.5 text-amber-300" />
-                        <span>Tải Ngay</span>
-                      </button>
-                    </div>
                   </div>
-                ))}
+                </div>
+
+                {/* Card footer CTA buttons */}
+                <div className="p-4 sm:p-5 flex items-center justify-between gap-3 bg-surface-container-lowest">
+                  <div className="flex items-center gap-2 text-xs text-secondary font-medium">
+                    <span className="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+                    <span>Bảo hành hoàn tiền 100% trong 7 ngày</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href="/product/workflow-shopee"
+                      className="px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-semibold transition-all"
+                    >
+                      Xem Kiến Trúc
+                    </Link>
+                    <button
+                      onClick={() => {
+                        const prod = products.find((p) => p.id === 'workflow-shopee');
+                        if (prod) setActiveProduct(prod);
+                      }}
+                      className="px-5 py-2 rounded-full bg-primary text-on-primary hover:bg-primary-container text-xs font-semibold shadow-sm transition-all"
+                    >
+                      Mua Ngay 199.000đ
+                    </button>
+                  </div>
+                </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ============================================================== */}
-      {/* 2.5 INTERACTIVE WORKFLOW PIPELINE (QUY TRÌNH TỰ ĐỘNG THỰC CHIẾN) */}
-      {/* ============================================================== */}
-      <section className="py-12 border-b border-slate-200/80 bg-gradient-to-b from-white to-[#f8f9fa]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          <AutomationWorkflow />
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 3. SECTION: 4 TIÊU CHUẨN KỸ THUẬT VÀNG */}
-      {/* ============================================================== */}
-      <section id="standards" className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              Đỉnh Cao Kỹ Thuật
-            </span>
-            <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
-              4 Tiêu Chuẩn Kỹ Thuật Vàng
+      {/* 2. INFINITE MARQUEE TICKER (2 HÀNG TỰ ĐỘNG CHẠY NGANG VÔ TẬN) */}
+      <section className="relative w-full bg-background py-16 lg:py-24 overflow-hidden" id="kho-vu-khi-so">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container font-label-sm text-xs text-on-surface-variant font-semibold uppercase tracking-wider">
+              <span className="material-symbols-outlined text-[16px]">sync_alt</span>
+              Chuyển Động Trực Quan 2 Chiều
+            </div>
+            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              Kho Vũ Khí Số &amp; Tool Tự Động Hóa Thực Chiến
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Sự kết hợp hoàn hảo giữa công nghệ tự động hóa gọn nhẹ và chiến lược gia tăng tỷ lệ chuyển đổi.
+            <p className="font-body-md text-sm sm:text-base text-on-surface-variant max-w-2xl">
+              Hệ thống tuyển chọn tối ưu hóa hiệu suất MMO. Tự động giao mã nguồn và kịch bản bản quyền sau 3 giây quét mã VietQR Napas. Rê chuột để dừng xem chi tiết.
             </p>
           </div>
 
-          {/* Cấu trúc Bento 6 Thẻ Tiêu Chuẩn */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-            
-            {/* Cột trái 3 thẻ hẹp (lg:col-span-3) */}
-            <div className="lg:col-span-3 flex flex-col justify-between gap-4">
-              
-              {/* Thẻ 1: Lập trình tinh gọn / Xanh bạc hà nhạt */}
-              <div className="bg-[#eef7f2] p-5 rounded-3xl border border-emerald-100 flex flex-col justify-between h-full shadow-sm">
-                <div>
-                  <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest block">
-                    Cốt Lõi Tinh Gọn
-                  </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Lập Trình Tinh Gọn</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Mã nguồn Python & NodeJS tối ưu hóa, chạy mượt mà trên VPS giá rẻ hoặc máy tính cá nhân.
-                  </p>
-                </div>
-                <div className="mt-4 font-mono font-bold text-sm text-slate-900">199.000 đ</div>
-              </div>
-
-              {/* Thẻ 2: Phát sóng tự động / Vàng nhạt */}
-              <div className="bg-[#fef9e8] p-5 rounded-3xl border border-amber-100 flex flex-col justify-between h-full shadow-sm">
-                <div>
-                  <span className="text-[10px] font-bold text-amber-800 uppercase tracking-widest block">
-                    Phát Sóng Tức Thì
-                  </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Phát Sóng Tự Động</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Tự động lọc deal và bắn vào kênh 5.000+ thành viên liên tục 24/7 mà không cần mở máy.
-                  </p>
-                </div>
-                <div className="mt-4 font-mono font-bold text-sm text-slate-900">299.000 đ</div>
-              </div>
-
-              {/* Thẻ 3: Data chuẩn xác / Hồng nhạt */}
-              <div className="bg-[#fdf2ed] p-5 rounded-3xl border border-rose-100 flex flex-col justify-between h-full shadow-sm">
-                <div>
-                  <span className="text-[10px] font-bold text-rose-800 uppercase tracking-widest block">
-                    Dữ Liệu Chuẩn Xác
-                  </span>
-                  <h4 className="font-editorial text-xl font-bold text-slate-900 mt-1">Data Chuẩn 100%</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Dữ liệu quán cafe, nhà hàng lọc sạch từng quận, sẵn sàng import vào Excel & Zalo Marketing.
-                  </p>
-                </div>
-                <div className="mt-4 font-mono font-bold text-sm text-slate-900">299.000 đ</div>
-              </div>
-
-            </div>
-
-            {/* Cột giữa 2 thẻ (lg:col-span-5) */}
-            <div className="lg:col-span-5 flex flex-col justify-between gap-4">
-              
-              {/* Thẻ 4 (Trên): Triết lý phát triển / Tím nhạt */}
-              <div className="bg-[#f3effa] p-6 rounded-3xl border border-purple-100 shadow-sm flex items-center gap-5">
-                <img
-                  src="/images/prompt-ecommerce-cover.jpg"
-                  alt="Triết lý phát triển"
-                  className="w-24 h-32 rounded-2xl object-cover shrink-0 shadow-sm"
-                />
-                <div>
-                  <span className="text-[10px] font-bold text-purple-800 uppercase tracking-widest bg-purple-200/60 px-2 py-0.5 rounded-full">
-                    Triết Lý Phát Triển
-                  </span>
-                  <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    Vừa Dùng Tool, Vừa Hiểu Bản Chất
-                  </h4>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Không chỉ nhận tool chạy sẵn, bạn còn nhận video hướng dẫn nguyên lý tự động hóa để tự làm chủ công nghệ lâu dài.
-                  </p>
-                </div>
-              </div>
-
-              {/* Thẻ 5 (Dưới): Cam kết hoàn tiền / Mơ ấm */}
-              <div className="bg-[#fbeee8] p-6 rounded-3xl border border-orange-100 shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-orange-800 uppercase tracking-widest block">
-                    Cam Kết Tuyệt Đối
-                  </span>
-                  <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    Bảo Hành Hoàn Tiền 100%
-                  </h4>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    Nếu tool lỗi kỹ thuật không chạy được hoặc không đúng như mô tả, Kiệt hoàn tiền 100% ngay lập tức qua số tài khoản của bạn. Không rườm rà thủ tục.
-                  </p>
-                </div>
-                <div className="pt-4 mt-2">
-                  <a
-                    href="https://zalo.me/0352279413"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition inline-flex items-center gap-1.5 shadow-sm"
-                  >
-                    <span>Trao Đổi Trực Tiếp (Zalo Kiệt)</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Cột phải 1 thẻ cao (lg:col-span-4) Kiểm định mã sạch */}
-            <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
-                  Bảo Mật Hệ Thống
-                </span>
-                <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                  Kiểm Định Mã Sạch Tuyệt Đối
-                </h4>
-                <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                  Cam kết bảo vệ máy tính của khách hàng. Toàn bộ kịch bản và mã nguồn đều được kiểm định qua VirusTotal trước khi bàn giao.
-                </p>
-
-                <div className="my-6 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-                    <span>Mã Nguồn Minh Bạch</span>
-                    <span className="text-emerald-600 font-bold">✓ 0/72 Clean</span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 leading-relaxed">
-                    Từ các kịch bản API Shopee đến bot Telegram cá nhân, Kiệt trực tiếp kiểm tra từng dòng code trước khi đóng gói lên hệ thống.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                <span>Ultraviewer 1-1</span>
-                <span className="font-bold text-slate-900">Hỗ Trợ Tận Tâm Từ Đà Nẵng</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 4. SECTION: SÁNG LẬP & CAM KẾT TỪ KIỆT (ĐÀ NẴNG) */}
-      {/* ============================================================== */}
-      <section id="guarantee" className="py-16 sm:py-24 border-b border-slate-200/80 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Ảnh & Tiểu sử nhà sáng lập */}
-            <div className="lg:col-span-6 bg-[#fef9e8] p-8 sm:p-12 rounded-[2.5rem] border border-amber-200/60 shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6">
-              <img
-                src="/images/founder-kiet.jpg"
-                alt="Ngô Dương Kiệt"
-                className="w-28 h-36 rounded-3xl object-cover object-top border-4 border-white shadow-md shrink-0"
-              />
-              <div className="space-y-2.5 text-center sm:text-left">
-                <span className="text-[10px] font-bold text-amber-800 uppercase tracking-widest bg-amber-200/60 px-2.5 py-0.5 rounded-full inline-block">
-                  Nhà Sáng Lập Hệ Thống
-                </span>
-                <h3 className="font-editorial text-3xl font-bold text-slate-900">
-                  Ngô Dương Kiệt
-                </h3>
-                <p className="text-xs text-slate-700 leading-relaxed">
-                  Mình sinh sống tại <strong>Đà Nẵng</strong>, trực tiếp lập trình và phát triển các giải pháp tự động hóa MMO. Cam kết mã sạch 100%, bảo hành hoàn tiền nếu không đúng mô tả và sẵn sàng Ultraviewer hỗ trợ bạn từ A-Z!
-                </p>
-
-                <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
-                  <a
-                    href="https://zalo.me/0352279413"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm"
-                  >
-                    <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Zalo: 0352.279.413</span>
-                  </a>
-                  <a
-                    href="https://www.facebook.com/share/1JCPpN7YR6/?mibextid=wwXIfr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full border border-slate-300 hover:border-slate-800 text-slate-800 text-xs font-semibold transition flex items-center gap-1.5"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Facebook Chính Chủ</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Thẻ cam kết hỗ trợ & Tự động 24/7 */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="bg-[#eef7f2] p-6 rounded-3xl border border-emerald-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest">
-                    Hỗ Trợ Kỹ Thuật Trực Tuyến
-                  </span>
-                  <h4 className="font-editorial text-2xl font-bold text-slate-900 mt-1">
-                    Cài Đặt UltraViewer 1-1 Miễn Phí
-                  </h4>
-                  <p className="text-xs text-slate-600 mt-1.5 max-w-sm">
-                    Bạn không rành máy tính? Kiệt sẽ kết nối UltraViewer cài đặt giúp bạn chỉ với vài phút trao đổi qua Zalo.
-                  </p>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 font-bold text-xs">
-                  1-1
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-900">HỆ THỐNG GIAO HÀNG TỰ ĐỘNG</span>
-                  <span className="text-[10px] text-emerald-600 font-semibold">● Hoạt Động Napas 24/7</span>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  Hệ thống VietQR hoạt động tự động xuyên đêm, bạn mua lúc 2h sáng hay giờ cao điểm đều nhận link tải file sau 3 giây.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 5. SECTION: NHẬN FILE CHỈ VỚI 3 BƯỚC */}
-      {/* ============================================================== */}
-      <section className="py-16 sm:py-24 border-b border-slate-200/80 bg-[#f8f9fa]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              Quy Trình Tự Động Hóa 100%
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setMarqueePaused(!marqueePaused)}
+              className="px-4 py-2 rounded-full bg-surface-container-lowest border border-surface-container text-on-surface font-label-md text-xs shadow-sm hover:bg-surface-container flex items-center gap-2 transition-all"
+            >
+              <span className="material-symbols-outlined text-[18px]">
+                {marqueePaused ? 'play_arrow' : 'pause'}
+              </span>
+              <span>{marqueePaused ? 'Tiếp Tục Chạy' : 'Tạm Dừng Chạy'}</span>
+            </button>
+            <span className="text-xs font-label-sm text-on-surface-variant hidden sm:inline-block">
+              ● 12 Vũ Khí Đang Hoạt Động
             </span>
-            <h2 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-1">
-              Nhận File & Sử Dụng Chỉ Với 3 Bước
-            </h2>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex items-start gap-4">
-              <div className="w-9 h-9 rounded-2xl bg-slate-900 text-white font-bold text-sm flex items-center justify-center shrink-0">
-                01
-              </div>
-              <div>
-                <h4 className="font-bold text-sm text-slate-900">Chọn Tool & Nhập Email</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Xem thử demo miễn phí và nhập email nhận link tải bản quyền về máy.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex items-start gap-4">
-              <div className="w-9 h-9 rounded-2xl bg-slate-900 text-white font-bold text-sm flex items-center justify-center shrink-0">
-                02
-              </div>
-              <div>
-                <h4 className="font-bold text-sm text-slate-900">Quét Mã VietQR Ngân Hàng</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Mở app Techcombank, VCB, MBBank... quét mã QR tự điền sẵn số tiền.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex items-start gap-4">
-              <div className="w-9 h-9 rounded-2xl bg-emerald-700 text-white font-bold text-sm flex items-center justify-center shrink-0">
-                03
-              </div>
-              <div>
-                <h4 className="font-bold text-sm text-slate-900">Tải File Ngay Sau 3 Giây</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Màn hình tự động nhả link tải file gốc, kèm quyền tải lại vĩnh viễn.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Câu hỏi thường gặp */}
-          <div className="max-w-3xl mx-auto space-y-3">
-            <div className="text-center mb-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500">GIẢI ĐÁP THẮC MẮC</span>
-              <h4 className="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
-                Câu Hỏi Thường Gặp
-              </h4>
-            </div>
-
-            {faqs.map((faq, idx) => (
+        {/* ROW 1: TOOLS & BOTS (Chạy từ PHẢI sang TRÁI) */}
+        <div className="w-full overflow-hidden mb-6 relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
+          
+          <div className={`animate-marquee-left pause-marquee flex gap-6 px-4 ${marqueePaused ? 'marquee-paused' : ''}`}>
+            {[...row1Products, ...row1Products, ...row1Products].map((item, idx) => (
               <div
-                key={idx}
-                className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm transition"
+                key={`row1-${item.id}-${idx}`}
+                className="w-[340px] md:w-[380px] shrink-0 bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg border border-surface-container transition-all duration-300 flex flex-col justify-between group"
               >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                  className="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between gap-4"
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                      openFaq === idx ? 'rotate-180 text-slate-900' : ''
-                    }`}
-                  />
-                </button>
-                {openFaq === idx && (
-                  <div className="px-4 sm:px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
-                    {faq.a}
+                <div className="space-y-4">
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 duration-500"
+                    />
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                      {item.badge || 'TOOL MMO'}
+                    </span>
+                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-xs font-semibold">
+                      {item.version || 'v2026 Live'}
+                    </span>
                   </div>
-                )}
+
+                  <div>
+                    <h3 className="font-headline-sm text-base font-bold text-on-surface line-clamp-1">
+                      {item.title}
+                    </h3>
+                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                      {item.shortDesc}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-1 font-body-sm text-xs text-secondary">
+                    <span className="material-symbols-outlined text-[16px]">speed</span>
+                    <span>1.2s / vòng quét</span>
+                    <span className="mx-1">•</span>
+                    <span className="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+                    <span>0/72 Clean</span>
+                  </div>
+                </div>
+
+                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                  <div>
+                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
+                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                      {formatPrice(item.price)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPreviewProduct(item)}
+                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                    >
+                      Xem Thử
+                    </button>
+                    <button
+                      onClick={() => setActiveProduct(item)}
+                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                    >
+                      Mua Ngay
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
+        </div>
 
+        {/* ROW 2: DATA B2B & PROMPTS (Chạy từ TRÁI sang PHẢI) */}
+        <div className="w-full overflow-hidden relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
+
+          <div className={`animate-marquee-right pause-marquee flex gap-6 px-4 ${marqueePaused ? 'marquee-paused' : ''}`}>
+            {[...row2Products, ...row2Products, ...row2Products].map((item, idx) => (
+              <div
+                key={`row2-${item.id}-${idx}`}
+                className="w-[340px] md:w-[380px] shrink-0 bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg border border-surface-container transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div className="space-y-4">
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 duration-500"
+                    />
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                      {item.badge || 'DATA B2B'}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-headline-sm text-base font-bold text-on-surface line-clamp-1">
+                      {item.title}
+                    </h3>
+                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                      {item.shortDesc}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-1 font-body-sm text-xs text-secondary">
+                    <span className="material-symbols-outlined text-[16px]">database</span>
+                    <span>{item.fileSize || 'Data Chuẩn 100%'}</span>
+                  </div>
+                </div>
+
+                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                  <div>
+                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
+                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                      {formatPrice(item.price)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPreviewProduct(item)}
+                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                    >
+                      Xem Thử
+                    </button>
+                    <button
+                      onClick={() => setActiveProduct(item)}
+                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                    >
+                      Mua Ngay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============================================================== */}
-      {/* 6. ĐÁNH GIÁ KHÁCH HÀNG (SOCIAL PROOF) */}
-      {/* ============================================================== */}
-      <section id="reviews" className="py-16 sm:py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Đánh Giá Thực Tế</span>
-            <h3 className="font-editorial text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight mt-2">
-              Khách Hàng Nói Gì Về Kiệt?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Được kiểm chứng hiệu quả thực chiến bởi các anh em kinh doanh online và làm MMO.
+      {/* 2.5 CATALOG GRID WITH SEARCH & FILTER */}
+      <section className="w-full bg-surface py-16 lg:py-20 border-t border-surface-container">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+            <div>
+              <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+                Danh Mục Hoàn Chỉnh
+              </span>
+              <h2 className="font-headline-lg text-2xl sm:text-3xl font-bold text-on-surface tracking-tight mt-1">
+                Lọc &amp; Tìm Kiếm Vũ Khí Số
+              </h2>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-80">
+              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-secondary">
+                <span className="material-symbols-outlined text-[18px]">search</span>
+              </span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Tìm kiếm tool, data, prompt..."
+                className="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-surface-container rounded-full text-xs text-on-surface placeholder:text-outline focus:outline-none focus:border-primary"
+              />
+            </div>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                  selectedCategory === cat.id
+                    ? 'bg-primary text-on-primary shadow-sm'
+                    : 'bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-surface-container hover:bg-surface-container'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid of Product Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((prod) => (
+              <div
+                key={prod.id}
+                className="bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-md border border-surface-container flex flex-col justify-between group transition-all"
+              >
+                <div className="space-y-4">
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                    <img
+                      src={prod.imageUrl}
+                      alt={prod.title}
+                      className="w-full h-full object-cover group-hover:scale-105 duration-500"
+                    />
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                      {prod.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <Link
+                      href={`/product/${prod.id}`}
+                      className="font-headline-sm text-base font-bold text-on-surface hover:text-primary transition-colors block line-clamp-1"
+                    >
+                      {prod.title}
+                    </Link>
+                    <p className="font-body-sm text-xs text-on-surface-variant mt-1.5 line-clamp-2">
+                      {prod.shortDesc}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 pt-1 border-t border-surface-container text-xs text-secondary">
+                    <div className="flex items-center justify-between">
+                      <span>Định dạng:</span>
+                      <span className="font-medium text-on-surface">{prod.fileFormat}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Kiểm duyệt:</span>
+                      <span className="font-medium text-emerald-600">{prod.testedClean}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-5 mt-4 flex items-center justify-between border-t border-surface-container">
+                  <div>
+                    <span className="block font-label-sm text-[11px] text-on-surface-variant">Giá trọn đời</span>
+                    <span className="font-price-card text-lg font-extrabold text-on-surface">
+                      {formatPrice(prod.price)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPreviewProduct(prod)}
+                      className="px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all"
+                    >
+                      Xem Thử
+                    </button>
+                    <button
+                      onClick={() => setActiveProduct(prod)}
+                      className="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                    >
+                      Mua Ngay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. QUY TRÌNH TỰ ĐỘNG HÓA 3 BƯỚC THỰC CHIẾN */}
+      <section className="w-full bg-surface py-20 lg:py-28 relative" id="quy-trinh-4-buoc">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-3xl mb-14 space-y-3">
+            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              Tiêu Chuẩn Vận Hành Độc Quyền
+            </span>
+            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              Quy Trình Triển Khai &amp; Bàn Giao Vũ Khí Số
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              Quy trình 3 bước phổ quát được chuẩn hóa cho mọi phần mềm, bot tự động và kịch bản số. Đảm bảo từ người mới bắt đầu đến anh em MMO lão làng đều có thể đưa vào vận hành trơn tru ngay lập tức.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, idx) => (
-              <div
-                key={idx}
-                className="bg-[#f8f9fa] p-6 rounded-3xl border border-slate-200/80 flex flex-col justify-between space-y-6 shadow-sm"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
-                    "{t.comment}"
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-sm">
+                    01
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-surface-container-low font-label-sm text-xs text-secondary font-semibold uppercase">
+                    3s Cấp Phép
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                    Nhận Kịch Bản &amp; Hướng Dẫn Chi Tiết
+                  </h3>
+                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                    Sau khi thanh toán, hệ thống tự động cấp link tải Google Drive gốc kèm toàn bộ video hướng dẫn cài đặt chi tiết từng cú click chuột.
                   </p>
                 </div>
+              </div>
+            </div>
 
-                <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-10 h-10 rounded-full object-cover border border-slate-200 shrink-0"
-                  />
-                  <div>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900">{t.name}</h4>
-                    <p className="text-[11px] text-slate-500">{t.role}</p>
-                    <span className="text-[10px] text-emerald-700 font-semibold block mt-0.5">
-                      ✓ Đã mua: {t.productBought}
-                    </span>
-                  </div>
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-sm">
+                    02
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-surface-container-low font-label-sm text-xs text-secondary font-semibold uppercase">
+                    1 Click Setup
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                    Kích Hoạt &amp; Cấu Hình 1 Lần Duy Nhất
+                  </h3>
+                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                    Chỉ cần điền token hoặc cookie vào file cấu hình. Nếu gặp khó khăn, Kiệt trực tiếp UltraViewer kết nối máy tính hỗ trợ 1-1 miễn phí.
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm shadow">
+                    03
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-label-sm text-xs font-semibold uppercase">
+                    Tự Động 24/7
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                    Vận Hành Tự Động &amp; Thu Tiền Thụ Động
+                  </h3>
+                  <p className="font-body-sm text-xs text-on-surface-variant mt-2 leading-relaxed">
+                    Hệ thống tự động chạy ngầm trên VPS hoặc đám mây, quét deal, đẩy đơn và báo cáo doanh thu về Telegram không gián đoạn.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CHECKOUT & PREVIEW MODALS */}
+      {/* 4. DỊCH VỤ VIẾT TOOL THEO YÊU CẦU (#custom-automation) */}
+      <section className="w-full bg-surface-container-lowest py-20 lg:py-24 relative border-y border-surface-container" id="custom-automation">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-3xl mb-12 space-y-3">
+            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              Dịch Vụ Đo Ni Đóng Giày
+            </span>
+            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              Lập Trình Tool &amp; Tự Động Hóa Riêng Theo Yêu Cầu
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              Ngoài các giải pháp có sẵn, Kiệt trực tiếp phát triển các module phần mềm chuyên biệt theo đúng quy trình và đặc thù kinh doanh riêng của doanh nghiệp bạn.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[24px]">database</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  Cào Data Khách Hàng Đa Kênh
+                </h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Thu thập data khách hàng tiềm năng, quét sản phẩm đối thủ từ Shopee, TikTok Shop, Google Maps, Facebook Group theo tiêu chí riêng, tự động làm sạch và xuất Excel.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
+                <span className="font-label-sm text-xs font-semibold text-secondary">Bàn Giao: 1 - 3 Ngày</span>
+                <span className="material-symbols-outlined text-[18px] text-secondary">code</span>
+              </div>
+            </div>
+
+            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[24px]">smart_toy</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  Bot Telegram &amp; Zalo Nghiệp Vụ
+                </h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Tự động báo cáo doanh thu, bắn đơn hàng theo thời gian thực, quản lý hội nhóm, thông báo biến động số dư và tích hợp webhook AI phản hồi tin nhắn khách hàng 24/7.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
+                <span className="font-label-sm text-xs font-semibold text-secondary">Độ Trễ Siêu Thấp</span>
+                <span className="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+              </div>
+            </div>
+
+            <div className="p-7 rounded-2xl bg-surface-container-low flex flex-col justify-between space-y-6 hover:shadow-md transition-all border border-surface-container">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[24px]">neurology</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">
+                  Tích Hợp AI &amp; Tự Động Hóa Nội Dung
+                </h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Xây dựng hệ thống tự động sinh bài viết SEO, kịch bản video ngắn, auto đăng tải đa kênh kết hợp API OpenAI GPT-4o, Claude 3.5 giúp tiết kiệm 90% chi phí nhân sự.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-surface-container flex items-center justify-between">
+                <span className="font-label-sm text-xs font-semibold text-secondary">Tối Ưu Chi Phí API</span>
+                <span className="material-symbols-outlined text-[18px] text-secondary">auto_awesome</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 p-6 rounded-2xl bg-surface flex flex-col md:flex-row items-center justify-between gap-6 border border-surface-container">
+            <div className="space-y-1">
+              <p className="font-headline-sm text-base sm:text-lg font-bold text-on-surface">
+                Bạn Có Ý Tưởng &amp; Muốn Khảo Sát Tính Khả Thi?
+              </p>
+              <p className="font-body-sm text-xs text-on-surface-variant">
+                Kiệt trực tiếp phân tích yêu cầu kỹ thuật và báo giá minh bạch, demo giải pháp mẫu trước khi thực hiện.
+              </p>
+            </div>
+            <a
+              href="https://zalo.me/0352279413"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow hover:bg-primary-container transition-all flex items-center gap-2 shrink-0"
+            >
+              <span className="material-symbols-outlined text-[18px]">chat</span>
+              <span>Trao Đổi Bài Toán Riêng Với Kiệt</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. 4 TIÊU CHUẨN KỸ THUẬT VÀNG (#tieu-chuan-vang) */}
+      <section className="w-full bg-background py-20 lg:py-28 relative" id="tieu-chuan-vang">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              Kỷ Luật &amp; Trách Nhiệm Kỹ Thuật
+            </span>
+            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              4 Tiêu Chuẩn Kỹ Thuật Vàng Độc Quyền
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
+              Khác biệt hoàn toàn với những tool trôi nổi chứa mã độc. Kiệt cam kết tối đa tính minh bạch, sự an toàn và quyền lợi tuyệt đối cho máy tính của bạn.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[24px]">code</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Lập Trình Tinh Gọn</h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Tối ưu hóa tài nguyên phần cứng, không ngốn RAM hay CPU. Viết bằng Python/Node.js hiện đại, dễ dàng tùy biến theo nhu cầu.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-emerald-600">
+                  <span className="material-symbols-outlined text-[24px]">verified_user</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Mã Sạch 0/72 Clean</h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  100% tệp tin được quét và xác thực qua VirusTotal trước khi bàn giao. Tuyệt đối không chứa trojan, spyware hay mã độc ngầm.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[24px]">bolt</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Giao Tự Động 3 Giây</h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Tích hợp Napas 24/7 tự động xác nhận giao dịch. Quét mã VietQR là nhận link tải Google Drive gốc ngay lập tức, không phải chờ duyệt.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-surface-container-lowest p-7 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[24px]">published_with_changes</span>
+                </div>
+                <h3 className="font-headline-sm text-lg font-bold text-on-surface">Hoàn Tiền 100% 7 Ngày</h3>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  Nếu tool phát sinh lỗi kỹ thuật hoặc không đúng với mô tả cam kết, Kiệt hoàn trả 100% số tiền ngay trong ngày qua số tài khoản của bạn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FOUNDER SPOTLIGHT SECTION */}
+      <section className="w-full bg-surface py-16 lg:py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="bg-surface-container rounded-3xl p-8 lg:p-14 relative overflow-hidden shadow-sm flex flex-col lg:flex-row items-center justify-between gap-10">
+            <div className="space-y-6 max-w-2xl z-10">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-lowest shadow-sm font-label-sm text-xs text-on-surface font-semibold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Hỗ Trợ Kỹ Thuật UltraViewer 1-1 Trực Tiếp
+              </div>
+
+              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight leading-tight">
+                Sẵn Sàng Nhân Bản Doanh Thu Với Tự Động Hóa Thực Chiến?
+              </h2>
+
+              <p className="font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                Đừng để quy trình thủ công kìm hãm quy mô kinh doanh của bạn. Kiệt trực tiếp tư vấn giải pháp, kết nối UltraViewer cài đặt và đồng hành cho đến khi công cụ vận hành sinh lời 24/7.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="https://zalo.me/0352279413"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow hover:bg-primary-container transition-all"
+                >
+                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  <span>Liên Hệ Zalo Với Kiệt</span>
+                </a>
+                <a
+                  href="#kho-vu-khi-so"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all shadow-sm border border-surface-container"
+                >
+                  <span className="material-symbols-outlined text-[18px]">terminal</span>
+                  <span>Khám Phá Vũ Khí Số</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Founder Card */}
+            <div className="relative z-10 w-full lg:w-[380px] shrink-0 bg-surface-container-lowest p-6 rounded-2xl shadow-md border border-surface-container flex flex-col space-y-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                  <span className="material-symbols-outlined text-[24px]">terminal</span>
+                </div>
+                <div>
+                  <h4 className="font-headline-sm text-lg font-bold text-on-surface">Ngô Dương Kiệt</h4>
+                  <p className="font-body-sm text-xs text-on-surface-variant">Lead Developer &amp; Founder</p>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-2 border-t border-surface-container font-body-sm text-xs text-on-surface-variant">
+                <div className="flex items-center justify-between">
+                  <span>Khu vực hỗ trợ:</span>
+                  <span className="font-semibold text-on-surface">Sơn Trà, Đà Nẵng</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Tốc độ bàn giao:</span>
+                  <span className="font-semibold text-emerald-600">3 Giây Tự Động</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Hình thức trợ giúp:</span>
+                  <span className="font-semibold text-on-surface">UltraViewer 1-1</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <a
+                  href="tel:0352279413"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low text-on-surface font-label-md text-xs font-semibold hover:bg-surface-container transition-all"
+                >
+                  <span className="material-symbols-outlined text-[18px]">call</span>
+                  <span>Hotline: 0352.279.413</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. ĐÁNH GIÁ THỰC TẾ & TESTIMONIALS CAROUSEL (#danh-gia) */}
+      <section className="w-full bg-surface py-20 lg:py-28 relative" id="danh-gia">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container font-label-sm text-xs text-on-surface font-semibold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Đánh Giá Thực Chiến
+              </div>
+              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+                Cộng Đồng MMO &amp; Bán Hàng Nói Gì Về Kiệt?
+              </h2>
+              <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                Được kiểm chứng hiệu quả thực chiến bởi hơn 120+ anh em kinh doanh online, chủ shop đa sàn và agency tiếp thị. Người thật việc thật, kết quả đo lường minh bạch.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setCurrentTestimonial((prev) => (prev > 0 ? prev - 1 : testimonials.length - 1))}
+                className="w-11 h-11 rounded-full bg-surface-container-lowest border border-surface-container shadow-sm hover:bg-surface-container flex items-center justify-center text-on-surface transition-all active:scale-95"
+                aria-label="Previous review"
+              >
+                <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+              </button>
+              <button
+                onClick={() => setCurrentTestimonial((prev) => (prev < testimonials.length - 1 ? prev + 1 : 0))}
+                className="w-11 h-11 rounded-full bg-surface-container-lowest border border-surface-container shadow-sm hover:bg-surface-container flex items-center justify-center text-on-surface transition-all active:scale-95"
+                aria-label="Next review"
+              >
+                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Testimonial Active Card */}
+          <div className="bg-surface-container-lowest p-8 lg:p-10 rounded-3xl shadow-sm border border-surface-container transition-all">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="material-symbols-outlined text-[20px]">star</span>
+                  ))}
+                  <span className="text-xs font-semibold text-on-surface ml-2">5.0 / 5.0 Đánh giá</span>
+                </div>
+
+                <p className="font-headline-sm text-lg sm:text-xl font-medium text-on-surface leading-relaxed">
+                  "{testimonials[currentTestimonial].comment}"
+                </p>
+
+                <div className="pt-2 flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-surface-container text-xs font-semibold text-on-surface">
+                    Đã mua: {testimonials[currentTestimonial].productBought}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                    {testimonials[currentTestimonial].channel}
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 flex items-center gap-4 lg:border-l lg:border-surface-container lg:pl-8">
+                <img
+                  src={testimonials[currentTestimonial].avatar}
+                  alt={testimonials[currentTestimonial].name}
+                  className="w-16 h-16 rounded-full object-cover border-2 border-surface-container shadow"
+                />
+                <div>
+                  <h4 className="font-headline-sm text-base font-bold text-on-surface">
+                    {testimonials[currentTestimonial].name}
+                  </h4>
+                  <p className="font-body-sm text-xs text-on-surface-variant">
+                    {testimonials[currentTestimonial].role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. FAQ ACCORDION */}
+      <section className="w-full bg-surface-container-lowest py-20 lg:py-28 relative border-t border-surface-container">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-14 space-y-3">
+            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              Hỏi Đáp Trực Quan
+            </span>
+            <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-on-surface tracking-tight">
+              Giải Đáp Thắc Mắc Kỹ Thuật Thường Gặp
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
+              Mọi quy trình được minh bạch hóa từ thanh toán đến hỗ trợ sau khi nhận file.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-surface-container bg-surface-container-low overflow-hidden transition-all"
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-base font-bold text-on-surface hover:text-primary transition-colors"
+                  >
+                    <span>{faq.q}</span>
+                    <span
+                      className={`material-symbols-outlined text-[20px] transition-transform duration-200 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    >
+                      expand_more
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-surface-container pt-3">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Modals */}
       {activeProduct && (
         <CheckoutModal
           product={activeProduct}
@@ -892,7 +1053,7 @@ export default function HomePage() {
         <PreviewModal
           product={previewProduct}
           onClose={() => setPreviewProduct(null)}
-          onBuy={(prod) => {
+          onBuyNow={(prod) => {
             setPreviewProduct(null);
             setActiveProduct(prod);
           }}

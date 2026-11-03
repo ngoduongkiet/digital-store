@@ -2,114 +2,134 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowUpRight, Search, PhoneCall } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinks = [
+    { label: 'Trang Chủ', href: '/' },
+    { label: 'Bộ Sưu Tập Tool', href: '/tools' },
+    { label: 'Quy Trình 3 Bước', href: '/#quy-trinh-4-buoc' },
+    { label: 'Tiêu Chuẩn Vàng', href: '/#tieu-chuan-vang' },
+    { label: 'Đánh Giá', href: '/#danh-gia' },
+    { label: 'Tra Cứu Đơn', href: '/my-orders' },
+  ];
+
+  const isActive = (href) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#f8f9fa]/90 backdrop-blur-md border-b border-slate-200/70 transition-colors">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header className="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/85 backdrop-blur-xl border-b border-surface-container/80 shadow-[0_1px_12px_rgba(0,0,0,0.03)] transition-all">
+      <div className="h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4">
         
-        {/* Brand Logo in Editorial Serif */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs shadow-sm">
-            K
-          </div>
-          <div>
-            <span className="font-editorial text-xl sm:text-2xl font-bold text-slate-900 tracking-tight block leading-tight">
-              Kiệt Digital Store
-            </span>
-          </div>
-          <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold border border-slate-200">
-            Tự Động Hóa 2026
+        {/* Brand identity */}
+        <div className="flex items-center gap-3.5">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-sm group-hover:scale-105 transition-transform shrink-0">
+              <span className="material-symbols-outlined text-[20px]">terminal</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-headline-sm text-base sm:text-lg font-bold tracking-tight text-on-surface uppercase">
+                KIỆT DIGITAL STORE
+              </span>
+              <span className="font-label-sm text-[11px] text-on-surface-variant font-medium tracking-wider">
+                ENTERPRISE MMO SUITE
+              </span>
+            </div>
+          </Link>
+          <span className="hidden xl:inline-flex items-center px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+            MMO AUTOMATION 2026
           </span>
-        </Link>
+        </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
-          <a href="#products" className="hover:text-slate-900 transition">
-            Bộ Sưu Tập Tool
-          </a>
-          <a href="#standards" className="hover:text-slate-900 transition">
-            4 Tiêu Chuẩn Vàng
-          </a>
-          <a href="#guarantee" className="hover:text-slate-900 transition">
-            Cam Kết Từ Kiệt
-          </a>
-          <a href="#reviews" className="hover:text-slate-900 transition">
-            Đánh Giá Khách Hàng
-          </a>
+        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-surface-container-low border border-surface-container">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`px-3.5 py-1.5 rounded-full font-label-md text-xs font-semibold transition-all ${
+                  active
+                    ? 'bg-primary-container text-on-primary shadow-sm'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Right Action Buttons (Pill buttons chuẩn Focal) */}
-        <div className="flex items-center gap-2.5">
-          <Link
-            href="/my-orders"
-            className="text-xs font-semibold px-4 py-2 rounded-full border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 transition hidden sm:inline-flex items-center gap-1"
-          >
-            <span>Tra Cứu Đơn</span>
-          </Link>
-
+        {/* Right CTA Actions */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <a
             href="https://zalo.me/0352279413"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold px-4 py-2 rounded-full bg-slate-900 hover:bg-black text-white transition flex items-center gap-1.5 shadow-sm"
+            className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-full font-label-md text-xs font-semibold text-on-surface bg-surface-container-low hover:bg-surface-container border border-surface-container transition-all"
           >
-            <span>Zalo Kiệt</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Zalo Kiệt (0352.279.413)</span>
           </a>
 
-          {/* Mobile hamburger */}
+          <Link
+            href="/tools"
+            className="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:scale-[1.02] hover:bg-primary-container transition-all"
+          >
+            Khám Phá Tool
+          </Link>
+
+          {/* Mobile hamburger toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full border border-slate-200 text-slate-700 hover:text-slate-900 transition"
+            className="lg:hidden p-2 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors"
             aria-label="Toggle mobile menu"
           >
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-[#f8f9fa] px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
-          <a
-            href="#products"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-slate-800 hover:text-black py-1"
-          >
-            Bộ Sưu Tập Tool
-          </a>
-          <a
-            href="#standards"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-slate-800 hover:text-black py-1"
-          >
-            4 Tiêu Chuẩn Vàng
-          </a>
-          <a
-            href="#guarantee"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-slate-800 hover:text-black py-1"
-          >
-            Cam Kết Từ Kiệt (Đà Nẵng)
-          </a>
-          <a
-            href="#reviews"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-slate-800 hover:text-black py-1"
-          >
-            Đánh Giá Khách Hàng
-          </a>
-          <Link
-            href="/my-orders"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-semibold text-purple-700 py-1"
-          >
-            Tra Cứu Đơn Hàng Đã Mua
-          </Link>
+        <div className="lg:hidden border-t border-surface-container bg-surface-container-lowest/95 backdrop-blur-xl px-6 py-5 space-y-3 animate-in slide-in-from-top-2 duration-200 shadow-xl">
+          <div className="flex flex-col space-y-1.5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold text-on-surface hover:bg-surface-container transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="pt-3 border-t border-surface-container flex flex-col gap-2.5">
+            <a
+              href="https://zalo.me/0352279413"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full font-label-md text-xs font-semibold text-on-surface bg-surface-container-low border border-surface-container"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Zalo Kiệt: 0352.279.413</span>
+            </a>
+            <Link
+              href="/tools"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold"
+            >
+              Khám Phá Toàn Bộ Tool
+            </Link>
+          </div>
         </div>
       )}
     </header>

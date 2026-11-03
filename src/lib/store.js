@@ -24,114 +24,525 @@ const INITIAL_COUPONS = [
 
 const INITIAL_PRODUCTS = [
   {
-    id: 'workflow-shopee',
-    title: 'Kịch bản Make/n8n: Bot Săn Deal Shopee & Bắn Telegram Tự Động',
-    shortDesc: 'Tự động quét voucher 50%, flash sale Shopee 24/7, tự gắn mã tiếp thị affiliate và đẩy tin nhắn vào nhóm/kênh Telegram.',
-    price: 199000,
-    originalPrice: 450000,
-    category: 'Tự Động Hóa',
-    badge: 'Kịch Bản Tự Động',
-    fileFormat: 'JSON (Make / n8n Blueprint)',
-    fileSize: '2.1 KB',
-    version: '2026.1 (Bản ổn định)',
-    testedClean: 'VirusTotal Clean 100% (0/72 cảnh báo)',
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60',
-    downloadUrl: '/downloads/kich-ban-san-deal-shopee-telegram.json',
-    fileName: 'kich-ban-san-deal-shopee-telegram.json',
-    features: [
-      'Chạy tự động 24/7 trên Make.com hoặc n8n Cloud (không cần mở máy tính)',
-      'Tự động chèn link tiếp thị liên kết (Shopee Affiliate) để nhận hoa hồng thụ động',
-      'Kèm video hướng dẫn 3 phút import file là chạy ngay',
-      'Được hỗ trợ kỹ thuật 1-1 và nhận bản cập nhật mới miễn phí trọn đời'
+    "id": "workflow-shopee",
+    "title": "Bot Săn Deal Shopee API v2026 & Telegram Broadcaster",
+    "shortDesc": "Tự động quét voucher 50%, flash sale Shopee 24/7, gắn mã tiếp thị liên kết affiliate và bắn thông báo vào Telegram.",
+    "price": 199000,
+    "originalPrice": 450000,
+    "category": "Tool & Bot MMO",
+    "badge": "Bestseller 2026",
+    "fileFormat": "Python Script & Blueprint n8n",
+    "fileSize": "3.4 MB",
+    "version": "v2026.4.1",
+    "testedClean": "VirusTotal 0/72 Clean (Sạch 100%)",
+    "imageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/kich-ban-san-deal-shopee-telegram.json",
+    "fileName": "bot-san-deal-shopee-v2026.zip",
+    "features": [
+      "Chạy tự động 24/7 trên Make.com, n8n Cloud hoặc VPS (không cần mở máy tính)",
+      "Tự động chèn link tiếp thị liên kết (Shopee Affiliate) nhận hoa hồng thụ động",
+      "Video hướng dẫn 3 phút import file chạy ngay lập tức",
+      "UltraViewer hỗ trợ kỹ thuật 1-1 từ Kiệt và bảo hành trọn đời"
     ],
-    preview: {
-      type: 'WORKFLOW',
-      title: 'Sơ đồ luồng hoạt động tự động',
-      steps: [
-        { name: '1. Schedule Trigger', desc: 'Tự động kích hoạt định kỳ mỗi 15 phút 24/7' },
-        { name: '2. Crawl API Shopee', desc: 'Quét toàn bộ mã giảm 50% & flash sale hôm nay' },
-        { name: '3. Bộ não AI Filter', desc: 'Lọc các deal hời nhất & viết lại nội dung hấp dẫn' },
-        { name: '4. Telegram Broadcaster', desc: 'Tự động bắn bài vào kênh/nhóm kèm link affiliate của bạn' }
-      ]
-    },
-    fullDesc: `Bạn muốn xây dựng kênh săn deal Telegram kiếm hoa hồng thụ động nhưng không có thời gian ngồi canh deal? Kịch bản này sẽ thay bạn làm 100% công việc: Quét voucher giảm 50%, deal sốc từ Shopee -> Cho AI viết lại tóm tắt ngắn gọn hấp dẫn -> Tự động chèn link affiliate cá nhân của bạn -> Bắn vào kênh Telegram mỗi 15 phút. Bạn chỉ việc nhận tiền hoa hồng!`
-  },
-  {
-    id: 'data-cafe-hcm',
-    title: 'Bộ Data B2B: 1.500 Quán Cafe & Nhà Hàng Sài Gòn (Có SĐT Thật)',
-    shortDesc: 'File Excel quét sạch 1.500 quán cà phê, nhà hàng tại TP.HCM. Có đầy đủ tên quán, địa chỉ, số điện thoại chủ quán/quản lý, link Google Maps.',
-    price: 149000,
-    originalPrice: 350000,
-    category: 'Data Khách Hàng',
-    badge: 'Data B2B Thực Chiến',
-    fileFormat: 'CSV / Excel (Mở được trên mọi thiết bị)',
-    fileSize: '224 KB (1.500 dòng)',
-    version: 'Cập nhật Q4/2026',
-    testedClean: 'Đã lọc trùng & loại bỏ số bàn chết',
-    imageUrl: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop&q=60',
-    downloadUrl: '/downloads/data-1500-quan-cafe-nha-hang-hcm.csv',
-    fileName: 'data-1500-quan-cafe-nha-hang-hcm.csv',
-    features: [
-      '1.500 số điện thoại liên hệ trực tiếp chủ quán/quản lý tại TP.HCM',
-      'Đầy đủ thông tin: Tên quán, Địa chỉ, Quận, Đánh giá sao, Link Google Maps',
-      'Chuẩn định dạng CSV/Excel mở được trên điện thoại và máy tính',
-      'Cực kỳ phù hợp cho dân Telesale, phần mềm POS, nội thất, F&B'
-    ],
-    preview: {
-      type: 'TABLE',
-      title: 'Bản xem trước 5 dòng dữ liệu mẫu',
-      headers: ['Tên Quán', 'Địa Chỉ', 'Quận', 'Số Điện Thoại', 'Đánh Giá'],
-      rows: [
-        ['The Coffee House - Chi nhánh 1', '86 Nguyễn Thị Minh Khai', 'Quận 3', '0912.345.xxx', '4.8 ★'],
-        ['Highlands Coffee - Landmark 81', '720A Điện Biên Phủ', 'Bình Thạnh', '0908.765.xxx', '4.7 ★'],
-        ['Trung Nguyên Legend Cafe', '219 Nguyễn Thị Minh Khai', 'Quận 1', '0934.567.xxx', '4.9 ★'],
-        ['Phúc Long Coffee & Tea', '325 Lý Tự Trọng', 'Quận 1', '0988.112.xxx', '4.6 ★'],
-        ['Cộng Cà Phê - Bùi Viện', '127 Bùi Viện', 'Quận 1', '0945.890.xxx', '4.7 ★']
-      ],
-      note: '... và hơn 1.495 quán khác được đóng gói đầy đủ trong file chính thức.'
-    },
-    fullDesc: `Data khách hàng chất lượng cao được thu thập công khai từ Google Maps tại các quận trung tâm TP.HCM (Quận 1, Quận 3, Quận 5, Quận 7, Bình Thạnh, Thủ Đức...). Đã lọc bỏ các số bàn không liên lạc được, chuẩn xác tới 90%. Tiết kiệm hàng tuần trời ngồi tìm kiếm thông tin khách hàng.`
-  },
-  {
-    id: 'prompt-pack-ecommerce',
-    title: 'Bộ File Tính Lãi Sàn TMĐT & 500+ Prompt AI Bán Hàng Đỉnh Cao',
-    shortDesc: 'File tính tự động chi phí sàn, thuế, lãi ròng Shopee/TikTok Shop + Bộ 500 câu lệnh AI viết bài quảng cáo, kịch bản video ngắn nổ đơn.',
-    price: 99000,
-    originalPrice: 250000,
-    category: 'Tài Nguyên Bán Hàng',
-    badge: 'Tài Nguyên Thực Chiến',
-    fileFormat: 'TXT / Prompt Document',
-    fileSize: '203 KB (543 dòng)',
-    version: 'Thuật toán sàn 2026',
-    testedClean: 'Tối ưu cho ChatGPT, Gemini, Claude',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60',
-    downloadUrl: '/downloads/bo-tinh-lai-san-va-500-prompt-ai.txt',
-    fileName: 'bo-tinh-lai-san-va-500-prompt-ai.txt',
-    features: [
-      'Bảng công thức tính chi phí sàn và lãi ròng chuẩn thuật toán mới nhất năm 2026',
-      '500 Prompt AI tối ưu riêng cho ChatGPT, Gemini, Claude',
-      'Bộ công thức viết tiêu đề giật tít, kịch bản giữ chân TikTok 15s',
-      'Định dạng dễ dùng, chỉ cần nhập giá vốn là ra tiền lãi ròng chính xác'
-    ],
-    preview: {
-      type: 'PROMPT',
-      title: 'Xem trước 3 Prompt AI mẫu',
-      samples: [
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Sơ đồ luồng hoạt động tự động",
+      "steps": [
         {
-          tag: 'Kịch bản TikTok 15s',
-          text: 'Bạn là chuyên gia sáng tạo nội dung TikTok triệu view. Hãy viết cho tôi 3 kịch bản video 15s giới thiệu [Tên sản phẩm] giải quyết vấn đề [Nỗi đau khách hàng]. Mở đầu bằng hook giật gân, nhịp điệu nhanh, CTA chốt đơn.'
+          "name": "1. Schedule Trigger",
+          "desc": "Tự động kích hoạt định kỳ mỗi 15 phút 24/7"
         },
         {
-          tag: 'Facebook Ads AIDA',
-          text: 'Đóng vai trò copywriter xuất sắc. Viết 1 bài quảng cáo bán sản phẩm [Tên sản phẩm] theo mô hình AIDA (Attention - Interest - Desire - Action), đánh trúng tâm lý người mua thích giảm giá trong 24h.'
+          "name": "2. Crawl API Shopee",
+          "desc": "Quét toàn bộ mã giảm 50% & flash sale hôm nay"
         },
         {
-          tag: 'Xử lý đánh giá 1 sao',
-          text: 'Soạn 1 phản hồi chân thành, khéo léo và chuyên nghiệp cho đánh giá 1 sao của khách hàng phàn nàn về [Vấn đề gặp phải]. Biến khách hàng bức xúc thành khách hàng trung thành.'
+          "name": "3. Bộ não AI Filter",
+          "desc": "Lọc các deal hời nhất & viết lại nội dung hấp dẫn"
+        },
+        {
+          "name": "4. Telegram Broadcaster",
+          "desc": "Tự động bắn bài vào kênh/nhóm kèm link affiliate của bạn"
         }
       ]
     },
-    fullDesc: `Bộ vũ khí không thể thiếu cho bất kỳ ai kinh doanh online. Giúp bạn không bao giờ bị tình trạng "bán hàng rôm rả nhưng cuối tháng lỗ vốn vì không tính chuẩn phí sàn". Kèm theo 500 câu lệnh AI giúp bạn sản xuất 10 bài viết quảng cáo hoặc kịch bản video chỉ trong 5 phút.`
+    "fullDesc": "Bạn muốn xây dựng kênh săn deal Telegram kiếm hoa hồng thụ động nhưng không có thời gian ngồi canh deal? Kịch bản này sẽ thay bạn làm 100% công việc: Quét voucher giảm 50%, deal sốc từ Shopee -> Cho AI viết lại tóm tắt ngắn gọn hấp dẫn -> Tự động chèn link affiliate cá nhân của bạn -> Bắn vào kênh Telegram mỗi 15 phút. Bạn chỉ việc nhận tiền hoa hồng!"
+  },
+  {
+    "id": "bot-telegram-affiliate",
+    "title": "Telegram Broadcaster Auto Post & Duyệt Thành Viên VIP",
+    "shortDesc": "Hệ thống tự động phát bài đa kênh, phân loại tin nhắn, tích hợp thanh toán tự động và cấp quyền vào nhóm kín Telegram.",
+    "price": 249000,
+    "originalPrice": 500000,
+    "category": "Tool & Bot MMO",
+    "badge": "Top Bán Chạy",
+    "fileFormat": "Node.js / Telegram Bot API",
+    "fileSize": "5.1 MB",
+    "version": "v2.8 Stable",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/bot-telegram-affiliate-vip.zip",
+    "fileName": "bot-telegram-affiliate-vip.zip",
+    "features": [
+      "Tự động quản lý hội nhóm, chống spam và lọc link rác",
+      "Tự động kiểm tra hóa đơn chuyển khoản qua Webhook để duyệt vào nhóm VIP",
+      "Lập lịch phát bài đăng không giới hạn kênh",
+      "Cấu hình qua file .env đơn giản, chạy mượt trên VPS 1GB RAM"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Quy trình tự động hóa Telegram",
+      "steps": [
+        {
+          "name": "1. Khách Nhắn Bot",
+          "desc": "Bot tự động gửi bảng giá dịch vụ và mã VietQR"
+        },
+        {
+          "name": "2. Quét Thanh Toán",
+          "desc": "Hệ thống nhận tiền sau 3s và sinh link mời VIP một lần"
+        },
+        {
+          "name": "3. Cấp Quyền & Chăm Sóc",
+          "desc": "Tự động gửi thông báo chào mừng và tài liệu đính kèm"
+        }
+      ]
+    },
+    "fullDesc": "Giải pháp tự động hóa toàn diện cho các admin cộng đồng Telegram MMO. Giảm 99% thời gian kiểm tra sao kê, duyệt thành viên thủ công."
+  },
+  {
+    "id": "tiktok-shop-affiliate",
+    "title": "TikTok Shop Auto Affiliate Bot & Nuôi Kênh Video",
+    "shortDesc": "Tự động lướt video, thả tim theo từ khóa, tải video không logo và gắn link sản phẩm tiếp thị liên kết TikTok Shop.",
+    "price": 350000,
+    "originalPrice": 750000,
+    "category": "Tool & Bot MMO",
+    "badge": "Hot Trend 2026",
+    "fileFormat": "Python / Playwright Automation",
+    "fileSize": "8.2 MB",
+    "version": "v3.1 Pro",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/tiktok-shop-auto-affiliate.zip",
+    "fileName": "tiktok-shop-auto-affiliate.zip",
+    "features": [
+      "Giả lập hành vi người dùng thật bằng Playwright chống quét bot",
+      "Tự động cào video xu hướng từ Douyin & TikTok không dính watermark",
+      "Chạy đồng thời nhiều profile trình duyệt độc lập",
+      "Kèm kịch bản tương tác tăng trust tài khoản nhanh chóng"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Luồng nuôi nick & affiliate TikTok",
+      "steps": [
+        {
+          "name": "1. Đăng Nhập Profile",
+          "desc": "Mở trình duyệt fingerprint chống checkpoint"
+        },
+        {
+          "name": "2. Tương Tác Theo Niche",
+          "desc": "Xem video, like, comment theo hashtag mục tiêu"
+        },
+        {
+          "name": "3. Reup & Gắn Giỏ Hàng",
+          "desc": "Tự động biên tập nhẹ và đẩy vào giỏ hàng tiếp thị"
+        }
+      ]
+    },
+    "fullDesc": "Vũ khí tối thượng cho anh em làm TikTok Affiliate. Vận hành dàn tài khoản hoàn toàn tự động, tối ưu chi phí thiết bị."
+  },
+  {
+    "id": "tool-zalo-marketing",
+    "title": "Tool Auto Bắn Tin Nhắn Zalo Nuôi Khách & Multi-Account",
+    "shortDesc": "Gửi tin nhắn chăm sóc khách hàng hàng loạt theo tệp số điện thoại, tự động kết bạn và phân loại thẻ tag khách VIP.",
+    "price": 299000,
+    "originalPrice": 600000,
+    "category": "Tool & Bot MMO",
+    "badge": "Doanh Nghiệp B2B",
+    "fileFormat": "Windows Tool (.exe + Script)",
+    "fileSize": "14.5 MB",
+    "version": "v4.0 Enterprise",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/zalo-marketing-multi-account.zip",
+    "fileName": "zalo-marketing-multi-account.zip",
+    "features": [
+      "Gửi tin nhắn theo tệp SĐT với độ giãn cách an toàn chống khóa tài khoản",
+      "Quản lý 10-50 tài khoản Zalo cùng lúc trên 1 giao diện",
+      "Tự động kết bạn và nhắn tin chào hỏi cá nhân hóa theo tên",
+      "Xuất báo cáo trạng thái gửi tin trực tiếp ra Excel"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Quy trình tiếp cận Zalo tự động",
+      "steps": [
+        {
+          "name": "1. Nạp Danh Sách SĐT",
+          "desc": "Nhập file Excel/CSV số điện thoại khách hàng"
+        },
+        {
+          "name": "2. Thiết Lập Tin Nhắn",
+          "desc": "Trộn nội dung spin text linh hoạt"
+        },
+        {
+          "name": "3. Bắt Đầu Gửi Tin",
+          "desc": "Hệ thống tự động chạy theo hàng đợi với delay an toàn"
+        }
+      ]
+    },
+    "fullDesc": "Giải pháp tiếp cận khách hàng B2B hiệu quả nhất tại Việt Nam. Tận dụng 100% tỷ lệ mở tin nhắn trên Zalo."
+  },
+  {
+    "id": "workflow-order-voucher",
+    "title": "Auto Đặt Đơn & Check Voucher Shopee/Lazada 24/7",
+    "shortDesc": "Tự động săn mã giảm giá giờ vàng 0h, 12h, kiểm tra điều kiện áp dụng mã và tự động lưu vào ví voucher.",
+    "price": 180000,
+    "originalPrice": 400000,
+    "category": "Kịch Bản Tự Động",
+    "badge": "Tiết Kiệm Thời Gian",
+    "fileFormat": "JSON / Make.com Scenario",
+    "fileSize": "1.8 MB",
+    "version": "v2026.2",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/auto-check-voucher-shopee.zip",
+    "fileName": "auto-check-voucher-shopee.zip",
+    "features": [
+      "Tự động bấm lưu mã voucher mili-giây trước giờ mở bán",
+      "Gửi thông báo mã mới về Telegram ngay lập tức",
+      "Không yêu cầu mật khẩu tài khoản (chỉ dùng Cookie/Token an toàn)"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Luồng săn voucher tự động",
+      "steps": [
+        {
+          "name": "1. Đồng Bộ Giờ Chuẩn",
+          "desc": "Đồng bộ mili-giây với máy chủ sàn"
+        },
+        {
+          "name": "2. Lưu Mã Tự Động",
+          "desc": "Bấm thu thập mã giảm 50% ngay khi mở đợt"
+        },
+        {
+          "name": "3. Báo Cáo",
+          "desc": "Gửi kết quả lưu mã thành công qua Telegram"
+        }
+      ]
+    },
+    "fullDesc": "Công cụ không thể thiếu cho anh em chuyên gom đơn hoặc săn voucher giá trị cao trong các đợt Siêu Sale."
+  },
+  {
+    "id": "tool-fb-seeder",
+    "title": "Facebook Reels & Group Auto Seeder Tự Động",
+    "shortDesc": "Tự động tương tác chéo, bình luận tăng tương tác bài viết theo kịch bản chuẩn SEO kéo reach tự nhiên.",
+    "price": 220000,
+    "originalPrice": 480000,
+    "category": "Tool & Bot MMO",
+    "badge": "Kéo Reach Tự Động",
+    "fileFormat": "Python Selenium Script",
+    "fileSize": "6.7 MB",
+    "version": "v2.5",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/facebook-reels-group-seeder.zip",
+    "fileName": "facebook-reels-group-seeder.zip",
+    "features": [
+      "Nuôi tương tác tự nhiên với delay ngẫu nhiên chống checkpoint",
+      "Đăng bình luận mồi (seeding) tăng chuyển đổi đơn hàng",
+      "Hỗ trợ xoay proxy IPv6 / 4G tự động"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Sơ đồ Seeding Facebook",
+      "steps": [
+        {
+          "name": "1. Tải Kịch Bản Seeding",
+          "desc": "Nhập câu hỏi và câu trả lời mồi khách"
+        },
+        {
+          "name": "2. Phân Bổ Nick Nuôi",
+          "desc": "Chia đều hành động cho các nick Facebook"
+        },
+        {
+          "name": "3. Hoàn Thành & Báo Cáo",
+          "desc": "Kiểm tra link bài viết đã seeding thành công"
+        }
+      ]
+    },
+    "fullDesc": "Tăng uy tín cho bài đăng bán hàng và kéo lượng xem Reels nhanh chóng mà không cần tốn tiền chạy ads mồi."
+  },
+  {
+    "id": "data-cafe-hcm",
+    "title": "Tệp 25.000 Quán Cafe & Nhà Hàng F&B (Toàn Quốc)",
+    "shortDesc": "File Excel quét sạch 25.000 quán cà phê, nhà hàng tại Đà Nẵng, Hà Nội, TP.HCM. Có đầy đủ SĐT chủ quán/quản lý.",
+    "price": 299000,
+    "originalPrice": 650000,
+    "category": "Data Khách Hàng B2B",
+    "badge": "Data B2B F&B",
+    "fileFormat": "Excel (.xlsx) / CSV",
+    "fileSize": "4.8 MB (25.000 dòng)",
+    "version": "Update Quý 4/2026",
+    "testedClean": "Đã lọc trùng & kiểm tra SĐT 100%",
+    "imageUrl": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/data-25000-quan-cafe-nha-hang.xlsx",
+    "fileName": "data-25000-quan-cafe-nha-hang.xlsx",
+    "features": [
+      "25.000 số điện thoại liên hệ trực tiếp chủ quán/quản lý",
+      "Đầy đủ Tên quán, Địa chỉ, Quận, Đánh giá sao, Link Google Maps",
+      "Phù hợp telesale phần mềm POS, nội thất, nguyên liệu F&B"
+    ],
+    "preview": {
+      "type": "TABLE",
+      "title": "Bản xem trước dữ liệu mẫu",
+      "headers": [
+        "Tên Quán",
+        "Địa Chỉ",
+        "Thành Phố",
+        "Số Điện Thoại",
+        "Đánh Giá"
+      ],
+      "rows": [
+        [
+          "The Coffee House - Bạch Đằng",
+          "80 Bạch Đằng, Hải Châu",
+          "Đà Nẵng",
+          "0912.345.xxx",
+          "4.8 ★"
+        ],
+        [
+          "Highlands Coffee - Landmark 81",
+          "720A Điện Biên Phủ",
+          "TP.HCM",
+          "0908.765.xxx",
+          "4.7 ★"
+        ],
+        [
+          "Cộng Cà Phê - Tràng Tiền",
+          "11 Tràng Tiền, Hoàn Kiếm",
+          "Hà Nội",
+          "0934.567.xxx",
+          "4.9 ★"
+        ],
+        [
+          "Phúc Long Tea & Coffee",
+          "325 Lý Tự Trọng",
+          "TP.HCM",
+          "0988.112.xxx",
+          "4.6 ★"
+        ]
+      ],
+      "note": "... và hơn 24.996 dòng khác được đóng gói trong file chính thức."
+    },
+    "fullDesc": "Tệp data được cập nhật liên tục từ Google Maps, loại bỏ quán đóng cửa, giúp tiết kiệm 100+ giờ tìm kiếm khách hàng tiềm năng."
+  },
+  {
+    "id": "data-spa-salon",
+    "title": "Tệp 18.000 Chủ Spa, Salon Tóc & Thẩm Mỹ Viện",
+    "shortDesc": "Danh sách 18.000 chủ tiệm spa, thẩm mỹ viện, salon tóc kèm SĐT hotline, địa chỉ và phân khúc dịch vụ.",
+    "price": 299000,
+    "originalPrice": 600000,
+    "category": "Data Khách Hàng B2B",
+    "badge": "Data B2B Sắc Đẹp",
+    "fileFormat": "Excel (.xlsx) / CSV",
+    "fileSize": "3.6 MB (18.000 dòng)",
+    "version": "Update 2026",
+    "testedClean": "Đã làm sạch số hotline",
+    "imageUrl": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/data-18000-chu-spa-salon.xlsx",
+    "fileName": "data-18000-chu-spa-salon.xlsx",
+    "features": [
+      "18.000 liên hệ trực tiếp tiệm spa, làm đẹp trên toàn quốc",
+      "Phù hợp phân phối mỹ phẩm, thiết bị spa, phần mềm quản lý lịch hẹn"
+    ],
+    "preview": {
+      "type": "TABLE",
+      "title": "Xem trước 3 dòng dữ liệu Spa",
+      "headers": [
+        "Tên Cơ Sở",
+        "Địa Chỉ",
+        "Số Hotline",
+        "Dịch Vụ"
+      ],
+      "rows": [
+        [
+          "Seoul Spa Chi Nhánh Đà Nẵng",
+          "202 Nguyễn Văn Linh",
+          "0905.123.xxx",
+          "Chăm sóc da & Trị liệu"
+        ],
+        [
+          "Viện Thẩm Mỹ Diva",
+          "32 Hoàng Văn Thụ, Q.1",
+          "0918.456.xxx",
+          "Thẩm mỹ công nghệ cao"
+        ],
+        [
+          "Hair Salon Bắc Trần Tiến",
+          "108 Trần Hưng Đạo",
+          "0932.789.xxx",
+          "Uốn nhuộm & Phục hồi"
+        ]
+      ]
+    },
+    "fullDesc": "Mỏ vàng cho các công ty phân phối mỹ phẩm, thiết bị làm đẹp, học viện đào tạo và phần mềm quản lý phòng khám."
+  },
+  {
+    "id": "data-xuong-banbuon",
+    "title": "Tệp 30.000 Xưởng Sản Xuất & Bán Buôn Toàn Quốc",
+    "shortDesc": "Kho nguồn hàng tận gốc từ xưởng may mặc, gia dụng, cơ khí, nông sản bán buôn phục vụ dân buôn và TMĐT.",
+    "price": 350000,
+    "originalPrice": 800000,
+    "category": "Data Khách Hàng B2B",
+    "badge": "Nguồn Hàng Tận Gốc",
+    "fileFormat": "Excel (.xlsx)",
+    "fileSize": "6.2 MB (30.000 dòng)",
+    "version": "Cập nhật Q4/2026",
+    "testedClean": "Phân loại theo ngành hàng",
+    "imageUrl": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/data-30000-xuong-san-xuat.xlsx",
+    "fileName": "data-30000-xuong-san-xuat.xlsx",
+    "features": [
+      "30.000 địa chỉ xưởng và tổng kho sỉ trực tiếp không qua trung gian",
+      "Đầy đủ thông tin người liên hệ, số Zalo báo giá sỉ"
+    ],
+    "preview": {
+      "type": "TABLE",
+      "title": "Bản xem trước kho xưởng",
+      "headers": [
+        "Tên Xưởng",
+        "Khu Vực",
+        "Mặt Hàng Chính",
+        "Số Zalo"
+      ],
+      "rows": [
+        [
+          "Xưởng May Nam Định Express",
+          "KCN Hòa Xá, Nam Định",
+          "Thời trang unisex sỉ",
+          "0978.234.xxx"
+        ],
+        [
+          "Tổng Kho Gia Dụng Minh Khang",
+          "Ninh Hiệp, Gia Lâm",
+          "Đồ gia dụng thông minh",
+          "0943.567.xxx"
+        ],
+        [
+          "Cơ Khí Đột Dập Tân Bình",
+          "KCN Tân Bình, TP.HCM",
+          "Gia công linh kiện",
+          "0912.987.xxx"
+        ]
+      ]
+    },
+    "fullDesc": "Dành riêng cho người bán hàng online tìm kiếm tận gốc xưởng sản xuất để có giá vốn cạnh tranh nhất."
+  },
+  {
+    "id": "prompt-pack-ecommerce",
+    "title": "Bộ Prompt AI GPT-4o Bán Hàng Triệu View & Kịch Bản Video",
+    "shortDesc": "Bộ 500+ câu lệnh AI tối ưu hóa riêng cho ChatGPT, Claude 3.5, Gemini giúp viết kịch bản video ngắn, bài PR và chốt sale.",
+    "price": 149000,
+    "originalPrice": 350000,
+    "category": "Prompt AI & Kịch Bản",
+    "badge": "Prompt AI Bản Quyền",
+    "fileFormat": "Notion Database & PDF Doc",
+    "fileSize": "1.2 MB (500+ Prompts)",
+    "version": "GPT-4o & Claude 3.5",
+    "testedClean": "100% Hoạt động tốt",
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/bo-500-prompt-ai-tmdt.pdf",
+    "fileName": "bo-500-prompt-ai-tmdt.pdf",
+    "features": [
+      "Công thức giật tít 3s đầu video TikTok giữ chân người xem",
+      "Kịch bản livestream chốt 100 đơn/phiên",
+      "Prompt xử lý phản hồi tiêu cực và đánh giá 1 sao chuyên nghiệp"
+    ],
+    "preview": {
+      "type": "PROMPT",
+      "title": "Xem trước 3 Prompt AI mẫu",
+      "samples": [
+        {
+          "tag": "Kịch bản TikTok 15s",
+          "text": "Bạn là chuyên gia sáng tạo nội dung TikTok triệu view. Hãy viết cho tôi 3 kịch bản video 15s giới thiệu sản phẩm giải quyết vấn đề khách hàng. Mở đầu bằng hook giật gân, nhịp điệu nhanh, CTA chốt đơn."
+        },
+        {
+          "tag": "Facebook Ads AIDA",
+          "text": "Đóng vai trò copywriter xuất sắc. Viết 1 bài quảng cáo bán sản phẩm theo mô hình AIDA (Attention - Interest - Desire - Action)."
+        }
+      ]
+    },
+    "fullDesc": "Giúp bạn sản xuất hàng chục kịch bản video và bài viết quảng cáo chất lượng cao mỗi ngày mà không cần thuê đội ngũ content đắt đỏ."
+  },
+  {
+    "id": "prompt-ai-chotsale",
+    "title": "Prompt AI Chốt Sale Bất Động Sản & MMO Thực Chiến",
+    "shortDesc": "Hệ thống câu lệnh AI hóa thân chuyên gia tư vấn, giải quyết mọi lời từ chối khách hàng và đẩy cảm xúc chốt cọc.",
+    "price": 169000,
+    "originalPrice": 390000,
+    "category": "Prompt AI & Kịch Bản",
+    "badge": "Tỷ Lệ Chốt Cao",
+    "fileFormat": "PDF Document + Copy-Paste Guide",
+    "fileSize": "1.5 MB",
+    "version": "2026 Edition",
+    "testedClean": "Đã thử nghiệm thực tế",
+    "imageUrl": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/prompt-ai-chot-sale-bds.pdf",
+    "fileName": "prompt-ai-chot-sale-bds.pdf",
+    "features": [
+      "Hơn 50 kịch bản xử lý lời từ chối: chê đắt, cần hỏi ý kiến gia đình, đang cân nhắc",
+      "Bộ câu hỏi khơi gợi nỗi đau và kích thích ra quyết định nhanh"
+    ],
+    "preview": {
+      "type": "PROMPT",
+      "title": "Mẫu xử lý phản đối",
+      "samples": [
+        {
+          "tag": "Khách Chê Đắt",
+          "text": "Phân tích giá trị lâu dài và bài toán chi phí cơ hội để khách hàng nhận thấy giá hiện tại là một món đầu tư sinh hời ngay lập tức."
+        }
+      ]
+    },
+    "fullDesc": "Đúc kết từ 5+ năm kinh nghiệm bán hàng thực tế, chuyển hóa thành các prompt AI chuẩn chỉnh giúp tăng tỷ lệ chốt đơn lên 40%."
+  },
+  {
+    "id": "crawl-google-maps",
+    "title": "Auto Crawl Dữ Liệu Google Maps Chuẩn Tọa Độ GPS",
+    "shortDesc": "Phần mềm tự động cào số điện thoại, tên, địa chỉ, website, đánh giá của hàng triệu doanh nghiệp theo bán kính GPS.",
+    "price": 280000,
+    "originalPrice": 590000,
+    "category": "Tool & Bot MMO",
+    "badge": "Cào Data Vô Hạn",
+    "fileFormat": "Python Script + GUI Windows",
+    "fileSize": "12.0 MB",
+    "version": "v5.2 GPS Pro",
+    "testedClean": "VirusTotal 0/72 Clean",
+    "imageUrl": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&auto=format&fit=crop&q=60",
+    "downloadUrl": "/downloads/google-maps-crawler-gps-pro.zip",
+    "fileName": "google-maps-crawler-gps-pro.zip",
+    "features": [
+      "Tự động quét theo từ khóa và tọa độ vĩ độ/kinh độ GPS chính xác",
+      "Không giới hạn số lần quét, xuất file Excel tức thì",
+      "Giao diện bấm chuột trực quan không cần biết lập trình"
+    ],
+    "preview": {
+      "type": "WORKFLOW",
+      "title": "Quy trình cào Google Maps",
+      "steps": [
+        {
+          "name": "1. Nhập Từ Khóa & Khu Vực",
+          "desc": "Ví dụ: phòng khám nha khoa Đà Nẵng"
+        },
+        {
+          "name": "2. Tự Động Thu Thập",
+          "desc": "Tool cuộn và bóc tách SĐT, website, địa chỉ"
+        },
+        {
+          "name": "3. Xuất File Excel",
+          "desc": "Lưu file .xlsx hoàn chỉnh chỉ sau 2 phút"
+        }
+      ]
+    },
+    "fullDesc": "Chấm dứt việc đi mua data cũ rích trôi nổi. Tự tay sở hữu công cụ quét data trực tiếp thời gian thực không giới hạn."
   }
 ];
 

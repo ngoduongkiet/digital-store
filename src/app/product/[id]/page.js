@@ -5,20 +5,15 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import CheckoutModal from '@/components/CheckoutModal';
 import PreviewModal from '@/components/PreviewModal';
-import {
-  ArrowLeft, CheckCircle2, ShieldCheck, Zap, Star,
-  Download, Eye, RefreshCw, FileText, Lock, FileCode2,
-  HelpCircle, MessageCircle, Sparkles, ChevronRight, Clock,
-  Award, Shield, PhoneCall
-} from 'lucide-react';
 
 export default function ProductDetailPage() {
   const params = useParams();
   const [product, setProduct] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeMediaView, setActiveMediaView] = useState(0); // 0: Live Feed, 1: Clean Code, 2: Analytics, 3: VirusTotal
   const [showCheckout, setShowCheckout] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-  const [activeTab, setActiveTab] = useState('DESC'); // 'DESC' | 'SPECS' | 'POLICY'
 
   useEffect(() => {
     if (!params?.id) return;
@@ -31,6 +26,15 @@ export default function ProductDetailPage() {
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
+
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.products) {
+          setAllProducts(data.products);
+        }
+      })
+      .catch((err) => console.error(err));
   }, [params?.id]);
 
   const formatPrice = (price) => {
@@ -39,264 +43,399 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="py-24 text-center text-slate-500 font-sans">
-        <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-slate-900 animate-spin mx-auto mb-3"></div>
-        <p className="text-xs">Đang tải thông tin sản phẩm...</p>
+      <div className="py-32 text-center text-on-surface-variant">
+        <div className="w-10 h-10 rounded-full border-2 border-surface-container border-t-primary animate-spin mx-auto mb-4"></div>
+        <p className="text-sm font-semibold">Đang tải kiến trúc vũ khí số...</p>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="py-24 text-center max-w-md mx-auto px-4 font-sans">
-        <h2 className="font-editorial text-2xl font-bold text-slate-900">Không tìm thấy sản phẩm!</h2>
-        <p className="text-xs text-slate-500 mt-2">Sản phẩm này có thể đã được gỡ hoặc đường dẫn không chính xác.</p>
-        <Link 
-          href="/" 
-          className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-black transition shadow-sm"
+      <div className="py-32 text-center max-w-md mx-auto px-6">
+        <h2 className="text-2xl font-bold text-on-surface">Không tìm thấy vũ khí số!</h2>
+        <p className="text-xs text-on-surface-variant mt-2">
+          Vũ khí số này có thể đã được cập nhật đường dẫn mới hoặc tạm đóng đăng ký.
+        </p>
+        <Link
+          href="/tools"
+          className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-on-primary text-xs font-semibold hover:bg-primary-container transition-all"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Quay lại trang chủ</span>
+          <span>Khám phá kho vũ khí khác</span>
         </Link>
       </div>
     );
   }
 
-  const discountPercent = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  );
+  const relatedProducts = allProducts.filter((p) => p.id !== product.id).slice(0, 3);
+
+  const mediaViews = [
+    {
+      title: 'Giao diện Telegram Bot Real-time',
+      subtitle: 'Tự động cấu trúc caption AI GPT-4o, gắn shortlink & hình ảnh deal 50%',
+      tag: 'Live Feed',
+      image: product.imageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80'
+    },
+    {
+      title: 'Cấu trúc Code Tinh Gọn (Clean Architecture)',
+      subtitle: 'Khởi chạy đa luồng Asyncio, không giật lag, memory footprint < 150MB RAM',
+      tag: 'Source Code',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80'
+    },
+    {
+      title: 'Thống Kê Hiệu Suất Vận Hành Thực Tế',
+      subtitle: 'Tự động chạy ngầm 24/7 trên VPS / Cloud, tỷ lệ chuyển đổi đơn cao',
+      tag: 'Analytics',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80'
+    },
+    {
+      title: 'Chứng Nhận Bảo Mật VirusTotal (0/72 Clean)',
+      subtitle: 'Bàn giao file source code mở (.py / .js / .json), nói không với mã độc',
+      tag: 'VirusTotal Clean',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1000&auto=format&fit=crop&q=80'
+    }
+  ];
 
   return (
-    <div className="bg-[#f8f9fa] min-h-screen py-8 sm:py-12">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 space-y-8 font-sans">
-        
-        {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-slate-900 transition flex items-center gap-1.5 font-semibold">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Tất Cả Sản Phẩm</span>
-          </Link>
-          <ChevronRight className="w-3 h-3 text-slate-300" />
-          <span className="text-slate-500 uppercase tracking-wider text-[11px] font-semibold">{product.category}</span>
-          <ChevronRight className="w-3 h-3 text-slate-300" />
-          <span className="text-slate-900 font-bold truncate max-w-xs">{product.title}</span>
+    <div className="w-full pt-4 pb-20 bg-background min-h-screen">
+      {/* BREADCRUMB & METADATA BAR */}
+      <section className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-body-sm text-xs text-on-surface-variant">
+            <Link href="/" className="hover:text-on-surface transition-colors">Trang Chủ</Link>
+            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+            <Link href="/tools" className="hover:text-on-surface transition-colors">Bộ Sưu Tập Tool</Link>
+            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span className="text-on-surface-variant">{product.category}</span>
+            <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span className="text-on-surface font-semibold truncate max-w-[220px] sm:max-w-none">{product.title}</span>
+          </nav>
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              BẢN QUYỀN VĨNH VIỄN
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-xs">
+              <span className="material-symbols-outlined text-[14px]">verified</span>
+              0/72 Clean
+            </span>
+          </div>
         </div>
+      </section>
 
-        {/* Main Balanced 2-Column Luxury Bento Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white p-6 sm:p-10 rounded-[2rem] border border-slate-200/80 shadow-sm items-start">
+      {/* 2-COLUMN LUXESTATE ARCHITECTURAL STAGE */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column (5 Cols): Product Image & Trust box */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-sm">
-              <img
-                src={product.imageUrl}
-                alt={product.title}
-                className="w-full h-72 sm:h-84 object-cover"
-              />
-              {product.badge && (
-                <span className="absolute top-4 left-4 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-900 text-white shadow-md">
-                  {product.badge}
+          {/* LEFT COLUMN: INTERACTIVE MEDIA STAGE */}
+          <div className="lg:col-span-7 flex flex-col space-y-6">
+            <div className="relative rounded-3xl overflow-hidden bg-surface-container-lowest shadow-md border border-surface-container">
+              {/* Top Tags */}
+              <div className="absolute top-4 left-4 z-20">
+                <span className="px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-xs font-semibold shadow-sm">
+                  {product.badge || 'TOOL MMO THỰC CHIẾN'}
                 </span>
-              )}
-              {product.fileFormat && (
-                <span className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-slate-800 backdrop-blur-md flex items-center gap-1.5 border border-slate-200 shadow-sm">
-                  <FileCode2 className="w-3.5 h-3.5 text-slate-600" />
-                  <span>{product.fileFormat}</span>
-                </span>
-              )}
-            </div>
-
-            {/* Quick Preview Button */}
-            {product.preview && (
-              <button
-                type="button"
-                onClick={() => setShowPreview(true)}
-                className="w-full py-3 px-4 rounded-full border border-slate-300 hover:border-slate-800 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
-              >
-                <Eye className="w-4 h-4 text-slate-700" />
-                <span>Xem Thử Cấu Trúc File & Dữ Liệu Mẫu (Miễn Phí)</span>
-              </button>
-            )}
-
-            {/* Trust Guarantees Box */}
-            <div className="p-5 rounded-2xl bg-[#f8f9fa] border border-slate-200/80 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>Cam Kết Chất Lượng Chuẩn Từ Kiệt (Đà Nẵng)</span>
               </div>
-              <ul className="text-xs text-slate-600 space-y-2 pl-4 list-disc leading-relaxed">
-                <li>100% file gốc sạch mã độc, kiểm định <strong>0/72 VirusTotal</strong>.</li>
-                <li>Hỗ trợ kỹ thuật trực tiếp 1-1 qua <strong>UltraViewer & Zalo</strong>.</li>
-                <li>Khớp lệnh Napas tự động <strong>3 giây</strong>, nhả link Google Drive gốc.</li>
-                <li>Hoàn tiền 100% ngay lập tức nếu file lỗi không khắc phục được.</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Right Column (7 Cols): Info, Tabs & Purchase CTA */}
-          <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-6">
-            <div>
-              {/* Status Badge */}
-              <div className="flex items-center gap-2 text-xs mb-3">
-                <span className="inline-flex items-center gap-1.5 text-emerald-800 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/60 text-[11px]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{product.salesCount || 120}+ Lượt tải thành công</span>
-                </span>
-                <span className="inline-flex items-center gap-1 text-slate-500 text-[11px]">
-                  <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
-                  <span className="font-bold text-slate-800">5.0 / 5.0</span>
+              <div className="absolute top-4 right-4 z-20">
+                <span className="px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-xs flex items-center gap-1 shadow-sm">
+                  <span className="material-symbols-outlined text-[16px]">visibility</span>
+                  <span>46 người đang xem</span>
                 </span>
               </div>
 
-              <h1 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-                {product.title}
-              </h1>
-
-              {/* Price section */}
-              <div className="mt-4 flex items-baseline gap-3 p-4 rounded-2xl bg-[#f8f9fa] border border-slate-200/80">
-                <span className="text-3xl font-extrabold text-slate-900">
-                  {formatPrice(product.price)}
-                </span>
-                <span className="text-sm text-slate-400 line-through">
-                  {formatPrice(product.originalPrice)}
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200/60 ml-auto">
-                  Tiết kiệm {discountPercent}%
-                </span>
-              </div>
-
-              {/* TAB HEADERS */}
-              <div className="flex gap-6 mt-6 border-b border-slate-200">
-                <button
-                  onClick={() => setActiveTab('DESC')}
-                  className={`pb-3 text-xs sm:text-sm font-bold border-b-2 transition ${
-                    activeTab === 'DESC'
-                      ? 'border-slate-900 text-slate-900'
-                      : 'border-transparent text-slate-400 hover:text-slate-700'
-                  }`}
-                >
-                  Mô Tả Chi Tiết
-                </button>
-                <button
-                  onClick={() => setActiveTab('SPECS')}
-                  className={`pb-3 text-xs sm:text-sm font-bold border-b-2 transition ${
-                    activeTab === 'SPECS'
-                      ? 'border-slate-900 text-slate-900'
-                      : 'border-transparent text-slate-400 hover:text-slate-700'
-                  }`}
-                >
-                  Thông Số Kỹ Thuật
-                </button>
-                <button
-                  onClick={() => setActiveTab('POLICY')}
-                  className={`pb-3 text-xs sm:text-sm font-bold border-b-2 transition ${
-                    activeTab === 'POLICY'
-                      ? 'border-slate-900 text-slate-900'
-                      : 'border-transparent text-slate-400 hover:text-slate-700'
-                  }`}
-                >
-                  Chính Sách & Bảo Hành
-                </button>
-              </div>
-
-              {/* TAB CONTENTS */}
-              <div className="py-5 min-h-[160px]">
-                {activeTab === 'DESC' && (
-                  <div className="space-y-4">
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line">
-                      {product.fullDesc || product.shortDesc}
-                    </p>
+              {/* Main Media Display Viewport */}
+              <div className="relative w-full aspect-[16/10] bg-surface-container overflow-hidden">
+                <img
+                  src={mediaViews[activeMediaView].image}
+                  alt={mediaViews[activeMediaView].title}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-6 text-white">
+                  <div className="flex items-center justify-between w-full">
                     <div>
-                      <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2.5">
-                        Tính Năng Nổi Bật
-                      </h4>
-                      <div className="space-y-2">
-                        {product.features?.map((feat, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>{feat}</span>
-                          </div>
-                        ))}
-                      </div>
+                      <p className="font-headline-sm text-base sm:text-lg font-bold drop-shadow-sm">
+                        {mediaViews[activeMediaView].title}
+                      </p>
+                      <p className="font-body-sm text-xs text-white/80 mt-0.5">
+                        {mediaViews[activeMediaView].subtitle}
+                      </p>
                     </div>
+                    <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md font-label-sm text-xs shrink-0 ml-3">
+                      {mediaViews[activeMediaView].tag}
+                    </span>
                   </div>
-                )}
-
-                {activeTab === 'SPECS' && (
-                  <div className="space-y-2 text-xs">
-                    <div className="p-3.5 rounded-xl bg-[#f8f9fa] border border-slate-200/80 flex justify-between">
-                      <span className="text-slate-500">Định dạng file:</span>
-                      <span className="font-bold text-slate-900">{product.fileFormat || 'Tệp số nguyên bản'}</span>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[#f8f9fa] border border-slate-200/80 flex justify-between">
-                      <span className="text-slate-500">Dung lượng:</span>
-                      <span className="font-bold text-slate-900">{product.fileSize || 'Chuẩn nhẹ'}</span>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[#f8f9fa] border border-slate-200/80 flex justify-between">
-                      <span className="text-slate-500">Phiên bản:</span>
-                      <span className="font-bold text-slate-900">{product.version || '2026.1'}</span>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[#f8f9fa] border border-slate-200/80 flex justify-between">
-                      <span className="text-slate-500">Kiểm tra bảo mật:</span>
-                      <span className="font-bold text-emerald-600">{product.testedClean || 'VirusTotal 0/72 Clean'}</span>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'POLICY' && (
-                  <div className="text-xs text-slate-600 space-y-3 leading-relaxed">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
-                      <span>Hỗ trợ kỹ thuật UltraViewer 1-1 cài đặt trọn gói trực tiếp cho đến khi vận hành thành công.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
-                      <span>Hoàn tiền 100% nếu file lỗi kỹ thuật hoặc không đúng như mô tả.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
-                      <span>Tải lại không giới hạn từ Email cá nhân đã đăng ký bất kỳ lúc nào.</span>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
 
-            {/* ACTION BUTTONS (Pill Buttons chuẩn Focal Luxury) */}
-            <div className="pt-4 border-t border-slate-200/80 space-y-3">
-              <button
-                type="button"
-                onClick={() => setShowCheckout(true)}
-                className="w-full py-4 rounded-full bg-slate-900 hover:bg-black text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition"
-              >
-                <Zap className="w-4 h-4 text-amber-300" />
-                <span>Thanh Toán & Nhận File Ngay ({formatPrice(product.price)})</span>
-              </button>
-
-              <div className="flex items-center justify-between text-xs text-slate-500 px-2">
-                <span className="flex items-center gap-1 text-emerald-600 font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>VietQR Napas 24/7 Giao File 3s</span>
-                </span>
-                <a
-                  href={`https://zalo.me/0352279413?text=${encodeURIComponent(`Chào bạn Kiệt, mình muốn tư vấn thêm về ${product.title}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-900 font-bold flex items-center gap-1 transition"
+            {/* 4 Interactive Media Tabs */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {mediaViews.map((view, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveMediaView(idx)}
+                  className={`p-3 rounded-2xl text-left transition-all border shadow-sm ${
+                    activeMediaView === idx
+                      ? 'bg-surface-container-lowest border-primary shadow-md'
+                      : 'bg-surface-container-lowest border-surface-container opacity-70 hover:opacity-100 hover:bg-surface-container-low'
+                  }`}
                 >
-                  <PhoneCall className="w-3 h-3 text-slate-700" />
-                  <span>Chat Zalo Hỏi Kiệt</span>
-                </a>
-              </div>
+                  <span className="block font-label-sm text-[10px] text-on-surface-variant font-bold uppercase">
+                    VIEW 0{idx + 1}
+                  </span>
+                  <span className="font-headline-sm text-xs sm:text-sm font-bold text-on-surface block truncate mt-0.5">
+                    {view.tag}
+                  </span>
+                  <span className="font-body-sm text-[11px] text-on-surface-variant block truncate">
+                    Bản Quyền 2026
+                  </span>
+                </button>
+              ))}
             </div>
 
+            {/* Technical Telemetry Mini Widget */}
+            <div className="bg-surface-container-lowest rounded-3xl p-5 shadow-sm border border-surface-container flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[20px]">speed</span>
+                </div>
+                <div>
+                  <p className="font-label-sm text-[11px] text-on-surface-variant font-semibold">TẦN SUẤT QUÉT</p>
+                  <p className="font-headline-sm text-sm font-bold text-on-surface">1.2 Giây / Lần</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[20px]">memory</span>
+                </div>
+                <div>
+                  <p className="font-label-sm text-[11px] text-on-surface-variant font-semibold">TIÊU HAO BỘ NHỚ</p>
+                  <p className="font-headline-sm text-sm font-bold text-on-surface">&lt; 150 MB RAM</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+                  <span className="material-symbols-outlined text-[20px]">smart_toy</span>
+                </div>
+                <div>
+                  <p className="font-label-sm text-[11px] text-on-surface-variant font-semibold">AI ENGINE</p>
+                  <p className="font-headline-sm text-sm font-bold text-on-surface">GPT-4o Mini</p>
+                </div>
+              </div>
+            </div>
           </div>
 
+          {/* RIGHT COLUMN: PRICING & ORDER ACTION */}
+          <div className="lg:col-span-5 flex flex-col space-y-6">
+            <div className="bg-surface-container-lowest rounded-3xl p-6 lg:p-8 shadow-sm border border-surface-container flex flex-col gap-6">
+              
+              {/* Badge row */}
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="px-3.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-xs font-semibold tracking-wide">
+                  🔥 BESTSELLER #1 • BẢN QUYỀN VĨNH VIỄN
+                </span>
+                <span className="px-3 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-xs font-semibold">
+                  {product.version || 'v2026 Live'}
+                </span>
+              </div>
+
+              {/* Title & Short description */}
+              <div>
+                <h1 className="font-headline-lg text-2xl sm:text-3xl font-bold text-on-surface tracking-tight leading-tight">
+                  {product.title}
+                </h1>
+                <p className="font-body-md text-xs sm:text-sm text-on-surface-variant mt-2 leading-relaxed">
+                  {product.shortDesc}
+                </p>
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="material-symbols-outlined text-[18px]">star</span>
+                  ))}
+                </div>
+                <span className="text-xs font-semibold text-on-surface">5.0 (150+ đơn hàng đã giao)</span>
+              </div>
+
+              {/* Price Block */}
+              <div className="p-4 rounded-2xl bg-surface-container-low border border-surface-container flex items-center justify-between">
+                <div>
+                  <span className="block font-label-sm text-[11px] text-on-surface-variant font-medium">Giá ưu đãi bản quyền</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-price-hero text-2xl sm:text-3xl font-extrabold text-on-surface">
+                      {formatPrice(product.price)}
+                    </span>
+                    {product.originalPrice && (
+                      <span className="text-xs line-through text-on-surface-variant">
+                        {formatPrice(product.originalPrice)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-label-sm text-xs font-bold">
+                  Tiết kiệm {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                </span>
+              </div>
+
+              {/* Features List */}
+              <div className="space-y-2.5">
+                <p className="font-label-sm text-xs uppercase text-secondary font-bold tracking-wider">
+                  Đặc Quyền Kèm Theo Khi Mua:
+                </p>
+                {(product.features || []).map((feat, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-on-surface">
+                    <span className="material-symbols-outlined text-[18px] text-emerald-600 shrink-0 mt-0.5">
+                      check_circle
+                    </span>
+                    <span className="leading-relaxed">{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3 pt-2">
+                <button
+                  onClick={() => setShowCheckout(true)}
+                  className="w-full py-3.5 px-6 rounded-full bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-semibold shadow-md hover:bg-primary-container hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-[18px]">qr_code_2</span>
+                  <span>Mua Ngay Bản Quyền (Giao File 3s)</span>
+                </button>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => setShowPreview(true)}
+                    className="py-2.5 px-4 rounded-full bg-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container-high transition-all flex items-center justify-center gap-1.5"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">visibility</span>
+                    <span>Xem Thử Bản Mẫu</span>
+                  </button>
+
+                  <a
+                    href="https://zalo.me/0352279413"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-4 rounded-full bg-surface-container-low border border-surface-container text-on-surface font-label-md text-xs hover:bg-surface-container transition-all flex items-center justify-center gap-1.5"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">chat</span>
+                    <span>UltraViewer 1-1</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Trust footer info */}
+              <div className="pt-2 border-t border-surface-container flex items-center justify-between text-xs text-secondary font-medium">
+                <span className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-[15px] text-emerald-600">verified</span>
+                  Quét VietQR nhận file 3s
+                </span>
+                <span>Hoàn tiền 100% nếu lỗi</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-      </div>
+      {/* DETAILED SPECIFICATIONS & ARCHITECTURE */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+        <div className="bg-surface-container-lowest rounded-3xl p-8 lg:p-12 shadow-sm border border-surface-container space-y-8">
+          <div>
+            <span className="font-label-md text-xs uppercase tracking-widest text-secondary font-bold">
+              Kiến Trúc &amp; Đặc Tả Kỹ Thuật
+            </span>
+            <h2 className="font-headline-lg text-2xl font-bold text-on-surface tracking-tight mt-1">
+              Thông Tin Bàn Giao Chi Tiết
+            </h2>
+          </div>
 
-      {/* CHECKOUT & PREVIEW MODALS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-5 rounded-2xl bg-surface-container-low border border-surface-container space-y-1.5">
+              <span className="text-xs text-on-surface-variant">Định Dạng Tệp Tin</span>
+              <p className="font-bold text-sm text-on-surface">{product.fileFormat || 'Mã Nguồn Mở'}</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface-container-low border border-surface-container space-y-1.5">
+              <span className="text-xs text-on-surface-variant">Dung Lượng Gói Cài</span>
+              <p className="font-bold text-sm text-on-surface">{product.fileSize || '3.4 MB'}</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface-container-low border border-surface-container space-y-1.5">
+              <span className="text-xs text-on-surface-variant">Phiên Bản Kiểm Thử</span>
+              <p className="font-bold text-sm text-emerald-600">{product.version || 'v2026 Live'}</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface-container-low border border-surface-container space-y-1.5">
+              <span className="text-xs text-on-surface-variant">Xác Thực Mã Độc</span>
+              <p className="font-bold text-sm text-emerald-600">{product.testedClean || 'VirusTotal 0/72 Clean'}</p>
+            </div>
+          </div>
+
+          {product.fullDesc && (
+            <div className="pt-4 border-t border-surface-container space-y-3">
+              <h3 className="font-headline-sm text-base font-bold text-on-surface">Mô Tả Chuyên Sâu Từ Tác Giả</h3>
+              <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed whitespace-pre-line">
+                {product.fullDesc}
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* RELATED PRODUCTS */}
+      {relatedProducts.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+          <div className="mb-8">
+            <h3 className="font-headline-lg text-xl font-bold text-on-surface">Vũ Khí Số Cùng Hệ Sinh Thái</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedProducts.map((rel) => (
+              <div
+                key={rel.id}
+                className="bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-md border border-surface-container flex flex-col justify-between group transition-all"
+              >
+                <div className="space-y-4">
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-surface-container">
+                    <img
+                      src={rel.imageUrl}
+                      alt={rel.title}
+                      className="w-full h-full object-cover group-hover:scale-105 duration-500"
+                    />
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-xs font-bold text-on-surface">
+                      {rel.badge}
+                    </span>
+                  </div>
+                  <div>
+                    <Link
+                      href={`/product/${rel.id}`}
+                      className="font-headline-sm text-sm font-bold text-on-surface hover:text-primary transition-colors block line-clamp-1"
+                    >
+                      {rel.title}
+                    </Link>
+                    <p className="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">
+                      {rel.shortDesc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 mt-3 flex items-center justify-between border-t border-surface-container">
+                  <span className="font-price-card text-base font-extrabold text-on-surface">
+                    {formatPrice(rel.price)}
+                  </span>
+                  <Link
+                    href={`/product/${rel.id}`}
+                    className="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-xs font-semibold hover:bg-primary-container transition-all"
+                  >
+                    Xem Chi Tiết
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Modals */}
       {showCheckout && (
         <CheckoutModal
           product={product}
@@ -308,7 +447,7 @@ export default function ProductDetailPage() {
         <PreviewModal
           product={product}
           onClose={() => setShowPreview(false)}
-          onBuy={(prod) => {
+          onBuyNow={() => {
             setShowPreview(false);
             setShowCheckout(true);
           }}

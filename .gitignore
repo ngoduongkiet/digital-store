@@ -6,3 +6,5 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 *.pem
+stitch_imports/
+stitch_tailwind.json
